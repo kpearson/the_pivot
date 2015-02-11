@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "An unauthenticated user" do
+describe "As an unauthenticated user" do
   include Capybara::DSL
 
   let(:category1) { Category.create(name: "Breakfast") }
@@ -29,6 +29,26 @@ describe "An unauthenticated user" do
 
   before(:each) do
     visit root_path
+  end
+
+  it "can login which does not clear cart" do
+    click_add_to_cart_link("Breakfast")
+    User.create(first_name: "Rich",
+                last_name: "Shea",
+                email: "bryce@gmail.com",
+                password: "secret")
+    # visit root_path
+    fill_in "session[email]", with: "bryce@gmail.com"
+    fill_in "session[password]", with: "secret"
+    click_link_or_button "Log In"
+    # visit root_path
+    # expect(current_path).to eq(root_path)
+    within("#flash_notice") do
+      expect(page).to have_content("Successfully Logged In")
+    end
+    within("#cart-contents") do
+      expect(page).to have_content("1")
+    end
   end
 
   it "can browse all items grouped by category (category index page)" do
@@ -87,27 +107,6 @@ describe "An unauthenticated user" do
     expect(page).to_not have_content("Bacon")
   end
 
-  it "can login which does not clear cart" do
-    click_add_to_cart_link("Breakfast")
-    User.create(first_name: "Rich",
-                last_name: "Shea",
-                email: "bryce@gmail.com",
-                display_name: "Rich",
-                password: "secret")
-    # visit root_path
-    fill_in "session[email]", with: "bryce@gmail.com"
-    fill_in "session[password]", with: "secret"
-    click_link_or_button "Log In"
-    # visit root_path
-    # expect(current_path).to eq(root_path)
-    within("#flash_notice") do
-      expect(page).to have_content("Successfully Logged In")
-    end
-    within("#cart-contents") do
-      expect(page).to have_content("1")
-    end
-  end
-
   it "cannot see the logout button" do
     expect(page).to_not have_content("Log Out")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
@@ -121,7 +120,6 @@ describe "An unauthenticated user" do
     User.create(first_name: "Rich",
                 last_name: "Shea",
                 email: "bryce@gmail.com",
-                display_name: "Rich",
                 password: "secret")
     visit root_path
     fill_in "session[email]", with: "bryce@gmail.com"
@@ -167,7 +165,6 @@ describe "An unauthenticated user" do
     user = User.create(first_name: "Rich",
                        last_name: "Shea",
                        email: "bryce@gmail.com",
-                       display_name: "Rich",
                        password: "secret")
     visit user_path(user)
     expect(current_path).to eq(not_found_path)
