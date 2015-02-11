@@ -7,7 +7,6 @@ describe "authenticated" do
     User.create(first_name: "Bryce",
                 last_name: "Holcomb",
                 email: "bryce@gmail.com",
-                display_name: "bholcomb",
                 password: "userpassword")
   end
 
@@ -25,17 +24,18 @@ describe "authenticated" do
 
   context "user" do
     it "can add them self to the system" do
-      click_link_or_button "Sign Up"
-      fill_in "user_first_name", with: "Kit"
-      fill_in "user_last_name", with: "Pearson"
-      fill_in "user_email", with: "kit@kit.com"
-      fill_in "user_display_name", with: "hal9000"
-      fill_in "user_password", with: "password"
-      click_link_or_button "Submit"
-      expect(page).to have_content("Log Out")
-      expect(page).to_not have_content("Log In")
+      visit root_path
+      click_link_or_button("Sign Up")
+      expect(page).to have_css("#sign-up")
+
+      fill_in "user[first_name]", with: "Joe"
+      fill_in "user[last_name]", with: "Doe"
+      fill_in "user[email]", with: "Joe@example.com"
+      fill_in "user[password]", with: "password"
+      fill_in "user[password_confirmation]", with: "password"
+      click_link_or_button("Submit")
       within("#flash_notice") do
-        expect(page).to have_content("User created successfully.")
+        expect(page).to have_content("Welcome Joe")
       end
     end
 
