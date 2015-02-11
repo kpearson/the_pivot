@@ -26,7 +26,7 @@ describe "an admin" do
     fill_in "admin_last_name", with: "Pearson"
     fill_in "admin_email", with: "kit@kit.com"
     fill_in "admin_password", with: "password"
-    click_link_or_button "Submit"
+    click_link_or_button "Sign Up"
     within("#flash_notice") do
       expect(page).to have_content "Admin created successfully."
     end

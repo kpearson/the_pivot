@@ -15,23 +15,11 @@
         <li class="divider"></li>
         <li class="active"><%= link_to "Settings", user_path(current_user.id) %></li>
       <% else %>
-        <li>
-          <div class="row collapse">
-            <%= form_for :session, url: {action: "create", controller: "sessions"} do |f| %>
-            <div class="large-4 small-8 columns">
-              <%= f.text_field :email, placeholder: "email" %>
-            </div>
-            <div class="large-4 small-8 columns">
-              <%= f.password_field :password, placeholder: "Password" %>
-            </div>
-            <div class="large-3 small-3 columns">
-              <%= f.submit "Log In" %>
-            </div>
-            <% end %>
-          </div>
-        </li>
 
-        <li class="active"><%= link_to "Sign Up", new_user_path %></li>
+        <li class="active"><a href="#" data-reveal-id="login-modal">Log In</a></li>
+        <%= render "login" %>
+        <li class="active"><a href="#" data-reveal-id="signup-modal">Sign Up</a></li>
+        <%= render partial: "signup", locals: { person: User.new } %>
       <% end %>
       <li id="cart-contents"><%= link_to "Cart: #{@cart.count(@cart.data)}", new_order_path %></li>
       <li class="has-dropdown">
@@ -48,7 +36,6 @@
       <li class="name">
         <h1><%= link_to "Welcome #{current_user.first_name}", root_path if current_user %></h1>
       </li>
-
 
     </ul>
   </section>
