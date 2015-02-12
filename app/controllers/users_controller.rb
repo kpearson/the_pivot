@@ -13,7 +13,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "User created successfully."
+      redirect_to root_path, notice: "Welcome #{@user.first_name}"
     else
       redirect_to new_user_path, error: "Invalid Credentials"
     end
@@ -22,7 +22,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email,
-                                 :display_name, :password)
+    params.require(:user).permit(:first_name, :last_name, :email, :password)
   end
 end
