@@ -197,9 +197,9 @@ describe "an authenticated user" do
     visit user_path(valid_user)
     expect(current_path).to eq(user_path(valid_user))
     click_link_or_button('Edit Profile')
-    fill_in "user[about_me]", with: "Im no fun!"
+    fill_in "user[about_me]", with: "I'm no fun!"
     click_link_or_button 'Submit'
-    assert(page).to have_content("I'm no fun!")
+    expect(page).to have_content("I'm no fun!")
   end
 
   context "can view the order page with" do
