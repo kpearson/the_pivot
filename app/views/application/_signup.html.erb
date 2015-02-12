@@ -1,5 +1,10 @@
-<div id="signup-modal" class="reveal-modal" data-reveal>
-  <%= form_for person do |f| %>
+<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class-"modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+      </div>
+      <div class="modal-body">
+  <%= bootstrap_form_for person do |f| %>
     <% if person.errors.any? %>
     <div class="error_messages">
     <h2>Form is invalid</h2>
@@ -11,21 +16,19 @@
     </div>
     <% end %>
 
-    <%= f.label "First name" %>
     <%= f.text_field :first_name %>
 
-    <%= f.label "Last name" %>
     <%= f.text_field :last_name %>
 
-    <%= f.label :email %>
     <%= f.text_field :email %>
 
-    <%= f.label :password %>
     <%= f.password_field :password %>
 
-    <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
 
     <%= f.submit "Sign Up" %>
   <% end %>
+    </div>
+    </div>
+  </div>
 </div>
