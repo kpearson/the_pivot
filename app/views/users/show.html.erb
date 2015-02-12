@@ -1,2 +1,5 @@
-<h1>Welcome <%= @user.first_name %></h1>
-<%= link_to "View past orders", orders_path %>
+<h1><%= @user.first_name %></h1>
+<%= image_tag @user.image.url(:medium) %></br>
+<%= link_to "My Trips", orders_path %></br>
+<div class="active"><a href="#" data-reveal-id="profile-modal">Edit Profile</a></div>
+       <%= render "profile_form" %>
