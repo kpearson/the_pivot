@@ -24,6 +24,7 @@ gem "twitter-bootstrap-rails"
 gem 'bootstrap_form'
 gem 'less-rails'
 gem "therubyracer"
+gem 'bootstrap-modal-rails'
 
 group :development, :test do
   gem 'byebug'

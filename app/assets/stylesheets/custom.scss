@@ -1,13 +1,33 @@
+//  home page
 .home-search {
   vertical-align:middle;
   margin-bottom:0px;
+  margin-top: 170px;
+  width: 700px;
+  margin: 0 auto;
 }
 
-.nav {
-  margin-left: 50px;
+.navbar-header {
+  margin-top: 10px;
+  font-size: 21px;
+}
+
+.navbar.transparent .navbar-inner {
+  background: rgba(0,0,0,0.4);
+  margin-left: 100px;
   margin-right: 50px;
 }
 
+#search-city {
+  min-width: 195px;
+}
+
+.connector {
+  margin-top: 300px;
+  margin-left: 0px;
+  margin-right: 0;
+}
+ //
 
 
 // body {
