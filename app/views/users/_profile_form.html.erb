@@ -1,0 +1,13 @@
+<div id="profile-modal" class="reveal-modal" data-reveal>
+
+  <%= form_for @user, :html => { :multipart => true }  do |f| %>
+
+    <%= f.label :image, 'Add Profile Picture' %>
+    <%= f.file_field :image %>
+
+    <%= f.label "About Me" %>
+    <%= f.text_area :about_me %>
+
+    <%= f.submit "Submit" %>
+  <% end %>
+</div>
