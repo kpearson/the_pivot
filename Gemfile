@@ -18,6 +18,7 @@ gem 'rmagick'
 gem 'carrierwave'
 gem 'unscoped_associations'
 gem 'simplecov', :require => false, :group => :test
+gem "paperclip", "~> 4.2"
 
 group :development, :test do
   gem 'byebug'
