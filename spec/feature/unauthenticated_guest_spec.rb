@@ -49,11 +49,23 @@ describe "As an unauthenticated user" do
     end
   end
 
-  it "can browse all items grouped by category (category index page)" do
-    click_link_or_button "Menu"
-    expect(current_path).to eq(categories_path)
-    within("div.categories") do
-      within("div#Breakfast") do
+  it "can browse all listings (listings index page)" do
+    Item.create(title: "B&B",
+                description: "Super classy",
+                category_id: 1,
+                max_guests: 2,
+                nightly_rate: 10000,
+                address1: "123 Elm St",
+                #address2: "",
+                city: "Denver",
+                state: "CO",
+                zip: 80022,
+                shared_bathroom: False,
+                user_id: 1)
+    # click_link_or_button "View all properties"
+    visit(listings_path)
+    within(".item") do
+      within("#item_1") do
         expect(page).to have_content category1.name
         expect(page).to have_content "Bacon"
       end

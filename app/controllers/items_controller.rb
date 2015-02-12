@@ -7,3 +7,9 @@ class ItemsController < ApplicationController
     @item = Item.unscoped.find(params[:id])
   end
 end
+
+private
+
+  def item_params
+    params.require(:item).permit(:title, :description, :price, :categories,:image)
+  end
