@@ -191,6 +191,17 @@ describe "an authenticated user" do
     expect(page).to have_content("Order 00001")
   end
 
+  it "can edit their profile on their own page" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(valid_user)
+    visit user_path(valid_user)
+    expect(current_path).to eq(user_path(valid_user))
+    click_link_or_button('Edit Profile')
+    fill_in "user[about_me]", with: "Im no fun!"
+    click_link_or_button 'Submit'
+    assert(page).to have_content("I'm no fun!")
+  end
+
   context "can view the order page with" do
     before(:each) do
       allow_any_instance_of(ApplicationController).to receive(:current_user).
