@@ -50,18 +50,18 @@ describe "As an unauthenticated user" do
   end
 
   it "can browse all listings (listings index page)" do
-    Item.create(title: "B&B",
-                description: "Super classy",
-                category_id: 1,
-                max_guests: 2,
-                nightly_rate: 10000,
-                address1: "123 Elm St",
-                #address2: "",
-                city: "Denver",
-                state: "CO",
-                zip: 80022,
-                shared_bathroom: False,
-                user_id: 1)
+    Listing.create(title: "B&B",
+                   description: "Super classy",
+                   category_id: 1,
+                   max_guests: 2,
+                   nightly_rate: 10000,
+                   address1: "123 Elm St",
+                   #address2: "",
+                   city: "Denver",
+                   state: "CO",
+                   zip: 80022,
+                   shared_bathroom: False,
+                   user_id: 1)
     # click_link_or_button "View all properties"
     visit(listings_path)
     within(".item") do
