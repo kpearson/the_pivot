@@ -37,12 +37,10 @@ describe "As an unauthenticated user" do
                 last_name: "Shea",
                 email: "bryce@gmail.com",
                 password: "secret")
-    # visit root_path
+    click_link "Log In"
     fill_in "session[email]", with: "bryce@gmail.com"
     fill_in "session[password]", with: "secret"
-    click_link_or_button "Log In"
-    # visit root_path
-    # expect(current_path).to eq(root_path)
+    click_button "Log In"
     within("#flash_notice") do
       expect(page).to have_content("Successfully Logged In")
     end
@@ -121,11 +119,10 @@ describe "As an unauthenticated user" do
                 last_name: "Shea",
                 email: "bryce@gmail.com",
                 password: "secret")
-    visit root_path
+    click_link "Log In"
     fill_in "session[email]", with: "bryce@gmail.com"
     fill_in "session[password]", with: "secret"
-    click_link_or_button "Log In"
-    expect(current_path).to eq(root_path)
+    click_button "Log In"
     within("#cart-contents") do
       expect(page).to have_content("1")
     end
