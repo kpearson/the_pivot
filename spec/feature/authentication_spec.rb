@@ -17,23 +17,19 @@ describe "authenticated" do
                  password: "adminpassword")
   end
 
-  before(:each) do
-    visit root_path
-    click_link_or_button "Log In"
-  end
-
   context "user" do
     it "can add them self to the system" do
       visit root_path
-      click_link_or_button("Sign Up")
-      expect(page).to have_css("#sign-up")
+      click_link("Sign Up")
+      expect(current_path).to eq(root_path)
+      expect(page).to have_css("#signup-modal")
 
       fill_in "user[first_name]", with: "Joe"
       fill_in "user[last_name]", with: "Doe"
       fill_in "user[email]", with: "Joe@example.com"
       fill_in "user[password]", with: "password"
       fill_in "user[password_confirmation]", with: "password"
-      click_link_or_button("Submit")
+      click_button("Sign Up")
       within("#flash_notice") do
         expect(page).to have_content("Welcome Joe")
       end
@@ -101,8 +97,13 @@ describe "authenticated" do
   end
 
   def log_in(user_type, password)
+    visit root_path
+    click_link "Log In"
+    expect(current_path).to eq(root_path)
+    expect(page).to have_css("#login-modal")
+
     fill_in "session[email]", with: user_type.email
     fill_in "session[password]", with: password
-    click_link_or_button "Log In"
+    click_button "Log In"
   end
 end

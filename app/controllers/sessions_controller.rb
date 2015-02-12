@@ -1,7 +1,4 @@
 class SessionsController < ApplicationController
-  def new
-  end
-
   def create
     user = User.find_by(email: params[:session][:email])
     admin = Admin.find_by(email: params[:session][:email])
@@ -18,7 +15,8 @@ class SessionsController < ApplicationController
   def destroy
     session[:admin_id] = nil
     session[:user_id] = nil
-    redirect_to :back, notice: "Successfully Logged Out"
+    flash[:notice] = "Successfully Logged Out"
+    redirect_to :back
   end
 
   def assign_session_id(user_type, id)

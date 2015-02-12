@@ -334,8 +334,9 @@ describe "an authenticated user" do
   end
 
   def valid_user_logs_in
+    click_link "Log In"
     fill_in "session_email", with: "rich@gmail.com"
     fill_in "session_password", with: "password"
-    click_link_or_button "Log In"
+    click_button "Log In"
   end
 end

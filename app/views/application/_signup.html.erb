@@ -1,4 +1,4 @@
-<div id="sign-up">
+<div id="signup-modal" class="reveal-modal" data-reveal>
   <%= form_for person do |f| %>
     <% if person.errors.any? %>
     <div class="error_messages">
@@ -26,6 +26,6 @@
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
 
-    <%= f.submit "Submit" %>
+    <%= f.submit "Sign Up" %>
   <% end %>
 </div>
