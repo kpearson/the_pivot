@@ -32,7 +32,6 @@ describe "an admin" do
       expect(page).to have_content "Admin created successfully."
     end
   end
->>>>>>> origin
 
   xit "can not view other admins profile" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).

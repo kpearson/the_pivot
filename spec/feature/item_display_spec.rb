@@ -32,14 +32,14 @@ describe "items viewed" do
     click_link_or_button "Menu"
   end
 
-  # context 'by a guest user' do
-  #   it "can see an items image" do
-  #     expect(page).to have_css('img[src*="bacon_and_egg"]')
-  #   end
-  #
-  #   it "can see title and discription" do
-  #     expect(page).to have_content("Bacon and Eggs")
-  #     expect(page).to have_content("The classic breakfast dish")
-  #   end
-  # end
+  context 'by a guest user' do
+    xit "can see an items image" do
+      expect(page).to have_css('img[src*="bacon_and_egg"]')
+    end
+
+    xit "can see title and discription" do
+      expect(page).to have_content("Bacon and Eggs")
+      expect(page).to have_content("The classic breakfast dish")
+    end
+  end
 end
