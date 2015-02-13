@@ -3,12 +3,7 @@ require "rails_helper"
 describe "As an unauthenticated user" do
   include Capybara::DSL
 
-  let!(:valid_user) do
-    User.create(first_name: "Alice",
-                last_name: "Smith",
-                email: "rich@gmail.com",
-                password: "password")
-  end
+  let!(:category1) { Category.create(name: "Breakfast") }
 
   before(:each) do
     visit root_path
@@ -107,12 +102,12 @@ describe "As an unauthenticated user" do
     expect(page).to_not have_content("Bacon")
   end
 
-  xit "cannot see the logout button" do
+  it "cannot see the logout button" do
     expect(page).to_not have_content("Log Out")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+                                                    and_return(nil)
     visit root_path
-    expect(page).to have_content("Log Out")
+    expect(page).to_not have_content("Log Out")
   end
 
   xit "can log out which does not clear cart" do
@@ -160,7 +155,9 @@ describe "As an unauthenticated user" do
     end
   end
 
-  xit "cannot view another person's private data" do
+  it "cannot view another person's private data" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(nil)
     user = User.create(first_name: "Rich",
                        last_name: "Shea",
                        email: "bryce@gmail.com",
@@ -181,7 +178,9 @@ describe "As an unauthenticated user" do
     end
   end
 
-  xit "cannot view the admin dashboard" do
+  it "cannot view the admin dashboard" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(nil)
     expect(page).to_not have_content("Admin Dashboard")
   end
 
