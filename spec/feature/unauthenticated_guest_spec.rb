@@ -48,6 +48,7 @@ describe "As an unauthenticated user" do
       expect(page).to have_content listing.title
       expect(page).to have_content listing.description
       expect(page).to have_content "$100.00"
+
     end
   end
 
@@ -213,14 +214,14 @@ describe "As an unauthenticated user" do
     expect(page).to have_content("Page Not Found")
   end
 
-  def click_add_to_cart_link(category)
-    click_link_or_button "Menu"
-    within(".categories") do
-      within("div##{category}") do
-        within("div.item") do
-          click_link "Add to Cart"
-        end
-      end
-    end
-  end
+  # def click_add_to_cart_link(category)
+  #   click_link_or_button "Menu"
+  #   within(".categories") do
+  #     within("div##{category}") do
+  #       within("div.item") do
+  #         click_link "Add to Cart"
+  #       end
+  #     end
+  #   end
+  # end
 end

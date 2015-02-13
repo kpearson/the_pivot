@@ -1,13 +1,33 @@
-<div id="profile-modal" class="reveal-modal" data-reveal>
+<div class="modal fade" id="profile-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class-"modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        Edit Profile
+      </div>
+      <div class="modal-body">
 
-  <%= form_for @user, :html => { :multipart => true }  do |f| %>
+        <%= bootstrap_form_for user, :html => { :multipart => true }  do |f| %>
 
-    <%= f.label :image, 'Add Profile Picture' %>
-    <%= f.file_field :image %>
+          <%= f.file_field :image %>
 
-    <%= f.label "About Me" %>
-    <%= f.text_area :about_me %>
+          <%= f.text_area :about_me %>
 
-    <%= f.submit "Submit" %>
-  <% end %>
+          <%= f.text_field :first_name %>
+
+          <%= f.text_field :last_name %>
+
+          <%= f.text_field :display_name %>
+
+          <%= f.text_field :email %>
+
+          <%= f.password_field :password %>
+
+          <%= f.password_field :password_confirmation %>
+
+          <%= f.submit "Submit" %>
+        <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

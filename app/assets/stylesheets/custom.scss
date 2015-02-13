@@ -22,6 +22,7 @@
   z-index: 20;
   /*margin-left: 100px;*/
   /*margin-right: 50px;*/
+
 }
 
 #search-city {
@@ -29,13 +30,19 @@
 }
 
 .connector {
-  /*margin-top: 300px;*/
-  margin-left: 0px;
+  margin-top: 300px;
+  margin-left: 0;
   margin-right: 0;
 }
 
+#user-name {
+  margin-top: 100px;
+}
 
- // profile page
+.about-me {
+  min-height: 225px;
+}
+
 
 
 // body {
