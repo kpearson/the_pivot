@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
     session[:admin_id] = nil
     session[:user_id] = nil
     flash[:notice] = "Successfully Logged Out"
-    redirect_to :back
+    redirect_to root_path
   end
 
   def assign_session_id(user_type, id)

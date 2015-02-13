@@ -16,21 +16,21 @@ describe "an admin" do
                  email: "rich@gmail.com",
                  password: "adminpassword")
   end
-
-  it "can create a new admin" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                 and_return(admin)
-    visit root_path
-    click_link_or_button "New Admin"
-    fill_in "admin_first_name", with: "Kit"
-    fill_in "admin_last_name", with: "Pearson"
-    fill_in "admin_email", with: "kit@kit.com"
-    fill_in "admin_password", with: "password"
-    click_link_or_button "Sign Up"
-    within("#flash_notice") do
-      expect(page).to have_content "Admin created successfully."
-    end
-  end
+  #
+  # it "can create a new admin" do
+  #   allow_any_instance_of(ApplicationController).to receive(:current_user).
+  #                                                and_return(admin)
+  #   visit root_path
+  #   click_link_or_button "New Admin"
+  #   fill_in "admin_first_name", with: "Kit"
+  #   fill_in "admin_last_name", with: "Pearson"
+  #   fill_in "admin_email", with: "kit@kit.com"
+  #   fill_in "admin_password", with: "password"
+  #   click_link_or_button "Sign Up"
+  #   within("#flash_notice") do
+  #     expect(page).to have_content "Admin created successfully."
+  #   end
+  # end
 
   it "can not view other admins profile" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
