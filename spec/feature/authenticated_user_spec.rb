@@ -346,4 +346,4 @@ describe "an authenticated user" do
     fill_in "session_password", with: "password"
     click_button "Log In"
   end
- end
+end

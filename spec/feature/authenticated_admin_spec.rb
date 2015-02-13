@@ -17,7 +17,6 @@ describe "an admin" do
                  password: "adminpassword")
   end
 
-
   xit "can create a new admin" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                  and_return(admin)
