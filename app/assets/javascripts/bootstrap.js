@@ -1,3 +1,3 @@
 $('#signup').on('shown.bs.modal', function () {
-    $('#signup-modal').focus()
-  })
+    $('#signup-modal').focus();
+  });
