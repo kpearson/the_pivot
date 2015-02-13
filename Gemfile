@@ -19,6 +19,12 @@ gem 'carrierwave'
 gem 'unscoped_associations'
 gem 'simplecov', :require => false, :group => :test
 gem "paperclip", "~> 4.2"
+gem 'font-awesome-less'
+gem "twitter-bootstrap-rails"
+gem 'bootstrap_form'
+gem 'less-rails'
+gem "therubyracer"
+gem 'bootstrap-modal-rails'
 
 group :development, :test do
   gem 'byebug'

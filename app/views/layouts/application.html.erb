@@ -5,44 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title><%= content_for?(:title) ? yield(:title) : "foundation-rails" %></title>
-
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <div class="row">
-      <div class="large-12 columns">
+	<%= render "menu" %>
 
-        <div class="row">
-          <div class="large-12 columns">
-            <%= render "menu" %>
-          </div>
-        </div>
+		<div class="large-12 small-12 columns">
+			<%= render "admin_dashboard" if current_user && current_user.admin? %>
+		</div>
 
-        <div class="row">
+		<% flash.each do |name, msg| %>
+			<%= content_tag :div, msg, id: "flash_#{name}" %>
+	<% end %>
 
-          <div class="large-12 small-12 columns">
-            <%= render "admin_dashboard" if current_user && current_user.admin? %>
-          </div>
-
-          <% flash.each do |name, msg| %>
-            <%= content_tag :div, msg, id: "flash_#{name}" %>
-          <% end %>
-
-          <div class="row">
-            <div class="large-12 columns">
-              <%= yield %>
-            </div>
-          </div>
-
-          <%= javascript_include_tag "application" %>
-        </div>
-        <%= render "footer" %>
-      </div>
-    </div>
-  </div>
-</div>
+		<div class="row">
+			<div class="container">
+				<%= yield %>
+			</div>
+		</div>
+		<%= javascript_include_tag "application" %>
+	</div>
+	<%= render "footer" %>
   </body>
 </html>

@@ -1,103 +1,70 @@
-<div class="row">
-  <h1>
-  <div class="small-3 large-centered columns">Vagabond</div>
-  </h1>
+<div class="jumbotron">
+	<div class="center-block">
+		<h1 class="welcome">Welcome</h1>
+	</div>
 </div>
-
-<div class="row collapse">
-<ul class="inline-list">
-  <li>
-  <div class="five mobile-one columns">
-    <input type="text" placeholder="Where would you like to go?" />
-  </div>
-</li>
-<li class="has-form">
-<select id="contactDropdown">
-  <option>Checkin</option>
-  <option>Calender Coming Soon!</option>
-</select>
-</li>
-<li class="has-form">
-<select id="contactDropdown">
-  <option>Checkout</option>
-  <option>Calender Coming Soon!</option>
-</select>
-</li>
-<li class="has-form">
-    <select id="contactDropdown">
-      <option>Guests</option>
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-      <option>6</option>
-      <option>7</option>
-      <option>8</option>
-      <option>9</option>
-      <option>10</option>
-    </select>
-    <li>
-      <a href="#" class="button tiny">Search</a>
-    </li>
-</li>
-</ul>
-</div>
-
-
-<div class="home-pics">
-  <div class="large-4 columns">
-    <div class="overlay-container">
-      <%= image_tag "ex_denver.jpg" %>
-      <div class="overlay">
-        <span>Denver</span>
+<div class="home-search">
+  <form class="form-inline">
+    <div class="form-group">
+      <div class="input-group">
+        <input type="text" class="form-control connector" id="search-city" aria-label="..." placeholder="Where do you want to go?">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle connector" data-toggle="dropdown" aria-expanded="false">Search By <span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-right" role="menu">
+              <li><a href="#">All</a></li>
+            </ul>
+          </div><!-- /btn-group -->
+        </div><!-- /input-group -->
+      </div>
+        <div class="form-group">
+          <div class="btn-group"> <a class="btn btn-default dropdown-toggle btn-select connector" data-toggle="dropdown" href="#">Checkin<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="#">United States</a></li>
+                  <li><a href="#">Canada</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span> Other</a></li>
+              </ul>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="btn-group"> <a class="btn btn-default dropdown-toggle btn-select connector" data-toggle="dropdown" href="#">Checkout<span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                  <li><a href="#">United States</a></li>
+                  <li><a href="#">Canada</a></li>
+                  <li class="divider"></li>
+                  <li><a href="#"><span class="glyphicon glyphicon-star"></span> Other</a></li>
+              </ul>
+          </div>
+        </div>
+        <div class="form-group">
+        <div class="btn-group">
+          <button type="button" class="btn btn-default dropdown-toggle connector" data-toggle="dropdown" aria-expanded="false">Guests<span class="caret"></span></button>
+          <ul class="dropdown-menu dropdown-menu-right" role="menu">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+            <li>7</li>
+            <li>8</li>
+            <li>9</li>
+            <li>10</li>
+            <li>11</li>
+            <li>12</li>
+            <li>13</li>
+            <li>14</li>
+            <li>15</li>
+            <li>16+</li>
+          </ul>
+        </div>
+        </div>
+        <div class="form-group">
+          <div class="btn-group">
+              <button type="button" id="btnSearch" class="btn btn-primary connector">Search</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-
-  <div class="large-4 columns">
-    <div class="overlay-container">
-      <%= image_tag "ex_new_york.jpg" %>
-      <div class="overlay">
-        <span>New York</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="large-4 columns">
-    <div class="overlay-container">
-      <%= image_tag "ex_washington_dc2.jpg" %>
-      <div class="overlay">
-        <span>Washington</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="home-pics">
-  <div class="large-4 columns">
-    <div class="overlay-container">
-      <%= image_tag "ex_new_york2.jpg" %>
-      <div class="overlay">
-        <span>New York</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="large-4 columns">
-    <div class="overlay-container">
-      <%= image_tag "ex_san_francisco.jpg" %>
-      <div class="overlay">
-        <span>San Francisco</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="large-4 columns">
-    <div class="overlay-container">
-      <%= image_tag "ex_seattle.jpg" %>
-      <div class="overlay">
-        <span>Seattle</span>
-      </div>
-    </div>
-  </div>
+  </form>
+	<%= render "home_page_listings" %>
