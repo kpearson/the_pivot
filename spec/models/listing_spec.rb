@@ -197,89 +197,90 @@ RSpec.describe Listing, :type => :model do
       expect(listing).to be_invalid
     end
 
-    xit "unique title" do
-      listing = Listing.create(title: "NewTitle",
-      description: "new description",
-      price: 1000)
-      listing.categories << @category
-      item2 = Listing.new(title: "NewTitle",
-      description: "newer description",
-      price: 1000)
-      expect(item2).to_not be_valid
+    it "unique title" do
+      listing = Listing.create(title: "C&C Music Factory",
+                            description: "Jam",
+                            category_id: 2,
+                            max_guests: 10,
+                            nightly_rate: 10000,
+                            address1: "123 Dog Ave",
+                            address2: "",
+                            city: "Denver",
+                            state: "CO",
+                            zip: 90222,
+                            shared_bathroom: true,
+                            user_id: 1)
+      listing2 = Listing.new(title: "C&C Music Factory",
+                             description: "Jam",
+                             category_id: 2,
+                             max_guests: 10,
+                             nightly_rate: 10000,
+                             address1: "123 Dog Ave",
+                             address2: "",
+                             city: "Denver",
+                             state: "CO",
+                             zip: 90222,
+                             shared_bathroom: true,
+                             user_id: 1)
+      expect(listing2).to_not be_valid
     end
 
-    xit "a grater than zero" do
-      listing = Listing.create(title: "listing",
-      description: "listing description",
-      price: 0)
-      listing.categories << @category
-      expect(listing.save).to eq false
+    it "a nightly rate greater than zero" do
+      listing = Listing.create(title: "C&C Music Factory",
+                               description: "Jam",
+                               category_id: 2,
+                               max_guests: 10,
+                               nightly_rate: -1,
+                               address1: "123 Dog Ave",
+                               address2: "",
+                               city: "Denver",
+                               state: "CO",
+                               zip: 90222,
+                               shared_bathroom: true,
+                               user_id: 1)
+      expect(listing).to_not be_valid
     end
 
-    xit "an integer price" do
-      listing = Listing.create(title: "another listing",
-      description: "listing description",
-      price: "werwsd")
-      listing.categories << @category
-      expect(listing.save).to eq false
-    end
-
-    xit "a status" do
-      listing = Listing.create(title: "another listing",
-      description: "listing description",
-      status: nil,
-      price: 1000)
-      listing.categories << @category
-      expect(listing.save).to eq false
-    end
-
-    xit "a category" do
-      listing = Listing.create(title: "another listing",
-      description: "listing description",
-      price: 1000)
-      # listing.categories << @category
-      expect(listing.save).to eq false
+    it "an integer nightly rate" do
+      listing = Listing.create(title: "C&C Music Factory",
+                               description: "Jam",
+                               category_id: 2,
+                               max_guests: 10,
+                               nightly_rate: "string",
+                               address1: "123 Dog Ave",
+                               address2: "",
+                               city: "Denver",
+                               state: "CO",
+                               zip: 90222,
+                               shared_bathroom: true,
+                               user_id: 1)
+      expect(listing).to_not be_valid
     end
   end
 
-  xit "can not have it last category removed" do
-    expect(valid_item.categories.count).to eq 2
-    valid_item.categories.delete @category
-    expect(valid_item.categories.count).to eq 1
-    valid_item.categories.delete @category
-    expect(valid_item.categories.count).to eq 1
+  it "can belong to a user" do
+    user = User.create(first_name: "Bryce",
+                       last_name: "Holcomb",
+                       email: "bryce@gmail.com",
+                       password: "password")
+    expect(valid_listing.user).to eq(user)
   end
 
-  xit "can have hidden listings" do
-    valid_item.status = "hidden"
-    valid_item.save
-    expect(Listing.hidden.count).to eq(1)
+  it "can belong to a category" do
+    category = Category.create(name: "Home")
+    expect(valid_listing.category).to eq(category)
   end
 
-  xit "can belong to an order" do
-    listing = Listing.new
-    expect(listing.orders).to eq([])
+  xit "can have many reservations" do
+    expect(valid_listing.reservations).to eq([])
   end
 
-  xit "has an order" do
-    order = Order.new(user_id: 1)
-    order.listings << valid_item
-    order.save
-    expect(order.listings.first).to eq(valid_item)
+  xit "can have many photos" do
+    expect(valid_listing.photos).to eq([])
   end
 
-  xit "shows the correct count with database cleaner" do
-    Listing.create(title: "next listing",
-    description: "desc",
-    price: 2000)
-    expect(Listing.count).to eq(1)
-  end
-
-  xit "has a currency that converts cents to dollars" do
-    listing = Listing.create(title: "next listing",
-    description: "desc",
-    price: 2000)
-    expect(listing.currency).to eq(20)
+  it "has a currency that converts cents to dollars" do
+    expect(valid_listing.currency).to eq(valid_listing.nightly_rate / 100)
   end
 
   it "has a full address" do

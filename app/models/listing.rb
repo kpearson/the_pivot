@@ -5,15 +5,10 @@ class Listing < ActiveRecord::Base
   validates :shared_bathroom, :inclusion => {:in => [true, false]}
   validates :title, uniqueness: true
   validates_numericality_of :nightly_rate, greater_than: 0
-
-  default_scope { where(status: "show") }
-  scope :hidden, -> { Item.unscoped { where(status: "hidden") } }
-
-  attr_reader :quantity
-
-  def add_quantity(quantity)
-    @quantity = quantity
-  end
+  belongs_to :user
+  belongs_to :category
+  has_many :photos
+  has_many :reservations
 
   def currency
     nightly_rate / 100
