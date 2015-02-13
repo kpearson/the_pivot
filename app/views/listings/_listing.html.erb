@@ -1,0 +1,6 @@
+<div class="marquee-listing-image">
+  <%#<%= image_tag "#{listing.images.first}" %>
+</div>
+<%= link_to listing.title, listing_path(listing) %><br>
+<%= listing.description %><br>
+<%= number_to_currency(listing.currency) %>
