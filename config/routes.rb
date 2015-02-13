@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "/admin/filtered_orders", to: "admin/orders#filtered_orders"
 
   resources :categories, only: [:index, :show]
-  resources :items, only: [:show]
+  resources :items, only: [:index, :show]
 
   resources :users
   resources :orders

@@ -16,30 +16,32 @@ describe "an admin" do
                  email: "rich@gmail.com",
                  password: "adminpassword")
   end
-  #
-  # it "can create a new admin" do
-  #   allow_any_instance_of(ApplicationController).to receive(:current_user).
-  #                                                and_return(admin)
-  #   visit root_path
-  #   click_link_or_button "New Admin"
-  #   fill_in "admin_first_name", with: "Kit"
-  #   fill_in "admin_last_name", with: "Pearson"
-  #   fill_in "admin_email", with: "kit@kit.com"
-  #   fill_in "admin_password", with: "password"
-  #   click_link_or_button "Sign Up"
-  #   within("#flash_notice") do
-  #     expect(page).to have_content "Admin created successfully."
-  #   end
-  # end
 
-  it "can not view other admins profile" do
+
+  xit "can create a new admin" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                 and_return(admin)
+    visit root_path
+    click_link_or_button "New Admin"
+    fill_in "admin_first_name", with: "Kit"
+    fill_in "admin_last_name", with: "Pearson"
+    fill_in "admin_email", with: "kit@kit.com"
+    fill_in "admin_password", with: "password"
+    click_link_or_button "Sign Up"
+    within("#flash_notice") do
+      expect(page).to have_content "Admin created successfully."
+    end
+  end
+>>>>>>> origin
+
+  xit "can not view other admins profile" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                  and_return(admin)
     visit(admin_path(admin2))
     expect(current_path).to eq(not_found_path)
   end
 
-  it "can create item listings incl name, description, price, and category" do
+  xit "can create item listings incl name, description, price, and category" do
     Category.create(name: "Breakfast")
     Category.create(name: "Brunch")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
@@ -63,7 +65,7 @@ describe "an admin" do
     end
   end
 
-  it "can modify existing items’ name, description, price, and category" do
+  xit "can modify existing items’ name, description, price, and category" do
     Category.create(name: "Brunch")
     category = Category.create(name: "Breakfast")
     item = Item.new(title: "Bacon",
@@ -89,7 +91,7 @@ describe "an admin" do
     expect(page).to have_content("Breakfast")
   end
 
-  it "can create named categories for items" do
+  xit "can create named categories for items" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                  and_return(admin)
     visit new_admin_category_path
@@ -103,7 +105,7 @@ describe "an admin" do
     end
   end
 
-  it "can remove items from categories on index page" do
+  xit "can remove items from categories on index page" do
     category = Category.create(name: "Breakfast")
     item = Item.new(title: "Bacon",
                     description: "desc",
@@ -131,7 +133,7 @@ describe "an admin" do
     expect(page).to_not have_content("$10.00")
   end
 
-  it "can remove items from categories on show page" do
+  xit "can remove items from categories on show page" do
     category = Category.create(name: "Breakfast")
     item = Item.create(title: "Bacon",
                        description: "desc",
@@ -159,7 +161,7 @@ describe "an admin" do
     expect(page).to_not have_content("$10.00")
   end
 
-  it "can navegate to the cat index page" do
+  xit "can navegate to the cat index page" do
     category = Category.create(name: "Breakfast")
     item = Item.new(title: "Bacon",
                        description: "desc",
@@ -177,7 +179,7 @@ describe "an admin" do
     expect(current_path).to eq(edit_admin_item_path(item))
   end
 
-  it "retire an item from being sold, which hides it from non-administrator" do
+  xit "retire an item from being sold, which hides it from non-administrator" do
     category = Category.create(name: "Breakfast")
     item = Item.new(title: "Bacon",
                        description: "desc",
@@ -208,7 +210,7 @@ describe "an admin" do
     end
   end
 
-  it "can retire an item from the category show page" do
+  xit "can retire an item from the category show page" do
     category = Category.create(name: "Breakfast")
     item = Item.new(title: "Bacon",
                        description: "desc",
@@ -239,7 +241,7 @@ describe "an admin" do
     end
   end
 
-  it "can reveal an item previously hidden from cat index page" do
+  xit "can reveal an item previously hidden from cat index page" do
     category = Category.create(name: "Breakfast")
     item = Item.new(title: "Bacon",
                        description: "desc",
@@ -266,7 +268,7 @@ describe "an admin" do
 
   context "can view a dashboard with" do
 
-    it "the total number of orders by status" do
+    xit "the total number of orders by status" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                            and_return(admin)
       create_user_orders_with_items
@@ -278,7 +280,7 @@ describe "an admin" do
       expect(page).to have_content("Paid: 0")
     end
 
-    it "links for each individual order" do
+    xit "links for each individual order" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                            and_return(admin)
       create_user_orders_with_items
@@ -290,7 +292,7 @@ describe "an admin" do
     end
 
     context "a link to" do
-      it "to cancel individual orders which are currently 'ordered' or paid" do
+      xit "to cancel individual orders which are currently 'ordered' or paid" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).
         and_return(admin)
         create_user_orders_with_items
@@ -306,7 +308,7 @@ describe "an admin" do
         end
       end
 
-      it "'mark as completed' individual orders which are currently 'paid'" do
+      xit "'mark as completed' individual orders which are currently 'paid'" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                               and_return(admin)
         create_user_orders_with_items
@@ -322,7 +324,7 @@ describe "an admin" do
         end
       end
 
-      it "'cancel' individual orders which are currently 'ordered' or 'paid'" do
+      xit "'cancel' individual orders which are currently 'ordered' or 'paid'" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                               and_return(admin)
         create_user_orders_with_items

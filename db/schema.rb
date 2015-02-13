@@ -38,16 +38,6 @@ ActiveRecord::Schema.define(version: 20150212221254) do
     t.datetime "updated_at",  null: false
   end
 
-  create_table "items", force: :cascade do |t|
-    t.string   "title"
-    t.string   "description"
-    t.integer  "price"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "image"
-    t.string   "status",      default: "show"
-  end
-
   create_table "line_items", force: :cascade do |t|
     t.integer  "order_id"
     t.integer  "item_id"
@@ -58,6 +48,23 @@ ActiveRecord::Schema.define(version: 20150212221254) do
 
   add_index "line_items", ["item_id"], name: "index_line_items_on_item_id", using: :btree
   add_index "line_items", ["order_id"], name: "index_line_items_on_order_id", using: :btree
+
+  create_table "listings", force: :cascade do |t|
+    t.string   "title"
+    t.string   "description"
+    t.integer  "nightly_rate"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "category_id"
+    t.integer  "max_guests"
+    t.string   "address1"
+    t.string   "address2"
+    t.string   "city"
+    t.string   "state"
+    t.integer  "zip"
+    t.boolean  "shared_bathroom"
+    t.integer  "user_id"
+  end
 
   create_table "orders", force: :cascade do |t|
     t.datetime "created_at",                     null: false
@@ -81,6 +88,6 @@ ActiveRecord::Schema.define(version: 20150212221254) do
     t.string   "display_name"
   end
 
-  add_foreign_key "line_items", "items"
+  add_foreign_key "line_items", "listings", column: "item_id"
   add_foreign_key "line_items", "orders"
 end

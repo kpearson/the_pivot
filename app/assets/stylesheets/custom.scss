@@ -44,3 +44,7 @@
 //   background: url(image-path("home-background.jpg")) fixed;
 //   background-size: cover;
 // }
+
+.table > tbody > tr > td {
+  vertical-align: right;
+}

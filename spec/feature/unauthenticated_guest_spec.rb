@@ -3,23 +3,6 @@ require "rails_helper"
 describe "As an unauthenticated user" do
   include Capybara::DSL
 
-  let(:category1) { Category.create(name: "Breakfast") }
-  let(:category2) { Category.create(name: "Lunch") }
-  let!(:item) do
-    item1 = Item.new(title: "Bacon and Eggs",
-                     description: "The classic breakfast dish",
-                     price: 1000, image: "bacon_and_eggs.jpg")
-    item1.categories << category1
-    item1.save
-    item1
-  end
-  let!(:item2) do
-    item2 = Item.new(title: "BLT",
-                     description: "The classic lunch dish",
-                     price: 1000, image: "blt.jpg")
-    item2.categories << category2
-    item2.save
-  end
   let!(:valid_user) do
     User.create(first_name: "Alice",
                 last_name: "Smith",

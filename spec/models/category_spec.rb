@@ -11,15 +11,15 @@ RSpec.describe Category, type: :model do
     item
   end
 
-  it "can have items" do
+  xit "can have items" do
     expect(@category.items).to eq([item])
   end
 
-  it "has an item" do
+  xit "has an item" do
     expect(@category.items.first.title).to eq("NewTitle")
   end
 
-  it "shows only the items with status of show" do
+  xit "shows only the items with status of show" do
     item2 = Item.create(title: "Another",
                         description: "another description",
                         price: 2000,
