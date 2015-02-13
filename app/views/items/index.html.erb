@@ -1,7 +1,0 @@
-<h2>All Property Listings</h2>
-  <%= div_for(@items) do |item| %>
-      <%= link_to item.title, item_path(item) %><br>
-      <%= image_tag item.image.url(:thumb) %><br>
-      <%= item.description %><br>
-      <%= number_to_currency(item.price.to_f / 100.00) %>
-  <% end %>

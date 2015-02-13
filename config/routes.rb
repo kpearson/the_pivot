@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get "/admin/filtered_orders", to: "admin/orders#filtered_orders"
 
   resources :categories, only: [:index, :show]
-  resources :items, only: [:index, :show]
+  resources :listings, only: [:index, :show]
 
   resources :users
   resources :orders
@@ -19,7 +19,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :categories, only: [:edit, :update, :create, :new, :destroy]
-    resources :items
     resources :orders
   end
 end
