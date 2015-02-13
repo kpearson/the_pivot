@@ -32,14 +32,14 @@ describe "As an unauthenticated user" do
     end
   end
 
-  xit "can browse all listings (listings index page)" do
+  it "can browse all listings (listings index page)" do
     Listing.create(title: "B&B",
                    description: "Super classy",
                    category_id: 1,
                    max_guests: 2,
                    nightly_rate: 10000,
                    address1: "123 Elm St",
-                   #address2: "",
+                   address2: nil,
                    city: "Denver",
                    state: "CO",
                    zip: 80022,
@@ -47,22 +47,34 @@ describe "As an unauthenticated user" do
                    user_id: 1)
     # click_link_or_button "View all properties"
     visit(listings_path)
-    within(".listing") do
-      within("#listing_1") do
-        expect(page).to have_content "B&B"
-      end
+    within("div.listing") do
+      expect(page).to have_content "B&B"
+      expect(page).to have_content "Super classy"
+      expect(page).to have_content "$100.00"
     end
   end
 
-  xit "can browse items for a specific category (category show page)" do
-    click_link_or_button "Menu"
-    within("div.categories") do
-      click_link_or_button "Breakfast"
-    end
-    expect(current_path).to eq(category_path(category1.id))
-    within("#item_1") do
-      expect(page).to have_content("Bacon")
-      expect(page).to have_content("The classic breakfast dish")
+  it "can browse a listing by clicking the listing's title" do
+    listing = Listing.create(title: "B&B",
+                             description: "Super classy",
+                             category_id: 1,
+                             max_guests: 2,
+                             nightly_rate: 10000,
+                             address1: "123 Elm St",
+                             address2: nil,
+                             city: "Denver",
+                             state: "CO",
+                             zip: 80022,
+                            shared_bathroom: false,
+                            user_id: 1)
+    visit listings_path
+    click_link_or_button "B&B"
+    expect(current_path).to eq(listing_path(listing))
+    expect(page).to have_content(listing.title)
+    within("div.listing") do
+      expect(page).to have_content "B&B"
+      expect(page).to have_content "Super classy"
+      expect(page).to have_content "$100.00"
     end
   end
 
