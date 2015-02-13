@@ -4,6 +4,20 @@ describe "As an unauthenticated user" do
   include Capybara::DSL
 
   let!(:category1) { Category.create(name: "Breakfast") }
+  let!(:listing) do
+    Listing.create(title: "B&B",
+                   description: "Super classy",
+                   category_id: 1,
+                   max_guests: 2,
+                   nightly_rate: 10000,
+                   address1: "123 Elm St",
+                   address2: nil,
+                   city: "Denver",
+                   state: "CO",
+                   zip: 80022,
+                   shared_bathroom: false,
+                   user_id: 1)
+  end
 
   before(:each) do
     visit root_path
@@ -28,47 +42,23 @@ describe "As an unauthenticated user" do
   end
 
   it "can browse all listings (listings index page)" do
-    Listing.create(title: "B&B",
-                   description: "Super classy",
-                   category_id: 1,
-                   max_guests: 2,
-                   nightly_rate: 10000,
-                   address1: "123 Elm St",
-                   address2: nil,
-                   city: "Denver",
-                   state: "CO",
-                   zip: 80022,
-                   shared_bathroom: false,
-                   user_id: 1)
     # click_link_or_button "View all properties"
     visit(listings_path)
     within("div.listing") do
-      expect(page).to have_content "B&B"
-      expect(page).to have_content "Super classy"
+      expect(page).to have_content listing.title
+      expect(page).to have_content listing.description
       expect(page).to have_content "$100.00"
     end
   end
 
   it "can browse a listing by clicking the listing's title" do
-    listing = Listing.create(title: "B&B",
-                             description: "Super classy",
-                             category_id: 1,
-                             max_guests: 2,
-                             nightly_rate: 10000,
-                             address1: "123 Elm St",
-                             address2: nil,
-                             city: "Denver",
-                             state: "CO",
-                             zip: 80022,
-                            shared_bathroom: false,
-                            user_id: 1)
     visit listings_path
     click_link_or_button "B&B"
     expect(current_path).to eq(listing_path(listing))
     expect(page).to have_content(listing.title)
     within("div.listing") do
-      expect(page).to have_content "B&B"
-      expect(page).to have_content "Super classy"
+      expect(page).to have_content listing.title
+      expect(page).to have_content listing.description
       expect(page).to have_content "$100.00"
     end
   end
