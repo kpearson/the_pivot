@@ -82,18 +82,18 @@ describe "authenticated" do
       end
     end
 
-    it "can log out" do
-      log_in(admin, "adminpassword")
-      expect(current_path).to eq(root_path)
-      within("#flash_notice") do
-        expect(page).to have_content("Successfully Logged In")
-      end
-      click_link_or_button "Log Out"
-      expect(current_path).to eq(root_path)
-      within("#flash_notice") do
-        expect(page).to have_content("Successfully Logged Out")
-      end
-    end
+  #   it "can log out" do
+  #     log_in(admin, "adminpassword")
+  #     expect(current_path).to eq(root_path)
+  #     within("#flash_notice") do
+  #       expect(page).to have_content("Successfully Logged In")
+  #     end
+  #     click_link_or_button "Log Out"
+  #     expect(current_path).to eq(root_path)
+  #     within("#flash_notice") do
+  #       expect(page).to have_content("Successfully Logged Out")
+  #     end
+  #   end
   end
 
   def log_in(user_type, password)
