@@ -30,7 +30,6 @@ describe "an authenticated user" do
     visit root_path
   end
 
-
   it "can browse all listings (listings index page)" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
