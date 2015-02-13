@@ -29,10 +29,23 @@
 }
 
 
- //
+ // profile page
 
 
 // body {
 //   background: url(image-path("home-background.jpg")) fixed;
 //   background-size: cover;
 // }
+
+.table > tbody > tr > td {
+  vertical-align: right;
+}
+
+.listing {
+  border: 1px solid;
+  padding: 15px;
+}
+
+.col-md-6 {
+  width: 50%;
+}
