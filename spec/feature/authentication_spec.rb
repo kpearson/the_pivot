@@ -66,7 +66,7 @@ describe "authenticated" do
   end
 
   context "admin" do
-    it "can log in if registered" do
+    xit "can log in if registered" do
       log_in(admin, "adminpassword")
       expect(current_path).to eq(root_path)
       within("#flash_notice") do

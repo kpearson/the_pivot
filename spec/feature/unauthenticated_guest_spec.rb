@@ -3,11 +3,20 @@ require "rails_helper"
 describe "As an unauthenticated user" do
   include Capybara::DSL
 
-  let!(:valid_user) do
-    User.create(first_name: "Alice",
-                last_name: "Smith",
-                email: "rich@gmail.com",
-                password: "password")
+  let!(:category1) { Category.create(name: "Breakfast") }
+  let!(:listing) do
+    Listing.create(title: "B&B",
+                   description: "Super classy",
+                   category_id: 1,
+                   max_guests: 2,
+                   nightly_rate: 10000,
+                   address1: "123 Elm St",
+                   address2: nil,
+                   city: "Denver",
+                   state: "CO",
+                   zip: 80022,
+                   shared_bathroom: false,
+                   user_id: 1)
   end
 
   before(:each) do
@@ -32,30 +41,26 @@ describe "As an unauthenticated user" do
     end
   end
 
-  xit "can browse all items grouped by category (category index page)" do
-    click_link_or_button "Menu"
-    expect(current_path).to eq(categories_path)
-    within("div.categories") do
-      within("div#Breakfast") do
-        expect(page).to have_content category1.name
-        expect(page).to have_content "Bacon"
-      end
-      within("div#Lunch") do
-        expect(page).to have_content category2.name
-        expect(page).to have_content "BLT"
-      end
+  it "can browse all listings (listings index page)" do
+    # click_link_or_button "View all properties"
+    visit(listings_path)
+    within("div.listing") do
+      expect(page).to have_content listing.title
+      expect(page).to have_content listing.description
+      expect(page).to have_content "$100.00"
+
     end
   end
 
-  xit "can browse items for a specific category (category show page)" do
-    click_link_or_button "Menu"
-    within("div.categories") do
-      click_link_or_button "Breakfast"
-    end
-    expect(current_path).to eq(category_path(category1.id))
-    within("#item_1") do
-      expect(page).to have_content("Bacon")
-      expect(page).to have_content("The classic breakfast dish")
+  it "can browse a listing by clicking the listing's title" do
+    visit listings_path
+    click_link_or_button "B&B"
+    expect(current_path).to eq(listing_path(listing))
+    expect(page).to have_content(listing.title)
+    within("div.listing") do
+      expect(page).to have_content listing.title
+      expect(page).to have_content listing.description
+      expect(page).to have_content "$100.00"
     end
   end
 
@@ -88,12 +93,12 @@ describe "As an unauthenticated user" do
     expect(page).to_not have_content("Bacon")
   end
 
-  xit "cannot see the logout button" do
+  it "cannot see the logout button" do
     expect(page).to_not have_content("Log Out")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+                                                    and_return(nil)
     visit root_path
-    expect(page).to have_content("Log Out")
+    expect(page).to_not have_content("Log Out")
   end
 
   xit "can log out which does not clear cart" do
@@ -141,7 +146,9 @@ describe "As an unauthenticated user" do
     end
   end
 
-  xit "cannot view another person's private data" do
+  it "cannot view another person's private data" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(nil)
     user = User.create(first_name: "Rich",
                        last_name: "Shea",
                        email: "bryce@gmail.com",
@@ -162,7 +169,9 @@ describe "As an unauthenticated user" do
     end
   end
 
-  xit "cannot view the admin dashboard" do
+  it "cannot view the admin dashboard" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(nil)
     expect(page).to_not have_content("Admin Dashboard")
   end
 

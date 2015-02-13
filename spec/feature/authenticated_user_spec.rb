@@ -5,53 +5,60 @@ describe "an authenticated user" do
 
   let!(:category1) { Category.create(name: "Breakfast") }
   let!(:category2) { Category.create(name: "Lunch") }
+  let!(:listing) do
+    Listing.create(title: "B&B",
+                   description: "Super classy",
+                   category_id: 1,
+                   max_guests: 2,
+                   nightly_rate: 10000,
+                   address1: "123 Elm St",
+                   address2: nil,
+                   city: "Denver",
+                   state: "CO",
+                   zip: 80022,
+                   shared_bathroom: false,
+                   user_id: 1)
+  end
   let!(:valid_user) do
     User.create(first_name: "Alice",
                 last_name: "Smith",
-                email: "rich@gmail.com",
+                email: "alice@gmail.com",
                 password: "password")
   end
 
-  # before(:each) do
-  #   item = Item.new(title: "Bacon and Eggs",
-  #                   description: "The classic breakfast dish",
-  #                   price: 1000)
-  #   item.categories << category1
-  #   item.save
-  #
-  #   item = Item.new(title: "BLT",
-  #                   description: "The classic lunch dish",
-  #                   price: 1000)
-  #   item.categories << category2
-  #   item.save
-  #
-  #   visit root_path
-  # end
+  before(:each) do
+    visit root_path
+  end
 
-  xit "can browse all items grouped by category (category index page)" do
-    valid_user_logs_in
-    click_link_or_button "Menu"
-    expect(current_path).to eq(categories_path)
-    within("div.categories") do
-      within("div#Breakfast") do
-        expect(page).to have_content category1.name
-        expect(page).to have_content "Bacon"
-      end
-      within("div#Lunch") do
-        expect(page).to have_content category2.name
-        expect(page).to have_content "BLT"
-      end
+
+  it "can browse all listings (listings index page)" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(valid_user)
+    # click_link_or_button "View all properties"
+    visit(listings_path)
+    within("div.listing") do
+      expect(page).to have_content listing.title
+      expect(page).to have_content listing.description
+      expect(page).to have_content "$100.00"
     end
   end
 
-  xit "can browse items for a specific category (category show page)" do
-    visit category_path(category1)
-    expect(page).to have_content(category1.name)
-    expect(page).to have_content("Bacon")
+  it "can browse a listing by clicking the listing's title" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(valid_user)
+    visit listings_path
+    click_link_or_button "B&B"
+    expect(current_path).to eq(listing_path(listing))
+    within("div.listing") do
+      expect(page).to have_content listing.title
+      expect(page).to have_content listing.description
+      expect(page).to have_content "$100.00"
+    end
   end
 
   xit "can add an item to a cart" do
-    valid_user_logs_in
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(valid_user)
     click_add_to_cart_link("Breakfast")
     within("#cart-contents") do
       expect(page).to have_content("1")
@@ -174,7 +181,7 @@ describe "an authenticated user" do
     Order.create(user_id: valid_user.id)
     Order.create(user_id: valid_user.id)
     visit user_path(valid_user.id)
-    click_link_or_button "Cart"
+    click_link_or_button "Cart:"
     expect(current_path).to eq(orders_path)
     within(".orders-list") do
       expect(page).to have_content("Order 00001")
@@ -239,13 +246,13 @@ describe "an authenticated user" do
   #     end
   #   end
   #
-  #   it "date/time order was submitted" do
+  #   xit "date/time order was submitted" do
   #     within("#order-submit-time") do
   #       expect(page).to have_content("Order Submitted At:")
   #     end
   #   end
   # end
-  #
+
   # context ", when an item is retired," do
   #   before(:each) do
   #     allow_any_instance_of(ApplicationController).to receive(:current_user).
@@ -257,13 +264,13 @@ describe "an authenticated user" do
   #     click_link_or_button "Checkout"
   #   end
   #
-  #   it "can still access the item page" do
+  #   xit "can still access the item page" do
   #     click_link_or_button "Bacon and Eggs"
   #     expect(current_path).to eq(item_path(1))
   #     expect(page).to have_content("Bacon and Eggs")
   #   end
   # end
-  #
+
   it "cannot see the login button" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
@@ -316,7 +323,7 @@ describe "an authenticated user" do
     visit edit_admin_category_path(category1)
     expect(page).to have_content("Page Not Found")
   end
-  #
+
   it "cannot make themselves an admin" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
@@ -335,7 +342,7 @@ describe "an authenticated user" do
   #
   def valid_user_logs_in
     click_link "Log In"
-    fill_in "session_email", with: "rich@gmail.com"
+    fill_in "session_email", with: "alice@gmail.com"
     fill_in "session_password", with: "password"
     click_button "Log In"
   end
