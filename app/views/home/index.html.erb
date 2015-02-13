@@ -1,3 +1,8 @@
+<div class="jumbotron">
+	<div class="center-block">
+		<h1 class="welcome">Welcome</h1>
+	</div>
+</div>
 <div class="home-search">
   <form class="form-inline">
     <div class="form-group">
@@ -62,53 +67,4 @@
       </div>
     </div>
   </form>
-
-
-<div class="home-pics">
-  <div class="row">
-    <div class="box col-lg-4">
-      <%= image_tag "ex_denver.jpg" %>
-      <div class="overlay">
-        <span>Denver</span>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="box col-lg-4">
-      <%= image_tag "ex_new_york.jpg" %>
-      <div class="overlay">
-        <span>New York</span>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="box col-lg-4">
-      <%= image_tag "ex_washington_dc2.jpg" %>
-      <div class="overlay">
-        <span>Washington</span>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="box col-lg-4">
-      <%= image_tag "ex_new_york2.jpg" %>
-      <div class="overlay">
-        <span>New York</span>
-      </div>
-    </div>
-  <div class="row">
-    <div class="box col-lg-4">
-      <%= image_tag "ex_san_francisco.jpg" %>
-      <div class="overlay">
-        <span>San Francisco</span>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="box col-lg-4">
-      <%= image_tag "ex_seattle.jpg" %>
-      <div class="overlay">
-        <span>Seattle</span>
-      </div>
-    </div>
-  </div>
+	<%= render "home_page_listings" %>
