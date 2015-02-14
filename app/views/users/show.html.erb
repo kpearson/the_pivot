@@ -1,6 +1,12 @@
-<h1><%= @user.first_name %></h1>
-<%= image_tag @user.image.url(:medium) %></br>
-<%= link_to "My Trips", orders_path %></br>
-<div class="active"><a href="#" data-reveal-id="profile-modal">Edit Profile</a></div>
-       <%= render "profile_form" %>
-       <%= @user.about_me %>
+<h1 id="user-name"><%= @user.first_name %></h1>
+
+<div class="row">
+  <div class="col-md-4">
+    <%= image_tag @user.image.url(:medium) %></br>
+  </div>
+  <div class="col-md-8">
+    <div class="well well-lg about-me">
+      <%= @user.about_me %>
+    </div>
+  </div>
+</div>

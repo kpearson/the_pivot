@@ -1,11 +1,46 @@
+//  home page
 .home-search {
   vertical-align:middle;
   margin-bottom:0px;
+  margin-top: 0px;
+  width: 700px;
+  margin: 0 auto;
 }
 
-.nav {
-  margin-left: 50px;
-  margin-right: 50px;
+.navbar-header {
+  margin-top: 10px;
+  margin-left: 110px;
+  font-size: 21px;
+}
+
+.navbar.transparent .navbar-inner {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 20;
+  /*margin-left: 100px;*/
+  /*margin-right: 50px;*/
+
+}
+
+#search-city {
+  min-width: 195px;
+}
+
+.connector {
+  margin-top: 300px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+#user-name {
+  margin-top: 100px;
+}
+
+.about-me {
+  min-height: 225px;
 }
 
 
@@ -14,3 +49,16 @@
 //   background: url(image-path("home-background.jpg")) fixed;
 //   background-size: cover;
 // }
+
+.table > tbody > tr > td {
+  vertical-align: right;
+}
+
+.listing {
+  border: 1px solid;
+  padding: 15px;
+}
+
+.col-md-6 {
+  width: 50%;
+}

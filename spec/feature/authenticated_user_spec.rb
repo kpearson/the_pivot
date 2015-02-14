@@ -5,60 +5,66 @@ describe "an authenticated user" do
 
   let!(:category1) { Category.create(name: "Breakfast") }
   let!(:category2) { Category.create(name: "Lunch") }
+  let!(:listing) do
+    Listing.create(title: "B&B",
+                   description: "Super classy",
+                   category_id: 1,
+                   max_guests: 2,
+                   nightly_rate: 10000,
+                   address1: "123 Elm St",
+                   address2: nil,
+                   city: "Denver",
+                   state: "CO",
+                   zip: 80022,
+                   shared_bathroom: false,
+                   user_id: 1)
+  end
   let!(:valid_user) do
     User.create(first_name: "Alice",
                 last_name: "Smith",
-                email: "rich@gmail.com",
+                email: "alice@gmail.com",
                 password: "password")
   end
 
   before(:each) do
-    item = Item.new(title: "Bacon and Eggs",
-                    description: "The classic breakfast dish",
-                    price: 1000)
-    item.categories << category1
-    item.save
-
-    item = Item.new(title: "BLT",
-                    description: "The classic lunch dish",
-                    price: 1000)
-    item.categories << category2
-    item.save
-
     visit root_path
   end
 
-  it "can browse all items grouped by category (category index page)" do
-    valid_user_logs_in
-    click_link_or_button "Menu"
-    expect(current_path).to eq(categories_path)
-    within("div.categories") do
-      within("div#Breakfast") do
-        expect(page).to have_content category1.name
-        expect(page).to have_content "Bacon"
-      end
-      within("div#Lunch") do
-        expect(page).to have_content category2.name
-        expect(page).to have_content "BLT"
-      end
+  it "can browse all listings (listings index page)" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(valid_user)
+    # click_link_or_button "View all properties"
+    visit(listings_path)
+    within("div.listing") do
+      expect(page).to have_content listing.title
+      expect(page).to have_content listing.description
+      expect(page).to have_content "$100.00"
     end
   end
 
-  it "can browse items for a specific category (category show page)" do
-    visit category_path(category1)
-    expect(page).to have_content(category1.name)
-    expect(page).to have_content("Bacon")
+  it "can browse a listing by clicking the listing's title" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(valid_user)
+    visit listings_path
+    click_link_or_button "B&B"
+    expect(current_path).to eq(listing_path(listing))
+    within("div.listing") do
+      expect(page).to have_content listing.title
+      expect(page).to have_content listing.description
+      expect(page).to have_content "$100.00"
+    end
   end
 
-  it "can add an item to a cart" do
-    valid_user_logs_in
+  xit "can add an item to a cart" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(valid_user)
     click_add_to_cart_link("Breakfast")
     within("#cart-contents") do
       expect(page).to have_content("1")
     end
   end
 
-  it "can add two items to a cart" do
+  xit "can add two items to a cart" do
     click_add_to_cart_link("Breakfast")
     click_add_to_cart_link("Breakfast")
     click_add_to_cart_link("Lunch")
@@ -67,7 +73,7 @@ describe "an authenticated user" do
     end
   end
 
-  it "can remove an item from a cart" do
+  xit "can remove an item from a cart" do
     click_add_to_cart_link("Breakfast")
     visit new_order_path
     within("#item_1") do
@@ -109,7 +115,7 @@ describe "an authenticated user" do
     expect(current_path).to eq(not_found_path)
   end
 
-  it "can log in and out without clearing the cart" do
+  xit "can log in and out without clearing the cart" do
     within("#cart-contents") do
       expect(page).to have_content("0")
     end
@@ -128,7 +134,7 @@ describe "an authenticated user" do
     end
   end
 
-  it "checkout" do
+  xit "checkout" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
     click_add_to_cart_link("Breakfast")
@@ -139,7 +145,7 @@ describe "an authenticated user" do
     end
   end
 
-  it "can view their order after checkout" do
+  xit "can view their order after checkout" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
     click_add_to_cart_link("Breakfast")
@@ -168,101 +174,101 @@ describe "an authenticated user" do
     end
   end
 
-  it "can view past trips with links to each trip" do
+  xit "can view past trips with links to each trip" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
     Order.create(user_id: valid_user.id)
     Order.create(user_id: valid_user.id)
     visit user_path(valid_user.id)
-    click_link_or_button "My Trips"
+    click_link_or_button "Cart:"
     expect(current_path).to eq(orders_path)
     within(".orders-list") do
       expect(page).to have_content("Order 00001")
     end
   end
 
-  it "can view particular trips (trip show page)" do
+  xit "can view particular trips (trip show page)" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
     and_return(valid_user)
     Order.create(user_id: valid_user.id)
     visit user_path(valid_user.id)
-    click_link_or_button "My Trips"
+    click_link_or_button "Cart"
     click_link_or_button "Order 00001"
     expect(page).to have_content("Order 00001")
   end
+  #
+  # it "can edit their profile on their own page" do
+  #   allow_any_instance_of(ApplicationController).to receive(:current_user).
+  #                                                   and_return(valid_user)
+  #   visit user_path(valid_user)
+  #   expect(current_path).to eq(user_path(valid_user))
+  #   click_link_or_button('Edit Profile')
+  #   fill_in "user[about_me]", with: "I'm no fun!"
+  #   click_link_or_button 'Submit'
+  #   expect(page).to have_content("I'm no fun!")
+  # end
+  #
+  # context "can view the order page with" do
+  #   before(:each) do
+  #     allow_any_instance_of(ApplicationController).to receive(:current_user).
+  #     and_return(valid_user)
+  #     click_add_to_cart_link("Breakfast")
+  #     click_link_or_button "Cart:"
+  #     click_link_or_button "Checkout"
+  #   end
+  #
+  #   it "items with quantity ordered and line-item subtotals" do
+  #     within("#item-quantity") do
+  #       expect(page).to have_content("1")
+  #     end
+  #     within("#item-subtotal") do
+  #       expect(page).to have_content("$10.00")
+  #     end
+  #   end
+  #
+  #   it "items with links to each item description page" do
+  #     within("#item-title") do
+  #       click_link_or_button "Bacon"
+  #     end
+  #     expect(page).to have_content("Bacon")
+  #   end
+  #
+  #   it "the current status of the order" do
+  #     within("#order-status") do
+  #       expect(page).to have_content("ordered")
+  #     end
+  #   end
+  #
+  #   it "order total price" do
+  #     within("#item-total") do
+  #       expect(page).to have_content("$10.00")
+  #     end
+  #   end
+  #
+  #   xit "date/time order was submitted" do
+  #     within("#order-submit-time") do
+  #       expect(page).to have_content("Order Submitted At:")
+  #     end
+  #   end
+  # end
 
-  it "can edit their profile on their own page" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
-    visit user_path(valid_user)
-    expect(current_path).to eq(user_path(valid_user))
-    click_link_or_button('Edit Profile')
-    fill_in "user[about_me]", with: "I'm no fun!"
-    click_link_or_button 'Submit'
-    expect(page).to have_content("I'm no fun!")
-  end
-
-  context "can view the order page with" do
-    before(:each) do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).
-      and_return(valid_user)
-      click_add_to_cart_link("Breakfast")
-      click_link_or_button "Cart:"
-      click_link_or_button "Checkout"
-    end
-
-    it "items with quantity ordered and line-item subtotals" do
-      within("#item-quantity") do
-        expect(page).to have_content("1")
-      end
-      within("#item-subtotal") do
-        expect(page).to have_content("$10.00")
-      end
-    end
-
-    it "items with links to each item description page" do
-      within("#item-title") do
-        click_link_or_button "Bacon"
-      end
-      expect(page).to have_content("Bacon")
-    end
-
-    it "the current status of the order" do
-      within("#order-status") do
-        expect(page).to have_content("ordered")
-      end
-    end
-
-    it "order total price" do
-      within("#item-total") do
-        expect(page).to have_content("$10.00")
-      end
-    end
-
-    it "date/time order was submitted" do
-      within("#order-submit-time") do
-        expect(page).to have_content("Order Submitted At:")
-      end
-    end
-  end
-
-  context ", when an item is retired," do
-    before(:each) do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                      and_return(valid_user)
-      click_add_to_cart_link("Breakfast")
-      item = Item.find_by(title: "Bacon and Eggs")
-      item.update(status: "hidden")
-      click_link_or_button "Cart:"
-      click_link_or_button "Checkout"
-    end
-
-    it "can still access the item page" do
-      click_link_or_button "Bacon and Eggs"
-      expect(current_path).to eq(item_path(1))
-      expect(page).to have_content("Bacon and Eggs")
-    end
-  end
+  # context ", when an item is retired," do
+  #   before(:each) do
+  #     allow_any_instance_of(ApplicationController).to receive(:current_user).
+  #                                                     and_return(valid_user)
+  #     click_add_to_cart_link("Breakfast")
+  #     item = Item.find_by(title: "Bacon and Eggs")
+  #     item.update(status: "hidden")
+  #     click_link_or_button "Cart:"
+  #     click_link_or_button "Checkout"
+  #   end
+  #
+  #   xit "can still access the item page" do
+  #     click_link_or_button "Bacon and Eggs"
+  #     expect(current_path).to eq(item_path(1))
+  #     expect(page).to have_content("Bacon and Eggs")
+  #   end
+  # end
 
   it "cannot see the login button" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
@@ -271,21 +277,21 @@ describe "an authenticated user" do
     expect(page).to_not have_content("Log In")
   end
 
-  it "cannot create an item" do
+  xit "cannot create an item" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
     visit new_admin_item_path
     expect(page).to have_content("Page Not Found")
   end
 
-  it "cannot modify an item" do
+  xit "cannot modify an item" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
     visit edit_admin_item_path(1)
     expect(page).to have_content("Page Not Found")
   end
 
-  it "cannot assign an item to a category" do
+  xit "cannot assign an item to a category" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
     visit edit_admin_category_path(category1)
@@ -294,7 +300,7 @@ describe "an authenticated user" do
     expect(page).to_not have_content("Add to Category")
   end
 
-  it "cannot remove an item from a category" do
+  xit "cannot remove an item from a category" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
     visit new_admin_category_path
@@ -323,19 +329,19 @@ describe "an authenticated user" do
     visit new_admin_path
     expect(page).to have_content("Page Not Found")
   end
-
-  def click_add_to_cart_link(category)
-    click_link_or_button "Menu"
-    within(".categories") do
-      within("div##{category}") do
-          click_link "Add to Cart"
-      end
-    end
-  end
-
+  #
+  # def click_add_to_cart_link(category)
+  #   click_link_or_button "Menu"
+  #   within(".categories") do
+  #     within("div##{category}") do
+  #         click_link "Add to Cart"
+  #     end
+  #   end
+  # end
+  #
   def valid_user_logs_in
     click_link "Log In"
-    fill_in "session_email", with: "rich@gmail.com"
+    fill_in "session_email", with: "alice@gmail.com"
     fill_in "session_password", with: "password"
     click_button "Log In"
   end
