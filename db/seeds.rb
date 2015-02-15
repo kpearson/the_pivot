@@ -26,14 +26,55 @@ User.create([{ first_name: "Alice",
                password: "password"
                }])
 
-categories = Category.create([{ name: "Denver" },
-                              { name: "New York" },
-                              { name: "Seattle" },
-                              { name: "San Francisco" },
-                              { name: "Washington"
+categories = Category.create([{ name: "House" },
+                              { name: "Apartment" },
+                              { name: "Condo" },
+                              { name: "Cabin" },
+                              { name: "Room"
                                 }])
 
 path = 'app/assets/images/'
+
+# images1 = Image.new(image: open(path + "ex_denver.jpg"),
+#                     listing_id: 1)
+# images2 = Image.new(image: open(path + "ex_denver.jpg"),
+#                     listing_id: 2)
+# images3 = Image.new(image: open(path + "ex_denver.jpg"),
+#                     listing_id: 3)
+# images4 = Image.new(image: open(path + "ex_new_york.jpg"),
+#                     listing_id: 4)
+# images5 = Image.new(image: open(path + "ex_new_york2.jpg"),
+#                     listing_id: 5)
+# images6 = Image.new(image: open(path + "ex_new_york2.jpg"),
+#                     listing_id: 6)
+# images7 = Image.new(image: open(path + "ex_seattle.jpg"),
+#                     listing_id: 7)
+# images8 = Image.new(image: open(path + "ex_seattle.jpg"),
+#                     listing_id: 8)
+# images9 = Image.new(image: open(path + "ex_seattle.jpg"),
+#                     listing_id: 9)
+# images10 = Image.new(image: open(path + "ex_san_francisco.jpg"),
+#                     listing_id: 10)
+# images11 = Image.new(image: open(path + "ex_san_francisco.jpg"),
+#                     listing_id: 11)
+# images12 = Image.new(image: open(path + "ex_san_francisco.jpg"),
+#                     listing_id: 12)
+# images13 = Image.new(image: open(path + "ex_washington_dc.jpg"),
+#                     listing_id: 13)
+# images14 = Image.new(image: open(path + "ex_washington_dc2.jpg"),
+#                     listing_id: 14)
+# images15 = Image.new(image: open(path + "ex_washington_dc.jpg"),
+#                     listing_id: 15)
+# images16 = Image.new(image: open(path + "ex_washington_dc2.jpg"),
+#                     listing_id: 16)
+# images17 = Image.new(image: open(path + "ex_washington_dc.jpg"),
+#                     listing_id: 17)
+# images18 = Image.new(image: open(path + "ex_washington_dc2.jpg"),
+#                     listing_id: 18)
+# images19 = Image.new(image: open(path + "ex_washington_dc.jpg"),
+#                     listing_id: 19)
+# images20 = Image.new(image: open(path + "ex_washington_dc2.jpg"),
+#                     listing_id: 20)
 
 #Denver -----------------------------------------------------------------
 listing1 = Listing.new(title: "Denver B&B",
@@ -48,7 +89,7 @@ listing1 = Listing.new(title: "Denver B&B",
                  zip: 80022,
                  shared_bathroom: true,
                  user_id: 1
-                 image: open(path + "ex_denver.jpg"))
+                 )
 
 listing1.categories << categories[0]
 listing1.save
@@ -65,7 +106,7 @@ listing2 = Listing.new(title: "Denver Love Shack",
                  zip: 80022,
                  shared_bathroom: true,
                  user_id: 1
-                 image: open(path + "ex_denver.jpg"))
+                 )
 
 listing2.categories << categories[0]
 listing2.save
@@ -82,7 +123,7 @@ listing3 = Listing.new(title: "Denver Mountain Retreat",
                  zip: 80022,
                  shared_bathroom: true,
                  user_id: 1
-                 image: open(path + "ex_denver.jpg"))
+                 )
 
 listing3.categories << categories[0]
 listing3.save
@@ -100,7 +141,7 @@ listing4 = Listing.new(title: "Big lights will inspire you",
                  zip: 10001,
                  shared_bathroom: true,
                  user_id: 1
-                 image: open(path + "ex_new_york.jpg"))
+                 )
 
 listing4.categories << categories[1]
 listing4.save
@@ -117,7 +158,7 @@ listing5 = Listing.new(title: "Empire State of Mind",
                  zip: 10001,
                  shared_bathroom: true,
                  user_id: 1
-                 image: open(path + "ex_new_york2.jpg"))
+                 )
 
 listing5.categories << categories[1]
 listing5.save
@@ -134,7 +175,7 @@ listing6 = Listing.new(title: "These streets will make you feel brand new",
                  zip: 10001,
                  shared_bathroom: true,
                  user_id: 1
-                 image: open(path + "ex_new_york.jpg"))
+                 )
 
 listing6.categories << categories[1]
 listing6.save
@@ -153,7 +194,7 @@ listing7 = Listing.new(title: "Rain City, USA Condo",
                  zip: 98106,
                  shared_bathroom: true,
                  user_id: 1
-                 image: open(path + "ex_seattle.jpg"))
+                 )
 
 listing7.categories << categories[2]
 listing7.save
@@ -170,7 +211,7 @@ listing8 = Listing.new(title: "Pike Place Market Bungalo",
                  zip: 98106,
                  shared_bathroom: true,
                  user_id: 1
-                 image: open(path + "ex_seattle.jpg"))
+                 )
 
 listing8.categories << categories[2]
 listing8.save
@@ -187,7 +228,7 @@ listing9 = Listing.new(title: "Mt Rainier Cabin",
                 zip: 98106,
                 shared_bathroom: true,
                 user_id: 1
-                image: open(path + "ex_seattle.jpg"))
+                )
 
 listing9.categories << categories[2]
 listing9.save
@@ -205,7 +246,7 @@ listing10 = Listing.new(title: "Haight-Ashbury Hostel",
                   zip: 80022,
                   shared_bathroom: true,
                   user_id: 1
-                  image: open(path + "ex_san_francisco.jpg"))
+                  )
 
 listing10.categories << categories[3]
 listing10.save
@@ -222,7 +263,7 @@ listing11 = Listing.new(title: "Golden Gate Escape",
                   zip: 80022,
                   shared_bathroom: true,
                   user_id: 1
-                  image: open(path + "ex_san_francisco.jpg"))
+                  )
 
 listing11.categories << categories[3]
 listing11.save
@@ -239,7 +280,7 @@ listing12 = Listing.new(title: "Planet of the Apes Treehouse",
                   zip: 80022,
                   shared_bathroom: true,
                   user_id: 1
-                  image: open(path + "ex_san_francisco.jpg"))
+                  )
 
 listing12.categories << categories[3]
 listing12.save
@@ -258,7 +299,7 @@ listing13 = Listing.new(title: "Condo on the Mall",
                   zip: 22314,
                   shared_bathroom: true,
                   user_id: 1
-                  image: open(path + "ex_washington_dc.jpg"))
+                  image: )
 
 listing13.categories << categories[4]
 listing13.save
