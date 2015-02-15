@@ -49,7 +49,7 @@ describe "an authenticated user" do
                                                     and_return(valid_user)
     visit listings_path
     click_link_or_button "B&B"
-    expect(current_path).to eq(listing_path(listing))
+    expect(current_path).to eq(user_listing_path(listing.user.slug, listing))
     within("div.listing") do
       expect(page).to have_content listing.title
       expect(page).to have_content listing.description

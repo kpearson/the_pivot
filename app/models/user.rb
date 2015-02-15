@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   validates :first_name, :last_name, :display_name, :about_me, presence: true
   validates :display_name, format: { with: /\A[a-zA-Z]+\z/ }
-  validates :display_name, uniqueness: true
+  validates :display_name, :slug, uniqueness: true
   validates :email,
             format: {
               with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/

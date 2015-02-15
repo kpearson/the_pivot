@@ -2,7 +2,7 @@ class Listing < ActiveRecord::Base
   validates :title, :description, :category_id, :max_guests,
             :nightly_rate, :address1, :city, :state, :zip,
             :user_id, presence: true
-  validates :shared_bathroom, inclusion: {:in => [true, false]}
+  validates :shared_bathroom, inclusion: {in: [true, false]}
   validates :title, uniqueness: true
   validates :nightly_rate, numericality: { greater_than: 0 }
   belongs_to :user
@@ -15,7 +15,7 @@ class Listing < ActiveRecord::Base
   end
 
   def full_address
-    if address2
+    if !address2.blank?
       "#{address1}, #{address2}, #{city}, #{state} #{zip}"
     else
       "#{address1}, #{city}, #{state} #{zip}"

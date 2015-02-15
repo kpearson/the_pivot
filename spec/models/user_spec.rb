@@ -76,6 +76,28 @@ RSpec.describe User, type: :model do
   end
 
   it "is saved with a slug" do
-    expect(user.slug).to eq("valid")
+    saved_user = User.create(first_name: "Valid",
+                             last_name: "User",
+                             display_name: "valid",
+                             about_me: "valid",
+                             email: "valid@email.com",
+                             password: "password")
+    expect(saved_user.slug).to eq("valid")
+  end
+
+  it "is not valid with a duplicate slug" do
+    User.create(first_name: "Different",
+                last_name: "User",
+                display_name: "valid",
+                about_me: "valid",
+                email: "different@gmail.com",
+                password: "password")
+    invalid_user = User.create(first_name: "Valid",
+                               last_name: "User",
+                               display_name: "valid",
+                               about_me: "valid",
+                               email: "valid@email.com",
+                               password: "password")
+    expect(invalid_user).to_not be_valid
   end
 end
