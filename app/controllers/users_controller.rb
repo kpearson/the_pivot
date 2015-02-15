@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def show
     @user = User.find(params[:id])
     authorize! :read, @user
@@ -24,6 +23,12 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password, :image, :about_me)
+    params.require(:user).permit(:first_name,
+                                 :last_name,
+                                 :email,
+                                 :display_name,
+                                 :password,
+                                 :image,
+                                 :about_me)
   end
 end

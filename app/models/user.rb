@@ -12,6 +12,12 @@ class User < ActiveRecord::Base
                                       default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, :content_type => /\Aimage\/.*\Z/
 
+  before_save :generate_slug
+
+  def generate_slug
+    self.slug = display_name.parameterize
+  end
+
   def admin?
     false
   end

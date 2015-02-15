@@ -261,6 +261,8 @@ RSpec.describe Listing, :type => :model do
   it "can belong to a user" do
     user = User.create(first_name: "Bryce",
                        last_name: "Holcomb",
+                       display_name: "valid",
+                       about_me: "valid",
                        email: "bryce@gmail.com",
                        password: "password")
     expect(valid_listing.user).to eq(user)

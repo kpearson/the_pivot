@@ -74,4 +74,8 @@ RSpec.describe User, type: :model do
   it "can have orders" do
     expect(user.orders).to eq([])
   end
+
+  it "is saved with a slug" do
+    expect(user.slug).to eq("valid")
+  end
 end

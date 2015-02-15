@@ -27,6 +27,8 @@ describe "As an unauthenticated user" do
     click_add_to_cart_link("Breakfast")
     User.create(first_name: "Rich",
                 last_name: "Shea",
+                display_name: "valid",
+                about_me: "valid",
                 email: "bryce@gmail.com",
                 password: "secret")
     click_link "Log In"
@@ -48,14 +50,20 @@ describe "As an unauthenticated user" do
       expect(page).to have_content listing.title
       expect(page).to have_content listing.description
       expect(page).to have_content "$100.00"
-
     end
   end
 
   it "can browse a listing by clicking the listing's title" do
+    User.create(first_name: "John",
+                last_name: "Doe",
+                email: "joe@gmail.com",
+                password: "password",
+                about_me: "valid",
+                id: 1,
+                display_name: "joe")
     visit listings_path
     click_link_or_button "B&B"
-    expect(current_path).to eq(listing_path(listing))
+    expect(current_path).to eq(user_listing_path(listing))
     expect(page).to have_content(listing.title)
     within("div.listing") do
       expect(page).to have_content listing.title
@@ -69,6 +77,7 @@ describe "As an unauthenticated user" do
                 last_name: "Doe",
                 email: "joe@gmail.com",
                 password: "password",
+                about_me: "valid",
                 id: 1,
                 display_name: "joe")
     visit user_listing_path(listing)
@@ -162,6 +171,8 @@ describe "As an unauthenticated user" do
                                                     and_return(nil)
     user = User.create(first_name: "Rich",
                        last_name: "Shea",
+                       display_name: "valid",
+                       about_me: "valid",
                        email: "bryce@gmail.com",
                        password: "secret")
     visit user_path(user)
