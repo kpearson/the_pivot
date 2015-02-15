@@ -1,29 +1,35 @@
 .home-search {
-  vertical-align:middle;
+  background:rgba(0 ,0 ,0 ,0.5);
+  margin: 0 auto;
   margin-bottom:0px;
   margin-top: 0px;
-  width: 700px;
-  margin: 0 auto;
+  min-height: 90px;
+  padding: 2%;
   position: relative;
-  top: -80px;
+  text-align: center;
+  top: -100px;
+  vertical-align:middle;
+  width: 100%;
   z-index: 1001;
 }
 
 .navbar-header {
+  color: #fff !important;
   margin-top: 10px;
   margin-left: 110px;
   font-size: 21px;
 }
 
-.navbar.transparent .navbar-inner {
+.navbar-inner {
   background: transparent;
-  position: absolute;
-  top: 0;
-  right: 0;
+  color: #fff !important;
   left: 0;
+  margin-left: 3%;
+  margin-right: 13%;
+  position: absolute;
+  right: 0;
+  top: 0;
   z-index: 20;
-  /*margin-left: 100px;*/
-  /*margin-right: 50px;*/
 }
 
 #search-city {
