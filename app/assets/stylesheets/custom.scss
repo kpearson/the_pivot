@@ -1,8 +1,69 @@
 .home-search {
-  vertical-align:middle;
+  background:rgba(0 ,0 ,0 ,0.5);
+  margin: 0 auto;
   margin-bottom:0px;
+  margin-top: 0px;
+  min-height: 90px;
+  padding: 2%;
+  position: relative;
+  text-align: center;
+  top: -100px;
+  vertical-align:middle;
+  width: 100%;
+  z-index: 1001;
 }
+
+.navbar-header {
+  color: #fff !important;
+  margin-top: 10px;
+  margin-left: 110px;
+  font-size: 21px;
+}
+
+.navbar-inner {
+  background: transparent;
+  color: #fff !important;
+  left: 0;
+  margin-left: 3%;
+  margin-right: 13%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 20;
+}
+
+#search-city {
+  min-width: 195px;
+}
+
+.connector {
+  margin-left: 0;
+  margin-right: 0;
+  margin-top: 10px;
+}
+
+#user-name {
+  margin-top: 100px;
+}
+
+.about-me {
+  min-height: 225px;
+}
+
+// body {
+//   background: url(image-path("home-background.jpg")) fixed;
+//   background-size: cover;
+// }
 
 .table > tbody > tr > td {
   vertical-align: right;
+}
+
+.listing {
+  border: 1px solid;
+  padding: 15px;
+}
+
+.col-md-6 {
+  width: 50%;
 }
