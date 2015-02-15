@@ -1,60 +1,107 @@
 require "rails_helper"
 
 RSpec.describe User, type: :model do
-  let!(:valid_user) do
-    User.create(first_name: "Alice",
-                last_name: "Smith",
-                email: "kit@kit.com",
-                password: "password")
+  let!(:user) do
+    User.new(first_name: "Alice",
+             last_name: "Smith",
+             email: "valid@gmail.com",
+             about_me: "valid",
+             display_name: "valid",
+             password: "valid")
   end
 
   it "is valid" do
-    expect(valid_user).to be_valid
+    expect(user).to be_valid
   end
 
-  it "is not valid without a first and last name" do
-    invalid_user1 = User.new(first_name: "Alice",
-                             last_name: "",
-                             email: "kit@kit.com",
-                             password: "password")
+  it "is not valid without a first name" do
+    user.first_name = ""
+    expect(user).to_not be_valid
+  end
 
-    invalid_user2 = User.new(first_name: "",
-                             last_name: "Smith",
-                             email: "kit@kit.com",
-                             password: "password")
-    expect(invalid_user1).to_not be_valid
-    expect(invalid_user2).to_not be_valid
+  it "is not valid without a last name" do
+    user.last_name = ""
+    expect(user).to_not be_valid
   end
 
   it "is not valid without email" do
-    invalid_user1 = User.new(first_name: "Alice",
-                             last_name: "Smith",
-                             email: "",
-                             password: "password")
+    user.email = ""
+    expect(user).to_not be_valid
+  end
 
-    invalid_user2 = User.new(first_name: "Alice",
-                             last_name: "Smith",
-                             email: "kitAtkit.com",
-                             password: "password")
-    expect(invalid_user1).to_not be_valid
-    expect(invalid_user2).to_not be_valid
+  it "is not valid improper email" do
+    user.email = "invalidAtemail.com"
+    expect(user.first_name).to eq("Alice")
+    expect(user.last_name).to eq("Smith")
+    expect(user).to_not be_valid
+  end
+
+  it "is not valid without display name" do
+    user.display_name = ""
+    expect(user).to_not be_valid
+  end
+
+  it "is not valid without an about me" do
+    user.about_me = ""
+    expect(user).to_not be_valid
   end
 
   it "is not valid with duplicate email" do
-    invalid_user = User.new(first_name: "Sam",
-                            last_name: "Anderson",
-                            email: "kit@kit.com",
-                            password: "password")
-    expect(invalid_user).to_not be_valid
+    User.create(first_name: "Different",
+                last_name: "User",
+                display_name: "valid",
+                about_me: "valid",
+                email: "valid@gmail.com",
+                password: "password")
+    expect(user).to_not be_valid
+  end
+
+  it "is not valid with a duplicate display name" do
+    User.create(first_name: "Different",
+                last_name: "User",
+                display_name: "valid",
+                about_me: "valid",
+                email: "different@gmail.com",
+                password: "password")
+    expect(user).to_not be_valid
+  end
+
+  it "is valid with only lowercase and uppercase letters for displayname" do
+    user.display_name = "Invalid_displayName"
+    expect(user).to_not be_valid
   end
 
   it "can have orders" do
-    expect(valid_user.orders).to eq([])
+    expect(user.orders).to eq([])
   end
 
-  it "can be assigned a specific order" do
-    order = Order.new(user_id: valid_user.id)
-    order.save
-    expect(valid_user.orders.first).to eq(order)
+  it "is saved with a slug" do
+    saved_user = User.create(first_name: "Valid",
+                             last_name: "User",
+                             display_name: "valid",
+                             about_me: "valid",
+                             email: "valid@email.com",
+                             password: "password")
+    expect(saved_user.slug).to eq("valid")
+  end
+
+  it "is not valid with a duplicate slug" do
+    User.create(first_name: "Different",
+                last_name: "User",
+                display_name: "valid",
+                about_me: "valid",
+                email: "different@gmail.com",
+                password: "password")
+    invalid_user = User.create(first_name: "Valid",
+                               last_name: "User",
+                               display_name: "valid",
+                               about_me: "valid",
+                               email: "valid@email.com",
+                               password: "password")
+    expect(invalid_user).to_not be_valid
+  end
+
+  it "has a full name" do
+    expect(user.full_name).to eq("Alice Smith")
   end
 end

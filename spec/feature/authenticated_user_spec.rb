@@ -22,6 +22,8 @@ describe "an authenticated user" do
   let!(:valid_user) do
     User.create(first_name: "Alice",
                 last_name: "Smith",
+                display_name: "valid",
+                about_me: "valid",
                 email: "alice@gmail.com",
                 password: "password")
   end
@@ -47,7 +49,7 @@ describe "an authenticated user" do
                                                     and_return(valid_user)
     visit listings_path
     click_link_or_button "B&B"
-    expect(current_path).to eq(listing_path(listing))
+    expect(current_path).to eq(user_listing_path(listing.user.slug, listing))
     within("div.listing") do
       expect(page).to have_content listing.title
       expect(page).to have_content listing.description
@@ -98,6 +100,8 @@ describe "an authenticated user" do
                                                     and_return(valid_user)
     user2 = User.create(first_name: "Bob",
                         last_name: "Smith",
+                        display_name: "differentname",
+                        about_me: "valid",
                         email: "abcdef@kit.com",
                         password: "password123")
     visit user_path(user2)
