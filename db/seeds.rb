@@ -1,37 +1,49 @@
 Admin.create([{ first_name: "Admin_first",
                 last_name: "Admin_last",
                 email: "admin@email.com",
+                about_me: "valid",
+                display_name: "God",
                 password: "password"
                 }])
 
 User.create([{ first_name: "Alice",
                last_name: "alast_name",
                email: "alice@email.com",
+               about_me: "valid",
+               display_name: "Don't ask Alice",
                password: "password" },
              { first_name: "Bob",
                last_name: "blast_name",
                email: "bob@email.com",
+               about_me: "valid",
+               display_name: "Robert",
                password: "password" },
              { first_name: "Carol",
                last_name: "clast_name",
                email: "carlo@email.com",
+               about_me: "valid",
+               display_name: "Cali",
                password: "password" },
              { first_name: "Dave",
                last_name: "dlast_name",
                email: "dave@email.com",
+               about_me: "valid",
+               display_name: "Dave-O",
                password: "password" },
              { first_name: "eve",
                last_name: "elast_name",
                email: "eve@email.com",
+               about_me: "valid",
+               display_name: "Eve",
                password: "password"
                }])
 
-categories = Category.create([{ name: "House" },
-                              { name: "Apartment" },
-                              { name: "Condo" },
-                              { name: "Cabin" },
-                              { name: "Room"
-                                }])
+# categories = Category.create([{ name: "House" },
+#                               { name: "Apartment" },
+#                               { name: "Condo" },
+#                               { name: "Cabin" },
+#                               { name: "Room"
+#                                 }])
 
 path = 'app/assets/images/'
 
@@ -77,7 +89,7 @@ path = 'app/assets/images/'
 #                     listing_id: 20)
 
 #Denver -----------------------------------------------------------------
-listing1 = Listing.new(title: "Denver B&B",
+listing1 = Listing.create(title: "Denver B&B",
                  description: "Denver Omeletes and Canibus for everyone!",
                  category_id: 2,
                  max_guests: 2,
@@ -91,10 +103,10 @@ listing1 = Listing.new(title: "Denver B&B",
                  user_id: 1
                  )
 
-listing1.categories << categories[0]
-listing1.save
+# listing1.categories << categories[4]
+# listing1.save
 
-listing2 = Listing.new(title: "Denver Love Shack",
+listing2 = Listing.create(title: "Denver Love Shack",
                  description: "Mile High Escape",
                  category_id: 2,
                  max_guests: 2,
@@ -108,10 +120,10 @@ listing2 = Listing.new(title: "Denver Love Shack",
                  user_id: 1
                  )
 
-listing2.categories << categories[0]
-listing2.save
+# listing2.categories << categories[0]
+# listing2.save
 
-listing3 = Listing.new(title: "Denver Mountain Retreat",
+listing3 = Listing.create(title: "Denver Mountain Retreat",
                  description: "The Air is thin up there, boil your eggs a couple minutes longer than normal.",
                  category_id: 2,
                  max_guests: 8,
@@ -125,11 +137,11 @@ listing3 = Listing.new(title: "Denver Mountain Retreat",
                  user_id: 1
                  )
 
-listing3.categories << categories[0]
-listing3.save
+# listing3.categories << categories[0]
+# listing3.save
 
 #New York --------------------------------------------------------------------
-listing4 = Listing.new(title: "Big lights will inspire you",
+listing4 = Listing.create(title: "Big lights will inspire you",
                  description: "City so nice they named it twice",
                  category_id: 2,
                  max_guests: 4,
@@ -143,10 +155,10 @@ listing4 = Listing.new(title: "Big lights will inspire you",
                  user_id: 1
                  )
 
-listing4.categories << categories[1]
-listing4.save
+# listing4.categories << categories[1]
+# listing4.save
 
-listing5 = Listing.new(title: "Empire State of Mind",
+listing5 = Listing.create(title: "Empire State of Mind",
                  description: "City so nice they named it thrice",
                  category_id: 2,
                  max_guests: 6,
@@ -160,10 +172,10 @@ listing5 = Listing.new(title: "Empire State of Mind",
                  user_id: 1
                  )
 
-listing5.categories << categories[1]
-listing5.save
+# listing5.categories << categories[1]
+# listing5.save
 
-listing6 = Listing.new(title: "These streets will make you feel brand new",
+listing6 = Listing.create(title: "These streets will make you feel brand new",
                  description: "City so nice they named it one-time",
                  category_id: 2,
                  max_guests: 5,
@@ -177,12 +189,12 @@ listing6 = Listing.new(title: "These streets will make you feel brand new",
                  user_id: 1
                  )
 
-listing6.categories << categories[1]
-listing6.save
+# listing6.categories << categories[1]
+# listing6.save
 
 #Seattles ----------------------------------------------------------------
 
-listing7 = Listing.new(title: "Rain City, USA Condo",
+listing7 = Listing.create(title: "Rain City, USA Condo",
                  description: "Cold, wet and smells like fish",
                  category_id: 2,
                  max_guests: 4,
@@ -196,10 +208,10 @@ listing7 = Listing.new(title: "Rain City, USA Condo",
                  user_id: 1
                  )
 
-listing7.categories << categories[2]
-listing7.save
+# listing7.categories << categories[2]
+# listing7.save
 
-listing8 = Listing.new(title: "Pike Place Market Bungalo",
+listing8 = Listing.create(title: "Pike Place Market Bungalo",
                  description: "Copper River Salmon!",
                  category_id: 2,
                  max_guests: 4,
@@ -213,10 +225,10 @@ listing8 = Listing.new(title: "Pike Place Market Bungalo",
                  user_id: 1
                  )
 
-listing8.categories << categories[2]
-listing8.save
+# listing8.categories << categories[2]
+# listing8.save
 
-listing9 = Listing.new(title: "Mt Rainier Cabin",
+listing9 = Listing.create(title: "Mt Rainier Cabin",
                 description: "If you like camping on a volcano, we have the place for you!",
                 category_id: 2,
                 max_guests: 8,
@@ -230,11 +242,11 @@ listing9 = Listing.new(title: "Mt Rainier Cabin",
                 user_id: 1
                 )
 
-listing9.categories << categories[2]
-listing9.save
+# listing9.categories << categories[2]
+# listing9.save
 
 # San Francisco-------------------------------------------------------------
-listing10 = Listing.new(title: "Haight-Ashbury Hostel",
+listing10 = Listing.create(title: "Haight-Ashbury Hostel",
                   description: "Smells like teen hippies.",
                   category_id: 2,
                   max_guests: 25,
@@ -248,10 +260,10 @@ listing10 = Listing.new(title: "Haight-Ashbury Hostel",
                   user_id: 1
                   )
 
-listing10.categories << categories[3]
-listing10.save
+# listing10.categories << categories[3]
+# listing10.save
 
-listing11 = Listing.new(title: "Golden Gate Escape",
+listing11 = Listing.create(title: "Golden Gate Escape",
                   description: "aka Alcatraz",
                   category_id: 2,
                   max_guests: 120,
@@ -265,10 +277,10 @@ listing11 = Listing.new(title: "Golden Gate Escape",
                   user_id: 1
                   )
 
-listing11.categories << categories[3]
-listing11.save
+# listing11.categories << categories[3]
+# listing11.save
 
-listing12 = Listing.new(title: "Planet of the Apes Treehouse",
+listing12 = Listing.create(title: "Planet of the Apes Treehouse",
                   description: "We've got Funky Monkeys!",
                   category_id: 2,
                   max_guests: 8,
@@ -282,12 +294,12 @@ listing12 = Listing.new(title: "Planet of the Apes Treehouse",
                   user_id: 1
                   )
 
-listing12.categories << categories[3]
-listing12.save
+# listing12.categories << categories[3]
+# listing12.save
 
 
 # Washington-----------------------------------------------------------
-listing13 = Listing.new(title: "Condo on the Mall",
+listing13 = Listing.create(title: "Condo on the Mall",
                   description: "Not that kind of mall, dummy",
                   category_id: 2,
                   max_guests: 4,
@@ -301,10 +313,10 @@ listing13 = Listing.new(title: "Condo on the Mall",
                   user_id: 1
                   )
 
-listing13.categories << categories[4]
-listing13.save
+# listing13.categories << categories[4]
+# listing13.save
 
-listing14 = Listing.new(title: "Capital Hill House",
+listing14 = Listing.create(title: "Capital Hill House",
                   description: "We like our house guests like we like our politicians, clean and self-serving.",
                   category_id: 2,
                   max_guests: 6,
@@ -318,10 +330,10 @@ listing14 = Listing.new(title: "Capital Hill House",
                   user_id: 1
                   )
 
-listing14.categories << categories[4]
-listing14.save
+# listing14.categories << categories[4]
+# listing14.save
 
-listing15 = Listing.new(title: "Filibuster Flat",
+listing15 = Listing.create(title: "Filibuster Flat",
                   description: "Perfet for those who never shut up.",
                   category_id: 2,
                   max_guests: 2,
@@ -334,11 +346,11 @@ listing15 = Listing.new(title: "Filibuster Flat",
                   shared_bathroom: true,
                   user_id: 1
                   )
+#
+# listing15.categories << categories[4]
+# listing15.save
 
-listing15.categories << categories[4]
-listing15.save
-
-listing16 = Listing.new(title: "Lincoln Bedroom",
+listing16 = Listing.create(title: "Lincoln Bedroom",
                   description: "In the White Horse!",
                   category_id: 2,
                   max_guests: 2,
@@ -352,10 +364,10 @@ listing16 = Listing.new(title: "Lincoln Bedroom",
                   user_id: 1
                   )
 
-listing16.categories << categories[4]
-listing16.save
+# listing16.categories << categories[4]
+# listing16.save
 
-listing17 = Listing.new(title: "Cherry Blossom B&B",
+listing17 = Listing.create(title: "Cherry Blossom B&B",
                   description: "Stay in on our luxurious paddlewheel river boats on Tidal Basin",
                   category_id: 2,
                   max_guests: 2,
@@ -369,10 +381,10 @@ listing17 = Listing.new(title: "Cherry Blossom B&B",
                   user_id: 1
                   )
 
-listing17.categories << categories[4]
-listing17.save
+# listing17.categories << categories[4]
+# listing17.save
 
-listing18 = Listing.new(title: "Private Ford Theatre Balcony Suite",
+listing18 = Listing.create(title: "Private Ford Theatre Balcony Suite",
                   description: "Privacy guarenteed, or your money back",
                   category_id: 2,
                   max_guests: 4,
@@ -386,10 +398,10 @@ listing18 = Listing.new(title: "Private Ford Theatre Balcony Suite",
                   user_id: 1
                   )
 
-listing18.categories << categories[4]
-listing18.save
+# listing18.categories << categories[4]
+# listing18.save
 
-listing19 = Listing.new(title: "House of Cards",
+listing19 = Listing.create(title: "House of Cards",
                   description: "I’ve always loathed the necessity of sleep. Like death, it puts even the most powerful men on their backs.",
                   category_id: 2,
                   max_guests: 10,
@@ -403,10 +415,10 @@ listing19 = Listing.new(title: "House of Cards",
                   user_id: 1
                   )
 
-listing19.categories << categories[4]
-listing19.save
+# listing19.categories << categories[4]
+# listing19.save
 
-listing20 = Listing.new(title: "The West Wing",
+listing20 = Listing.create(title: "The West Wing",
                   description: "Join the Bartlet's, Leo (deceased), C. J., Josh, Toby, Donna, Charlie and Sam in this White house replica",
                   category_id: 2,
                   max_guests: 12,
@@ -420,5 +432,5 @@ listing20 = Listing.new(title: "The West Wing",
                   user_id: 1
                   )
 
-listing20.categories << categories[4]
-listing20.save
+# listing20.categories << categories[4]
+# listing20.save
