@@ -14,21 +14,17 @@
   <body>
 	<%= render "menu" %>
 
-		<div class="large-12 small-12 columns">
-			<%= render "admin_dashboard" if current_user && current_user.admin? %>
-		</div>
+  <div class="large-12 small-12 columns">
+    <%= render "admin_dashboard" if current_user && current_user.admin? %>
+  </div>
 
-		<% flash.each do |name, msg| %>
+    <% flash.each do |name, msg| %>
 			<%= content_tag :div, msg, id: "flash_#{name}" %>
 	<% end %>
 
-		<div class="row">
-			<div class="container">
-				<%= yield %>
-			</div>
-		</div>
-		<%= javascript_include_tag "application" %>
-	</div>
+  <%= yield %>
+
+  <%= javascript_include_tag "application" %>
 	<%= render "footer" %>
   </body>
 </html>

@@ -1,10 +1,12 @@
-//  home page
 .home-search {
   vertical-align:middle;
   margin-bottom:0px;
   margin-top: 0px;
   width: 700px;
   margin: 0 auto;
+  position: relative;
+  top: -80px;
+  z-index: 1001;
 }
 
 .navbar-header {
@@ -22,7 +24,6 @@
   z-index: 20;
   /*margin-left: 100px;*/
   /*margin-right: 50px;*/
-
 }
 
 #search-city {
@@ -30,9 +31,9 @@
 }
 
 .connector {
-  margin-top: 300px;
   margin-left: 0;
   margin-right: 0;
+  margin-top: 10px;
 }
 
 #user-name {
@@ -42,8 +43,6 @@
 .about-me {
   min-height: 225px;
 }
-
-
 
 // body {
 //   background: url(image-path("home-background.jpg")) fixed;
