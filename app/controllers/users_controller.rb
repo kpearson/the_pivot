@@ -20,9 +20,9 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
-  #def destroy
+  # def destroy
     # when deleting a user, it's listing should be deleted too
-  #end
+  # end
 
   private
 
