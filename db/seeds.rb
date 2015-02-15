@@ -299,7 +299,7 @@ listing13 = Listing.new(title: "Condo on the Mall",
                   zip: 22314,
                   shared_bathroom: true,
                   user_id: 1
-                  image: )
+                  )
 
 listing13.categories << categories[4]
 listing13.save
@@ -316,7 +316,7 @@ listing14 = Listing.new(title: "Capital Hill House",
                   zip: 22314,
                   shared_bathroom: true,
                   user_id: 1
-                  image: open(path + "ex_washington_dc2.jpg"))
+                  )
 
 listing14.categories << categories[4]
 listing14.save
@@ -333,7 +333,7 @@ listing15 = Listing.new(title: "Filibuster Flat",
                   zip: 22314,
                   shared_bathroom: true,
                   user_id: 1
-                  image: open(path + "ex_washington_dc.jpg"))
+                  )
 
 listing15.categories << categories[4]
 listing15.save
@@ -350,7 +350,7 @@ listing16 = Listing.new(title: "Lincoln Bedroom",
                   zip: 22314,
                   shared_bathroom: true,
                   user_id: 1
-                  image: open(path + "ex_washington_dc.jpg"))
+                  )
 
 listing16.categories << categories[4]
 listing16.save
@@ -367,7 +367,7 @@ listing17 = Listing.new(title: "Cherry Blossom B&B",
                   zip: 22314,
                   shared_bathroom: true,
                   user_id: 1
-                  image: open(path + "ex_washington_dc.jpg"))
+                  )
 
 listing17.categories << categories[4]
 listing17.save
@@ -384,7 +384,7 @@ listing18 = Listing.new(title: "Private Ford Theatre Balcony Suite",
                   zip: 22314,
                   shared_bathroom: true,
                   user_id: 1
-                  image: open(path + "ex_washington_dc2.jpg"))
+                  )
 
 listing18.categories << categories[4]
 listing18.save
@@ -401,7 +401,7 @@ listing19 = Listing.new(title: "House of Cards",
                   zip: 22314,
                   shared_bathroom: true,
                   user_id: 1
-                  image: open(path + "ex_washington_dc.jpg"))
+                  )
 
 listing19.categories << categories[4]
 listing19.save
@@ -418,7 +418,7 @@ listing20 = Listing.new(title: "The West Wing",
                   zip: 22314,
                   shared_bathroom: true,
                   user_id: 1
-                  image: open(path + "ex_washington_dc2.jpg"))
+                  )
 
 listing20.categories << categories[4]
 listing20.save
