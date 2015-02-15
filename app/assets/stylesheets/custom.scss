@@ -21,15 +21,15 @@
 }
 
 .navbar-inner {
-  color: #fff !important;
   background: transparent;
-  position: absolute;
-  top: 0;
-  right: 0;
+  color: #fff !important;
   left: 0;
-  z-index: 20;
   margin-left: 3%;
   margin-right: 13%;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: 20;
 }
 
 #search-city {
