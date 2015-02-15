@@ -4,6 +4,9 @@
   margin-top: 0px;
   width: 700px;
   margin: 0 auto;
+  position: relative;
+  top: -80px;
+  z-index: 1001;
 }
 
 .navbar-header {

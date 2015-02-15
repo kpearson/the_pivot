@@ -10,6 +10,21 @@
   font: 0/0 a; /* Remove the gap between inline(-block) elements */
 }
 
+.new-overlay {
+  /*background: #cc3333;*/
+  opacity: .9;
+  position: absolute;
+  top: 40%;
+  /*left: 32%;*/
+  width: 100%;
+  font-size: 32px;
+  color: #fff;
+  padding: 15px;
+}
+
+.home-text {
+  text-align: center;
+}
 .overlay-container .overlay:before {
   content: ' ';
   display: inline-block;
@@ -25,13 +40,13 @@
   vertical-align: middle;
 }
 
-.h1 {
-  position: absolute;
-  left: 200px;
-}
+/*.h1 {*/
+/*position: absolute;*/
+/*left: 200px;*/
+/*}*/
 
 .home-pics {
-  margin: 2%;
+  margin: 0;
 	margin-left: 12%;
 }
 
@@ -44,7 +59,7 @@
 }
 
 .jumbotron {
-	margin: 0; 
+	margin: 0;
 	background-color: none;
 	padding: 0;
 }
