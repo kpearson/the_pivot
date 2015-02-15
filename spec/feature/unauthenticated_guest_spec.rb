@@ -64,6 +64,17 @@ describe "As an unauthenticated user" do
     end
   end
 
+  it "can view a listing page namespaced with the host's display name" do
+    User.create(first_name: "John",
+                last_name: "Doe",
+                email: "joe@gmail.com",
+                password: "password",
+                id: 1,
+                display_name: "joe")
+    visit user_listing_path(listing)
+    expect(current_path).to eq("/joe/listings/1")
+  end
+
   xit "can add an item to a cart" do
     click_add_to_cart_link("Breakfast")
     within("#cart-contents") do
