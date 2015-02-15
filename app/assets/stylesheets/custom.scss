@@ -1,15 +1,15 @@
 .home-search {
-  text-align: center;
   background:rgba(0 ,0 ,0 ,0.5);
-  vertical-align:middle;
+  margin: 0 auto;
   margin-bottom:0px;
   margin-top: 0px;
-  width: 100%;
   min-height: 90px;
-  margin: 0 auto;
   padding: 2%;
   position: relative;
+  text-align: center;
   top: -100px;
+  vertical-align:middle;
+  width: 100%;
   z-index: 1001;
 }
 
