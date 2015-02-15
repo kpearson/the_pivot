@@ -24,7 +24,6 @@
   text-align: center;
 }
 
-
 .overlay-container .overlay:before {
   content: ' ';
   display: inline-block;
@@ -49,8 +48,19 @@
 	margin: 2%;
 }
 
+.a {
+  color: white;
+}
+
 .welcome {
+  color: #fff !important;
 	text-align: center;
+}
+
+.hero-image {
+  max-width: 100%;
+  height: auto;
+  width: auto\9; /* ie8 */
 }
 
 .jumbotron {
@@ -60,7 +70,10 @@
 }
 
 .center-block {
-	padding-top: 190px;
-	min-height: 400px;
+  padding: 20%;
+	/*min-height: 400px;*/
 	margin-top: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
