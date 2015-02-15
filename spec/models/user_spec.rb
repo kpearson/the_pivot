@@ -100,4 +100,8 @@ RSpec.describe User, type: :model do
                                password: "password")
     expect(invalid_user).to_not be_valid
   end
+
+  it "has a full name" do
+    expect(user.full_name).to eq("Alice Smith")
+  end
 end

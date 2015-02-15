@@ -19,6 +19,10 @@ class User < ActiveRecord::Base
     self.slug = display_name.parameterize
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   def admin?
     false
   end

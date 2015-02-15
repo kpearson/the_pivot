@@ -76,6 +76,7 @@ describe "As an unauthenticated user" do
       expect(page).to have_content listing.title
       expect(page).to have_content listing.description
       expect(page).to have_content "$100.00"
+      expect(page).to have_content "John Doe"
     end
   end
 
