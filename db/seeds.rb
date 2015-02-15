@@ -1,8 +1,6 @@
 Admin.create([{ first_name: "Admin_first",
                 last_name: "Admin_last",
                 email: "admin@email.com",
-                about_me: "valid",
-                display_name: "God",
                 password: "password"
                 }])
 
@@ -10,8 +8,9 @@ User.create([{ first_name: "Alice",
                last_name: "alast_name",
                email: "alice@email.com",
                about_me: "valid",
-               display_name: "Don't ask Alice",
-               password: "password" },
+               display_name: "Alice",
+               password: "password",
+               slug: "Alice"},
              { first_name: "Bob",
                last_name: "blast_name",
                email: "bob@email.com",
@@ -38,12 +37,12 @@ User.create([{ first_name: "Alice",
                password: "password"
                }])
 
-# categories = Category.create([{ name: "House" },
-#                               { name: "Apartment" },
-#                               { name: "Condo" },
-#                               { name: "Cabin" },
-#                               { name: "Room"
-#                                 }])
+categories = Category.create([{ name: "House" },
+                              { name: "Apartment" },
+                              { name: "Condo" },
+                              { name: "Cabin" },
+                              { name: "Room"
+                                }])
 
 path = 'app/assets/images/'
 
@@ -91,7 +90,7 @@ path = 'app/assets/images/'
 #Denver -----------------------------------------------------------------
 listing1 = Listing.create(title: "Denver B&B",
                  description: "Denver Omeletes and Canibus for everyone!",
-                 category_id: 2,
+                 category_id: 5,
                  max_guests: 2,
                  nightly_rate: 11000,
                  address1: "110 Elm St",
@@ -100,7 +99,7 @@ listing1 = Listing.create(title: "Denver B&B",
                  state: "CO",
                  zip: 80022,
                  shared_bathroom: true,
-                 user_id: 1
+                 user_id: 0
                  )
 
 # listing1.categories << categories[4]
@@ -108,7 +107,7 @@ listing1 = Listing.create(title: "Denver B&B",
 
 listing2 = Listing.create(title: "Denver Love Shack",
                  description: "Mile High Escape",
-                 category_id: 2,
+                 category_id: 4,
                  max_guests: 2,
                  nightly_rate: 7500,
                  address1: "111 Elm St",
@@ -125,7 +124,7 @@ listing2 = Listing.create(title: "Denver Love Shack",
 
 listing3 = Listing.create(title: "Denver Mountain Retreat",
                  description: "The Air is thin up there, boil your eggs a couple minutes longer than normal.",
-                 category_id: 2,
+                 category_id: 4,
                  max_guests: 8,
                  nightly_rate: 15000,
                  address1: "112 Elm St",
@@ -134,7 +133,7 @@ listing3 = Listing.create(title: "Denver Mountain Retreat",
                  state: "CO",
                  zip: 80022,
                  shared_bathroom: true,
-                 user_id: 1
+                 user_id: 2
                  )
 
 # listing3.categories << categories[0]
@@ -152,7 +151,7 @@ listing4 = Listing.create(title: "Big lights will inspire you",
                  state: "NY",
                  zip: 10001,
                  shared_bathroom: true,
-                 user_id: 1
+                 user_id: 3
                  )
 
 # listing4.categories << categories[1]
@@ -169,7 +168,7 @@ listing5 = Listing.create(title: "Empire State of Mind",
                  state: "NY",
                  zip: 10001,
                  shared_bathroom: true,
-                 user_id: 1
+                 user_id: 4
                  )
 
 # listing5.categories << categories[1]
@@ -182,11 +181,11 @@ listing6 = Listing.create(title: "These streets will make you feel brand new",
                  nightly_rate: 15000,
                  address1: "115 Elm St",
                  address2: nil,
-                 city: "Denver",
-                 state: "CO",
+                 city: "New York",
+                 state: "NY",
                  zip: 10001,
                  shared_bathroom: true,
-                 user_id: 1
+                 user_id: 0
                  )
 
 # listing6.categories << categories[1]
@@ -196,7 +195,7 @@ listing6 = Listing.create(title: "These streets will make you feel brand new",
 
 listing7 = Listing.create(title: "Rain City, USA Condo",
                  description: "Cold, wet and smells like fish",
-                 category_id: 2,
+                 category_id: 3,
                  max_guests: 4,
                  nightly_rate: 10000,
                  address1: "116 Elm St",
@@ -222,7 +221,7 @@ listing8 = Listing.create(title: "Pike Place Market Bungalo",
                  state: "WA",
                  zip: 98106,
                  shared_bathroom: true,
-                 user_id: 1
+                 user_id: 2
                  )
 
 # listing8.categories << categories[2]
@@ -230,7 +229,7 @@ listing8 = Listing.create(title: "Pike Place Market Bungalo",
 
 listing9 = Listing.create(title: "Mt Rainier Cabin",
                 description: "If you like camping on a volcano, we have the place for you!",
-                category_id: 2,
+                category_id: 4,
                 max_guests: 8,
                 nightly_rate: 8000,
                 address1: "118 Elm St",
@@ -239,7 +238,7 @@ listing9 = Listing.create(title: "Mt Rainier Cabin",
                 state: "WA",
                 zip: 98106,
                 shared_bathroom: true,
-                user_id: 1
+                user_id: 3
                 )
 
 # listing9.categories << categories[2]
@@ -248,7 +247,7 @@ listing9 = Listing.create(title: "Mt Rainier Cabin",
 # San Francisco-------------------------------------------------------------
 listing10 = Listing.create(title: "Haight-Ashbury Hostel",
                   description: "Smells like teen hippies.",
-                  category_id: 2,
+                  category_id: 5,
                   max_guests: 25,
                   nightly_rate: 26000,
                   address1: "119 Elm St",
@@ -257,7 +256,7 @@ listing10 = Listing.create(title: "Haight-Ashbury Hostel",
                   state: "CA",
                   zip: 80022,
                   shared_bathroom: true,
-                  user_id: 1
+                  user_id: 4
                   )
 
 # listing10.categories << categories[3]
@@ -265,7 +264,7 @@ listing10 = Listing.create(title: "Haight-Ashbury Hostel",
 
 listing11 = Listing.create(title: "Golden Gate Escape",
                   description: "aka Alcatraz",
-                  category_id: 2,
+                  category_id: 5,
                   max_guests: 120,
                   nightly_rate: 11000,
                   address1: "120 Elm St",
@@ -274,7 +273,7 @@ listing11 = Listing.create(title: "Golden Gate Escape",
                   state: "CA",
                   zip: 80022,
                   shared_bathroom: true,
-                  user_id: 1
+                  user_id: 0
                   )
 
 # listing11.categories << categories[3]
@@ -301,7 +300,7 @@ listing12 = Listing.create(title: "Planet of the Apes Treehouse",
 # Washington-----------------------------------------------------------
 listing13 = Listing.create(title: "Condo on the Mall",
                   description: "Not that kind of mall, dummy",
-                  category_id: 2,
+                  category_id: 3,
                   max_guests: 4,
                   nightly_rate: 16000,
                   address1: "122 Elm St",
@@ -310,7 +309,7 @@ listing13 = Listing.create(title: "Condo on the Mall",
                   state: "DC",
                   zip: 22314,
                   shared_bathroom: true,
-                  user_id: 1
+                  user_id: 2
                   )
 
 # listing13.categories << categories[4]
@@ -318,7 +317,7 @@ listing13 = Listing.create(title: "Condo on the Mall",
 
 listing14 = Listing.create(title: "Capital Hill House",
                   description: "We like our house guests like we like our politicians, clean and self-serving.",
-                  category_id: 2,
+                  category_id: 1,
                   max_guests: 6,
                   nightly_rate: 11000,
                   address1: "123 Elm St",
@@ -327,7 +326,7 @@ listing14 = Listing.create(title: "Capital Hill House",
                   state: "DC",
                   zip: 22314,
                   shared_bathroom: true,
-                  user_id: 1
+                  user_id: 3
                   )
 
 # listing14.categories << categories[4]
@@ -344,7 +343,7 @@ listing15 = Listing.create(title: "Filibuster Flat",
                   state: "DC",
                   zip: 22314,
                   shared_bathroom: true,
-                  user_id: 1
+                  user_id: 4
                   )
 #
 # listing15.categories << categories[4]
@@ -361,7 +360,7 @@ listing16 = Listing.create(title: "Lincoln Bedroom",
                   state: "DC",
                   zip: 22314,
                   shared_bathroom: true,
-                  user_id: 1
+                  user_id: 0
                   )
 
 # listing16.categories << categories[4]
@@ -395,7 +394,7 @@ listing18 = Listing.create(title: "Private Ford Theatre Balcony Suite",
                   state: "DC",
                   zip: 22314,
                   shared_bathroom: true,
-                  user_id: 1
+                  user_id: 2
                   )
 
 # listing18.categories << categories[4]
@@ -412,14 +411,14 @@ listing19 = Listing.create(title: "House of Cards",
                   state: "DC",
                   zip: 22314,
                   shared_bathroom: true,
-                  user_id: 1
+                  user_id: 3
                   )
 
 # listing19.categories << categories[4]
 # listing19.save
 
 listing20 = Listing.create(title: "The West Wing",
-                  description: "Join the Bartlet's, Leo (deceased), C. J., Josh, Toby, Donna, Charlie and Sam in this White house replica",
+                  description: "Join the Bartlet's, Leo (now deceased), C. J., Josh, Toby, Donna, Charlie and Sam in this White house replica",
                   category_id: 2,
                   max_guests: 12,
                   nightly_rate: 16000,
@@ -429,7 +428,7 @@ listing20 = Listing.create(title: "The West Wing",
                   state: "DC",
                   zip: 22314,
                   shared_bathroom: true,
-                  user_id: 1
+                  user_id: 4
                   )
 
 # listing20.categories << categories[4]
