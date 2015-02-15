@@ -11,11 +11,9 @@
 }
 
 .new-overlay {
-  /*background: #cc3333;*/
-  opacity: .9;
+  opacity: 0.9;
   position: absolute;
   top: 40%;
-  /*left: 32%;*/
   width: 100%;
   font-size: 32px;
   color: #fff;
@@ -25,6 +23,7 @@
 .home-text {
   text-align: center;
 }
+
 .overlay-container .overlay:before {
   content: ' ';
   display: inline-block;
@@ -39,11 +38,6 @@
   font-weight: bold;
   vertical-align: middle;
 }
-
-/*.h1 {*/
-/*position: absolute;*/
-/*left: 200px;*/
-/*}*/
 
 .home-pics {
   margin: 0;
@@ -68,5 +62,4 @@
 	padding-top: 190px;
 	min-height: 400px;
 	margin-top: 0;
-	/*margin-right: auto;*/
 }
