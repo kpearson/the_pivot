@@ -15,7 +15,7 @@ describe "As an unauthenticated user" do
                    city: "Denver",
                    state: "CO",
                    zip: 80022,
-                   shared_bathroom: false,
+                   shared_bathroom: true,
                    user_id: 1)
   end
 
@@ -25,12 +25,14 @@ describe "As an unauthenticated user" do
 
   xit "can login which does not clear cart" do
     click_add_to_cart_link("Breakfast")
-    User.create(first_name: "Rich",
-                last_name: "Shea",
-                email: "bryce@gmail.com",
+    User.create(first_name: "Valid",
+                last_name: "User",
+                display_name: "valid",
+                about_me: "valid",
+                email: "valid@gmail.com",
                 password: "secret")
     click_link "Log In"
-    fill_in "session[email]", with: "bryce@gmail.com"
+    fill_in "session[email]", with: "valid@gmail.com"
     fill_in "session[password]", with: "secret"
     click_button "Log In"
     within("#flash_notice") do
@@ -42,26 +44,52 @@ describe "As an unauthenticated user" do
   end
 
   it "can browse all listings (listings index page)" do
+    User.create(first_name: "John",
+                last_name: "Doe",
+                email: "joe@gmail.com",
+                password: "password",
+                about_me: "valid",
+                id: 1,
+                display_name: "joe")
     # click_link_or_button "View all properties"
     visit(listings_path)
     within("div.listing") do
       expect(page).to have_content listing.title
       expect(page).to have_content listing.description
       expect(page).to have_content "$100.00"
-
     end
   end
 
   it "can browse a listing by clicking the listing's title" do
+    User.create(first_name: "John",
+                last_name: "Doe",
+                email: "joe@gmail.com",
+                password: "password",
+                about_me: "valid",
+                id: 1,
+                display_name: "joe")
     visit listings_path
     click_link_or_button "B&B"
-    expect(current_path).to eq(listing_path(listing))
+    expect(current_path).to eq(user_listing_path(listing.user.slug, listing))
     expect(page).to have_content(listing.title)
     within("div.listing") do
       expect(page).to have_content listing.title
       expect(page).to have_content listing.description
       expect(page).to have_content "$100.00"
+      expect(page).to have_content "John Doe"
     end
+  end
+
+  it "can view a listing page namespaced with the host's display name" do
+    User.create(first_name: "John",
+                last_name: "Doe",
+                email: "joe@gmail.com",
+                password: "password",
+                about_me: "valid",
+                id: 1,
+                display_name: "joe")
+    visit user_listing_path(listing.user.slug, listing)
+    expect(current_path).to eq("/joe/listings/1")
   end
 
   xit "can add an item to a cart" do
@@ -151,6 +179,8 @@ describe "As an unauthenticated user" do
                                                     and_return(nil)
     user = User.create(first_name: "Rich",
                        last_name: "Shea",
+                       display_name: "valid",
+                       about_me: "valid",
                        email: "bryce@gmail.com",
                        password: "secret")
     visit user_path(user)

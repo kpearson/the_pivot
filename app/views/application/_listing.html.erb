@@ -1,6 +1,7 @@
 <div class="marquee-listing-image">
   <%#<%= image_tag "#{listing.images.first}" %>
 </div>
-<%= link_to listing.title, listing_path(listing) %><br>
+<%= link_to listing.title, user_listing_path(listing.user.slug, listing) %><br>
 <%= listing.description %><br>
 <%= number_to_currency(listing.currency) %>
+Host: <%= link_to listing.user.full_name, user_path(listing.user) %><br>
