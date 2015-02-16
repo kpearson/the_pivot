@@ -1,8 +1,4 @@
 class ListingsController < ApplicationController
-  # def index
-  #   @listings = Listing.all
-  # end
-
   def index
     @listings = Listing.where(nil)
     filtering_params(params).each do |key, value|

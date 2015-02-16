@@ -68,14 +68,14 @@
   width: 50%;
 }
 
-.prop_listings {
+.prop-listings {
   text-align: center;
 }
 
 .marquee-listing-image {
   display: block;
-  -webkit-margin-before: 1em;
   -webkit-margin-after: 1em;
-  -webkit-margin-start: 0px;
-  -webkit-margin-end: 0px;
+  -webkit-margin-before: 1em;
+  -webkit-margin-end: 0;
+  -webkit-margin-start: 0;
 }
