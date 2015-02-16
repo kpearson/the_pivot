@@ -47,6 +47,8 @@ GEM
       debug_inspector (>= 0.0.1)
     bootstrap-modal-rails (2.2.5)
       railties (>= 3.1)
+    bootstrap3-datetimepicker-rails (4.0.0)
+      momentjs-rails (>= 2.8.1)
     bootstrap_form (2.2.0)
     builder (3.2.2)
     byebug (3.5.1)
@@ -120,6 +122,8 @@ GEM
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
+    momentjs-rails (2.9.0)
+      railties (>= 3.1)
     multi_json (1.10.1)
     nokogiri (1.6.5)
       mini_portile (~> 0.6.0)
@@ -255,6 +259,7 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   bootstrap-modal-rails
+  bootstrap3-datetimepicker-rails (~> 4.0.0)
   bootstrap_form
   byebug
   cancan
@@ -268,6 +273,7 @@ DEPENDENCIES
   jquery-rails
   launchy
   less-rails
+  momentjs-rails (>= 2.9.0)
   paperclip (~> 4.2)
   pg
   pry
