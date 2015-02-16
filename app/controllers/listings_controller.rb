@@ -2,7 +2,7 @@ class ListingsController < ApplicationController
   def index
     @listings = Listing.where(nil)
     filtering_params(params).each do |key, value|
-    @listings = @listings.public_send(key, value) if value.present?
+      @listings = @listings.public_send(key, value) if value.present?
     end
   end
 

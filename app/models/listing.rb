@@ -12,8 +12,7 @@ class Listing < ActiveRecord::Base
   scope :city, -> (city) { where city: city }
   scope :max_guests, -> (max_guests) { where("max_guests > ?", max_guests) }
   scope :category_id, -> (category_id) { where category_id: category_id }
-  scope :nightly_rate, -> (nightly_rate)
-    { where("nightly_rate < ?", nightly_rate) }
+  scope :nightly_rate, -> (nightly_rate) { where("nightly_rate < ?", nightly_rate) }
 
   def currency
     nightly_rate / 100
