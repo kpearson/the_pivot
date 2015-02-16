@@ -7,7 +7,7 @@ class Listing < ActiveRecord::Base
   validates :nightly_rate, numericality: { greater_than: 0 }
   belongs_to :user
   belongs_to :category
-  has_many :photos
+  has_many :listing_images
   has_many :reservations
 
   def currency
