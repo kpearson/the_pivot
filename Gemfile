@@ -37,4 +37,6 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'database_cleaner'
+   gem 'better_errors'
+   gem 'binding_of_caller'
 end

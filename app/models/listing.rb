@@ -9,6 +9,10 @@ class Listing < ActiveRecord::Base
   belongs_to :category
   has_many :photos
   has_many :reservations
+  scope :city, -> (city) { where city: city }
+  scope :max_guests, -> (max_guests) { where("max_guests >= ?", max_guests) }
+  scope :category_id, -> (category_id) { where category_id: category_id }
+  scope :nightly_rate, -> (nightly_rate) { where("nightly_rate <= ?", nightly_rate) }
 
   def currency
     nightly_rate / 100
