@@ -5,7 +5,7 @@
   <div id="form-group">
     <%= label_tag(:city, "City") %><br>
     <%= text_field_tag(:city, "City")%><br>
-    <%= submit_tag "Search", class: "btn btn-lg btn-default" %><br>
+    <%= submit_tag "Filter by city", class: "btn btn-lg btn-default" %><br>
     <% end %>
   </div>
   <div id="form-group">
@@ -21,7 +21,7 @@
     <%= radio_button_tag(:category_id, 4) %><br>
     <%= label_tag("Room") %>
     <%= radio_button_tag(:category_id, 5) %><br>
-    <%= submit_tag "Search", class: "btn btn-lg btn-default" %>
+    <%= submit_tag "Filter by listing category", class: "btn btn-lg btn-default" %>
     <% end %>
   </div>
   <div id="form-group">
@@ -41,7 +41,7 @@
     <%= radio_button_tag(:nightly_rate, 30000) %><br>
     <%= label_tag("<$500") %>
     <%= radio_button_tag(:nightly_rate, 50000) %><br>
-    <%= submit_tag "Search", class: "btn btn-lg btn-default" %>
+    <%= submit_tag "Filter by price", class: "btn btn-lg btn-default" %>
     <% end %>
   </div>
   <div id="form-group">
@@ -79,7 +79,7 @@
     <%= radio_button_tag(:max_guests, 15) %><br>
     <%= label_tag("16+") %>
     <%= radio_button_tag(:max_guests, 16) %><br>
-    <%= submit_tag "Search", class: "btn btn-lg btn-default" %>
+    <%= submit_tag "Filter by guests", class: "btn btn-lg btn-default" %>
   <% end %>
   </div>
 </div>
