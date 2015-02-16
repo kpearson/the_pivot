@@ -1,9 +1,11 @@
 <div class="jumbotron">
 
   <%= image_tag("thavorn_beach.png", class:  "hero-image") %>
-	<div class="center-block">
-		<h1 class="welcome">Welcome</h1>
-	</div>
+  <div class="center-block">
+    <h1 class="welcome">Welcome</h1>
+    <li class="active"><a href="#" data-toggle="modal" data-target="#new_listing-modal" id="new_listing">Create a listing</a></li>
+      <%= render partial: "new_listing_lead_in", locals: { listing: Listing.new } %>
+  </div>
 </div>
 
 <%= render "home_page_search_bar" %>
