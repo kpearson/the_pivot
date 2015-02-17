@@ -1,4 +1,9 @@
 class UsersController < ApplicationController
+  def new
+    @user = User.new
+    render layout: false
+  end
+
   def show
     @user = User.find(params[:id])
     authorize! :read, @user
@@ -9,9 +14,9 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: "Welcome #{@user.first_name}"
+      head(200)
     else
-      redirect_to new_user_path, error: "Invalid Credentials"
+      render :new, layout: false, status: 422
     end
   end
 
@@ -33,7 +38,6 @@ class UsersController < ApplicationController
                                  :email,
                                  :display_name,
                                  :password,
-                                 :image,
                                  :about_me)
   end
 end
