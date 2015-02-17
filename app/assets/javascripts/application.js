@@ -21,8 +21,6 @@
 //= require_tree .
 
 
-$(function(){ $(document).foundation(); });
-
 $.getScript("http://www.urimalo.com/assets/admin/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js", function(){
 
 var startDate = new Date('01/01/2012');
@@ -55,5 +53,5 @@ $('.to_date')
         FromEndDate = new Date(selected.date.valueOf());
         FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
         $('.from_date').datepicker('setEndDate', FromEndDate);
-    });  
+    });
 });
