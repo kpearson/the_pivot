@@ -10,7 +10,6 @@ User.create([{ first_name: "Alice",
                about_me: "valid",
                display_name: "Alice",
                password: "password",
-               id: 1,
                slug: "Alice"},
              { first_name: "Bob",
                last_name: "blast_name",
@@ -18,7 +17,6 @@ User.create([{ first_name: "Alice",
                about_me: "valid",
                display_name: "Robert",
                password: "password",
-               id: 2,
                slug: "Robert"},
              { first_name: "Carol",
                last_name: "clast_name",
@@ -26,7 +24,6 @@ User.create([{ first_name: "Alice",
                about_me: "valid",
                display_name: "Cali",
                password: "password",
-               id: 3,
                slug: "Cali"},
              { first_name: "Dave",
                last_name: "dlast_name",
@@ -34,7 +31,6 @@ User.create([{ first_name: "Alice",
                about_me: "valid",
                display_name: "Dave",
                password: "password",
-               id: 4,
                slug: "Dave"},
              { first_name: "eve",
                last_name: "elast_name",
@@ -42,7 +38,6 @@ User.create([{ first_name: "Alice",
                about_me: "valid",
                display_name: "Eve",
                password: "password",
-               id: 0,
                slug: "Eve",
                }])
 
@@ -108,7 +103,7 @@ listing1 = Listing.create(title: "Denver B&B",
                  state: "CO",
                  zip: 80022,
                  shared_bathroom: true,
-                 user_id: 0
+                 user_id: 1
                  )
 
 # listing1.categories << categories[4]
@@ -194,7 +189,7 @@ listing6 = Listing.create(title: "These streets will make you feel brand new",
                  state: "NY",
                  zip: 10001,
                  shared_bathroom: true,
-                 user_id: 0
+                 user_id: 1
                  )
 
 # listing6.categories << categories[1]
@@ -282,7 +277,7 @@ listing11 = Listing.create(title: "Golden Gate Escape",
                   state: "CA",
                   zip: 80022,
                   shared_bathroom: true,
-                  user_id: 0
+                  user_id: 2
                   )
 
 # listing11.categories << categories[3]
@@ -369,7 +364,7 @@ listing16 = Listing.create(title: "Lincoln Bedroom",
                   state: "DC",
                   zip: 22314,
                   shared_bathroom: true,
-                  user_id: 0
+                  user_id: 3
                   )
 
 # listing16.categories << categories[4]
