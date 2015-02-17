@@ -6,6 +6,8 @@ describe "authenticated" do
   let!(:user) do
     User.create(first_name: "Bryce",
                 last_name: "Holcomb",
+                display_name: "valid",
+                about_me: "valid",
                 email: "bryce@gmail.com",
                 password: "userpassword")
   end
@@ -18,7 +20,7 @@ describe "authenticated" do
   end
 
   context "user" do
-    it "can add them self to the system" do
+    it "can add them self to the system", js: true do
       visit root_path
       click_link("Sign Up")
       expect(current_path).to eq(root_path)
@@ -27,9 +29,12 @@ describe "authenticated" do
       fill_in "user[first_name]", with: "Joe"
       fill_in "user[last_name]", with: "Doe"
       fill_in "user[email]", with: "Joe@example.com"
+      fill_in "user[display_name]", with: "anothername"
+      fill_in "user[about_me]", with: "desc"
       fill_in "user[password]", with: "password"
       fill_in "user[password_confirmation]", with: "password"
       click_button("Sign Up")
+      expect(current_path).to eq(root_path)
       within("#flash_notice") do
         expect(page).to have_content("Welcome Joe")
       end
@@ -66,7 +71,7 @@ describe "authenticated" do
   end
 
   context "admin" do
-    xit "can log in if registered" do
+    it "can log in if registered" do
       log_in(admin, "adminpassword")
       expect(current_path).to eq(root_path)
       within("#flash_notice") do
@@ -82,7 +87,7 @@ describe "authenticated" do
       end
     end
 
-    xit "can log out" do
+    it "can log out" do
       log_in(admin, "adminpassword")
       expect(current_path).to eq(root_path)
       within("#flash_notice") do

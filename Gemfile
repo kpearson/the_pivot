@@ -29,6 +29,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 
 group :development, :test do
+  gem 'poltergeist'
   gem 'byebug'
   gem 'web-console', '~> 2.0'
   gem 'spring'
@@ -37,6 +38,6 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'database_cleaner'
-   gem 'better_errors'
-   gem 'binding_of_caller'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
