@@ -1,4 +1,4 @@
 class ListingImage < ActiveRecord::Base
-  belongs_to Listing
-  mount_uploader :listing_image, ItemImageUploader
+  belongs_to :listing
+  mount_uploader :listing_image, ListingImageUploader
 end

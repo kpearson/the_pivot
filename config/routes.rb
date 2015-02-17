@@ -10,9 +10,9 @@ Rails.application.routes.draw do
   get "/admin/filtered_orders", to: "admin/orders#filtered_orders"
 
   resources :categories, only: [:index, :show]
-  resources :listings, only: [:index, :new, :create]
+  resources :listings, only: [:index]
   namespace :user, path: "/:slug" do
-    resources :listings, only: [:show]
+    resources :listings, except: [:index]
   end
 
   resources :users
