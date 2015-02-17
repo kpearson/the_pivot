@@ -1,5 +1,5 @@
 # encoding: utf-8
-class ItemImageUploader < CarrierWave::Uploader::Base
+class ListingImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   storage :file
 

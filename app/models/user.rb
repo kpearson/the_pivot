@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
+  has_many :listings
   validates :first_name, :last_name, :display_name, :about_me, presence: true
   validates :display_name, format: { with: /\A[a-zA-Z]+\z/ }
   validates :display_name, :slug, uniqueness: true
@@ -7,6 +8,8 @@ class User < ActiveRecord::Base
             format: {
               with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/
             }, uniqueness: true
+  has_many :listings
+  has_many :listing_images, :through => :listings
   has_many :orders
   has_attached_file :image, styles: { medium: "300x300>",
                                       thumb: "100x100>" },

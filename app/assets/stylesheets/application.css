@@ -6,4 +6,6 @@
  *= require bootstrap_and_overrides
  *= require bootstrap-modal-bs3patch
  *= require bootstrap-modal
+ *= require bootstrap-datetimepicker
+ @import url('http://www.urimalo.com/assets/admin/plugins/bootstrap-datepicker/css/datepicker.css');
  */
