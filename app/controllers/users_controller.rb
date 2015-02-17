@@ -14,7 +14,6 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
-      #redirect_to root_path, notice: "Welcome #{@user.first_name}"
       head(200)
     else
       render :new, layout: false, status: 422
