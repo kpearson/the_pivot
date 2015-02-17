@@ -55,5 +55,12 @@ $('.to_date')
         FromEndDate = new Date(selected.date.valueOf());
         FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
         $('.from_date').datepicker('setEndDate', FromEndDate);
-    });  
+    });
 });
+
+
+!function ($) {
+  $(function(){
+    $('#myCarousel').carousel()
+  })
+}(window.jQuery)
