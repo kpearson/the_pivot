@@ -140,7 +140,7 @@ describe "As an unauthenticated user" do
                    shared_bathroom: true,
                    user_id: 1)
     visit listings_path
-    select("House", :from => "category_id")
+    select("House", from: "category_id")
     click_link_or_button "Filter"
     expect(page).to have_content("Rainy day house")
     expect(page).not_to have_content("Super classy")
@@ -167,7 +167,7 @@ describe "As an unauthenticated user" do
                    shared_bathroom: true,
                    user_id: 1)
     visit listings_path
-    select("3", :from => "max_guests")
+    select("3", from: "max_guests")
     click_link_or_button "Filter"
     expect(page).to have_content("Rainy day house")
     expect(page).not_to have_content("Super classy")
@@ -194,7 +194,7 @@ describe "As an unauthenticated user" do
                    shared_bathroom: true,
                    user_id: 1)
     visit listings_path
-    select("<$150", :from => "nightly_rate")
+    select("<$150", from: "nightly_rate")
     click_link_or_button "Filter"
     expect(page).to have_content("Rainy day house")
     expect(page).not_to have_content("Super classy")
@@ -258,10 +258,10 @@ describe "As an unauthenticated user" do
                    shared_bathroom: true,
                    user_id: 1)
     visit listings_path
-    fill_in("City", :with => "Denver")
-    select("Room", :from => "category_id")
-    select("1", :from => "max_guests")
-    select("<$300", :from => "nightly_rate")
+    fill_in("City", with: "Denver")
+    select("Room", from: "category_id")
+    select("1", from: "max_guests")
+    select("<$300", from: "nightly_rate")
     click_link_or_button "Filter"
     expect(page).to have_content("Super classy")
     expect(page).not_to have_content("Rainy day house")
