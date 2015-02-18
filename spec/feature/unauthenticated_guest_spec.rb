@@ -54,11 +54,9 @@ describe "As an unauthenticated user" do
                 display_name: "joe")
     # click_link_or_button "View all properties"
     visit(listings_path)
-    within("div.listing") do
-      expect(page).to have_content listing.title
-      expect(page).to have_content listing.description
-      expect(page).to have_content "$200.00"
-    end
+    expect(page).to have_content listing.title
+    expect(page).to have_content listing.description
+    expect(page).to have_content "$200.00"
   end
 
   it "can browse a listing by clicking the listing's title" do
@@ -115,7 +113,7 @@ describe "As an unauthenticated user" do
                   user_id: 1)
     visit listings_path
     fill_in('City', :with => 'Seattle')
-    click_link_or_button "Filter by city"
+    click_link_or_button "Filter"
     expect(page).to have_content("House in the rain")
     expect(page).not_to have_content("Super classy")
   end
@@ -142,8 +140,8 @@ describe "As an unauthenticated user" do
                   shared_bathroom: true,
                   user_id: 1)
     visit listings_path
-    find(:css, "#category_id_1[value='1']").set(true)
-    click_link_or_button "Filter by listing category"
+    find(:css, "#category_id").set(value="1")
+    click_link_or_button "Filter"
     expect(page).to have_content("Rainy day house")
     expect(page).not_to have_content("Super classy")
   end
@@ -169,8 +167,9 @@ describe "As an unauthenticated user" do
                   shared_bathroom: true,
                   user_id: 1)
     visit listings_path
-    find(:css, "#max_guests_3[value='3']").set(true)
-    click_link_or_button "Filter by guests"
+    find(:css, "#max_guests").set("3")
+    click_link_or_button "Filter"
+    save_and_open_page
     expect(page).to have_content("Rainy day house")
     expect(page).not_to have_content("Super classy")
   end
@@ -196,8 +195,8 @@ describe "As an unauthenticated user" do
                   shared_bathroom: true,
                   user_id: 1)
     visit listings_path
-    find(:css, "#nightly_rate_15000[value='15000']").set(true)
-    click_link_or_button "Filter by price"
+    find(:css, "#nightly_rate").set("15000")
+    click_link_or_button "Filter"
     expect(page).to have_content("Rainy day house")
     expect(page).not_to have_content("Super classy")
   end

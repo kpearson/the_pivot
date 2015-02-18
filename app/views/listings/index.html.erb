@@ -1,6 +1,6 @@
-<h2 class="prop-listings">All Property Listings</h2>
+<h2>All Property Listings</h2>
 
-<div class="col-md-12 listing">
+<div class="col-md-12 filter">
   <form class="form-inline">
     <div class="form-group">
       <div class="">
@@ -29,7 +29,7 @@
   </form>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6 listing">
   <%= div_for(@listings) do |listing| %>
   <%= link_to listing.title, user_listing_path(listing.user.slug, listing) %><br>
   <%#= listing.listing_image %>
