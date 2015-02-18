@@ -35,7 +35,7 @@ $(".from_date").datepicker({
     startDate: "01/01/2012",
     endDate: FromEndDate,
     autoclose: true
-});
+})
     .on("changeDate", function(selected){
         startDate = new Date(selected.date.valueOf());
         startDate.setDate(startDate.getDate(new Date(selected.date.valueOf())));
@@ -48,7 +48,7 @@ $(".to_date")
         startDate: startDate,
         endDate: ToEndDate,
         autoclose: true
-    });
+    })
     .on("changeDate", function(selected){
         FromEndDate = new Date(selected.date.valueOf());
         FromEndDate.setDate(FromEndDate.getDate(new Date(selected.date.valueOf())));
