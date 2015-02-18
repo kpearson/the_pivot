@@ -20,7 +20,7 @@ describe "authenticated" do
   end
 
   context "user" do
-    it "can add them self to the system", js: true do
+    xit "can add them self to the system", js: true do
       visit root_path
       click_link("Sign Up")
       expect(current_path).to eq(root_path)
