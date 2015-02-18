@@ -1,3 +1,7 @@
+body {
+  font-family: 'Ubuntu', sans-serif;
+}
+
 .home-search {
   background:rgba(0 ,0 ,0 ,0.5);
   margin: 0 auto;
@@ -112,7 +116,7 @@
 //
 .footer-block {
   height: 180px;
-  margin-top: -90px; 
+  margin-top: -90px;
 }
 
 // .showcase-tiles {
@@ -149,26 +153,26 @@
   text-align: center;
   padding-top: 25%;
   line-height: 20px;
-  background: rgba(226, 248, 121, 0.9); 
+  background: rgba(233, 141, 79, 0.75);
 }
-  
+
 .d-hover p {
   display: block !important;
   z-index: 500;
   margin-top: 25px;
   font-size: 14px;
   font-style: italic;
-  font-weight: 300; 
+  font-weight: 300;
 }
 
 ul.slides {
   line-height: 0px;
-  padding: 0px; 
+  padding: 0px;
 }
 
 ul.slides li {
   display: inline-block;
-  width: 25%; 
+  width: 25%;
 }
 
 
@@ -176,19 +180,19 @@ ul.slides li a {
   display: block;
   width: 100%;
   height: 100%;
-  position: relative; 
+  position: relative;
 }
 
 ul.slides li a:hover .d-hover {
-  display: block; 
+  display: block;
 }
 
 ul.slides li a img {
-  width: 100%; 
+  width: 100%;
 }
 
 ul.slides li a p {
-  display: none; 
+  display: none;
 }
 
 ul, menu, dir {
@@ -256,4 +260,23 @@ ul, menu, dir {
 .listing-header {
   margin-top: 100px;
   margin-left: 50px;
+}
+
+// /* =========================
+//
+//      LISTING INDEX PAGE
+//
+//    =========================*/
+
+.welcome {
+  color: white;
+}
+
+.listings-index {
+  background: #d8d9d9;
+  text-align: center;
+}
+
+.filter {
+  text-align: center;
 }
