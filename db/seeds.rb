@@ -49,46 +49,45 @@ categories = Category.create([{ name: "House" },
                                 }])
 
 path = 'app/assets/images/'
-
-# images1 = Image.new(image: open(path + "ex_denver.jpg"),
-#                     listing_id: 1)
-# images2 = Image.new(image: open(path + "ex_denver.jpg"),
+# image1 = ListingImage.new(image: open(path + "ex_denver.jpg"),
+#                           listing_id: 1)
+# image2 = ListingImage.new(image: open(path + "ex_denver.jpg"),
 #                     listing_id: 2)
-# images3 = Image.new(image: open(path + "ex_denver.jpg"),
+# image3 = ListingImage.new(image: open(path + "ex_denver.jpg"),
 #                     listing_id: 3)
-# images4 = Image.new(image: open(path + "ex_new_york.jpg"),
+# image4 = ListingImage.new(image: open(path + "ex_new_york.jpg"),
 #                     listing_id: 4)
-# images5 = Image.new(image: open(path + "ex_new_york2.jpg"),
+# image5 = ListingImage.new(image: open(path + "ex_new_york2.jpg"),
 #                     listing_id: 5)
-# images6 = Image.new(image: open(path + "ex_new_york2.jpg"),
+# image6 = ListingImage.new(image: open(path + "ex_new_york2.jpg"),
 #                     listing_id: 6)
-# images7 = Image.new(image: open(path + "ex_seattle.jpg"),
+# image7 = ListingImage.new(image: open(path + "ex_seattle.jpg"),
 #                     listing_id: 7)
-# images8 = Image.new(image: open(path + "ex_seattle.jpg"),
+# image8 = ListingImage.new(image: open(path + "ex_seattle.jpg"),
 #                     listing_id: 8)
-# images9 = Image.new(image: open(path + "ex_seattle.jpg"),
+# image9 = ListingImage.new(image: open(path + "ex_seattle.jpg"),
 #                     listing_id: 9)
-# images10 = Image.new(image: open(path + "ex_san_francisco.jpg"),
+# image10 = ListingImage.new(image: open(path + "ex_san_francisco.jpg"),
 #                     listing_id: 10)
-# images11 = Image.new(image: open(path + "ex_san_francisco.jpg"),
+# image11 = ListingImage.new(image: open(path + "ex_san_francisco.jpg"),
 #                     listing_id: 11)
-# images12 = Image.new(image: open(path + "ex_san_francisco.jpg"),
+# image12 = ListingImage.new(image: open(path + "ex_san_francisco.jpg"),
 #                     listing_id: 12)
-# images13 = Image.new(image: open(path + "ex_washington_dc.jpg"),
+# image13 = ListingImage.new(image: open(path + "ex_washington_dc.jpg"),
 #                     listing_id: 13)
-# images14 = Image.new(image: open(path + "ex_washington_dc2.jpg"),
+# image14 = ListingImage.new(image: open(path + "ex_washington_dc2.jpg"),
 #                     listing_id: 14)
-# images15 = Image.new(image: open(path + "ex_washington_dc.jpg"),
+# image15 = ListingImage.new(image: open(path + "ex_washington_dc.jpg"),
 #                     listing_id: 15)
-# images16 = Image.new(image: open(path + "ex_washington_dc2.jpg"),
+# image16 = ListingImage.new(image: open(path + "ex_washington_dc2.jpg"),
 #                     listing_id: 16)
-# images17 = Image.new(image: open(path + "ex_washington_dc.jpg"),
+# image17 = ListingImage.new(image: open(path + "ex_washington_dc.jpg"),
 #                     listing_id: 17)
-# images18 = Image.new(image: open(path + "ex_washington_dc2.jpg"),
+# image18 = ListingImage.new(image: open(path + "ex_washington_dc2.jpg"),
 #                     listing_id: 18)
-# images19 = Image.new(image: open(path + "ex_washington_dc.jpg"),
+# image19 = ListingImage.new(image: open(path + "ex_washington_dc.jpg"),
 #                     listing_id: 19)
-# images20 = Image.new(image: open(path + "ex_washington_dc2.jpg"),
+# image20 = ListingImage.new(image: open(path + "ex_washington_dc2.jpg"),
 #                     listing_id: 20)
 
 #Denver -----------------------------------------------------------------

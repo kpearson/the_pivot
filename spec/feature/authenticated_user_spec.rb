@@ -37,11 +37,9 @@ describe "an authenticated user" do
                                                     and_return(valid_user)
     # click_link_or_button "View all properties"
     visit(listings_path)
-    within("div.listing") do
-      expect(page).to have_content listing.title
-      expect(page).to have_content listing.description
-      expect(page).to have_content "$100.00"
-    end
+    expect(page).to have_content listing.title
+    expect(page).to have_content listing.description
+    expect(page).to have_content "$100.00"
   end
 
   it "can browse a listing by clicking the listing's title" do
