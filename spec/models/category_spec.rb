@@ -1,32 +1,27 @@
 require "rails_helper"
 
 RSpec.describe Category, type: :model do
-  let!(:item) do
-    @category = Category.create(name: "NewCategory")
-    item = Item.new(title: "NewTitle",
-                    description: "new description",
-                    price: 2000)
-    item.categories << @category
-    item.save
-    item
+  let!(:category) { Category.create(name: "NewCategory")}
+
+  it "can have listings" do
+    expect(category.listings).to eq([])
   end
 
-  xit "can have items" do
-    expect(@category.items).to eq([item])
-  end
-
-  xit "has an item" do
-    expect(@category.items.first.title).to eq("NewTitle")
-  end
-
-  xit "shows only the items with status of show" do
-    item2 = Item.create(title: "Another",
-                        description: "another description",
-                        price: 2000,
-                        status: "hidden")
-    item2.categories << @category
-    item.save
-    expect(@category.items.count).to eq(1)
-    expect(@category.items.include?(item2)).to eq(false)
+  it "has a listing" do
+    listing = Listing.create(title: "NewTitle",
+                          description: "new description",
+                          nightly_rate: 200,
+                          max_guests: 2,
+                          category_id: category.id,
+                          address1: "2424 Wilshire BLVD.",
+                          address2: "apt 23",
+                          city: "Los Angeles",
+                          state: "CA",
+                          zip: 91296,
+                          shared_bathroom: true,
+                          user_id: 1)
+    #listing.category_id = category.id
+    #listing.save
+    expect(category.listings).to eq([listing])
   end
 end

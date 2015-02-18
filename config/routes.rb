@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :listings, only: [:index]
   namespace :user, path: "/:slug" do
-    resources :listings, only: [:show]
+    resources :listings, except: [:index]
   end
 
   resources :users

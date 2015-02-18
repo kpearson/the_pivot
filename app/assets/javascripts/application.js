@@ -21,8 +21,6 @@
 //= require_tree .
 
 
-$(function(){ $(document).foundation(); });
-
 $.getScript("http://www.urimalo.com/assets/admin/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js", function(){
 
 var startDate = new Date('01/01/2012');
