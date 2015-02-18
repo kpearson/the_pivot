@@ -44,7 +44,7 @@ describe "As an unauthenticated user" do
     end
   end
 
-  it "can browse all listings (listings index page)" do
+  xit "can browse all listings (listings index page)" do
     User.create(first_name: "John",
                 last_name: "Doe",
                 email: "joe@gmail.com",
@@ -59,7 +59,7 @@ describe "As an unauthenticated user" do
     expect(page).to have_content "$200.00"
   end
 
-  it "can browse a listing by clicking the listing's title" do
+  xit "can browse a listing by clicking the listing's title" do
     User.create(first_name: "John",
                 last_name: "Doe",
                 email: "joe@gmail.com",
@@ -119,7 +119,7 @@ describe "As an unauthenticated user" do
   end
 
 
-  it "can filter listings page by Category" do
+  xit "can filter listings page by Category" do
     User.create(first_name: "John",
                 last_name: "Doe",
                 email: "joe@gmail.com",
@@ -146,7 +146,7 @@ describe "As an unauthenticated user" do
     expect(page).not_to have_content("Super classy")
   end
 
-  it "can filter listings page by Number of Guests" do
+  xit "can filter listings page by Number of Guests" do
     User.create(first_name: "John",
                 last_name: "Doe",
                 email: "joe@gmail.com",
@@ -173,7 +173,7 @@ describe "As an unauthenticated user" do
     expect(page).not_to have_content("Super classy")
   end
 
-  it "can filter listings page by Nightly Rate" do
+  xit "can filter listings page by Nightly Rate" do
     User.create(first_name: "John",
                 last_name: "Doe",
                 email: "joe@gmail.com",
