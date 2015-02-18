@@ -112,7 +112,7 @@ describe "As an unauthenticated user" do
                    shared_bathroom: true,
                    user_id: 1)
     visit listings_path
-    fill_in("City", :with => "Seattle")
+    fill_in("City", with: "Seattle")
     click_link_or_button "Filter"
     expect(page).to have_content("House in the rain")
     expect(page).not_to have_content("Super classy")
