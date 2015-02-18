@@ -119,7 +119,7 @@ describe "As an unauthenticated user" do
   end
 
 
-  xit "can filter listings page by Category" do
+  it "can filter listings page by Category" do
     User.create(first_name: "John",
                 last_name: "Doe",
                 email: "joe@gmail.com",
@@ -142,11 +142,11 @@ describe "As an unauthenticated user" do
     visit listings_path
     select("House", from: "category_id")
     click_link_or_button "Filter"
-    expect(page).to have_content("Rainy day house")
+    expect(page).to have_content("house in the rain")
     expect(page).not_to have_content("Super classy")
   end
 
-  xit "can filter listings page by Number of Guests" do
+  it "can filter listings page by Number of Guests" do
     User.create(first_name: "John",
                 last_name: "Doe",
                 email: "joe@gmail.com",
@@ -169,11 +169,11 @@ describe "As an unauthenticated user" do
     visit listings_path
     select("3", from: "max_guests")
     click_link_or_button "Filter"
-    expect(page).to have_content("Rainy day house")
+    expect(page).to have_content("house in the rain")
     expect(page).not_to have_content("Super classy")
   end
 
-  xit "can filter listings page by Nightly Rate" do
+  it "can filter listings page by Nightly Rate" do
     User.create(first_name: "John",
                 last_name: "Doe",
                 email: "joe@gmail.com",
@@ -196,7 +196,7 @@ describe "As an unauthenticated user" do
     visit listings_path
     select("<$150", from: "nightly_rate")
     click_link_or_button "Filter"
-    expect(page).to have_content("Rainy day house")
+    expect(page).to have_content("house in the rain")
     expect(page).not_to have_content("Super classy")
   end
 

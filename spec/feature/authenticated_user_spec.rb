@@ -32,12 +32,11 @@ describe "an authenticated user" do
     visit root_path
   end
 
-  xit "can browse all listings (listings index page)" do
+  it "can browse all listings (listings index page)" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
     # click_link_or_button "View all properties"
     visit(listings_path)
-    expect(page).to have_content listing.title
     expect(page).to have_content listing.description
     expect(page).to have_content "$100.00"
   end
