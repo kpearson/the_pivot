@@ -1,5 +1,5 @@
 <div class="col-md-6">
   <%= div_for(@listing) do %>
-    <%= render partial: "listing", locals: {listing: @listing} %>
+    <%= render partial: "listing", locals: {listing: @listing, images: @listing_images} %>
   <% end %>
 </div>

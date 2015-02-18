@@ -6,9 +6,9 @@ class ListingsController < ApplicationController
     end
   end
 
-private
+# private
 
-  def filtering_params(params)
-    params.slice(:city, :max_guests, :category_id, :nightly_rate)
-  end
-end
+#  def filtering_params(params)
+#    params.slice(:city, :max_guests, :category_id, :nightly_rate)
+#  end
+#end

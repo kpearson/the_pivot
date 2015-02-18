@@ -1,15 +1,21 @@
 class User::ListingsController < ApplicationController
   def show
     @listing = Listing.find(params[:id])
+    @listing_images = @listing.listing_images.all
   end
 
   def new
     @listing = current_user.listings.new
+    @listing_image = @listing.listing_images.build
   end
 
   def create
     @listing = current_user.listings.new(listing_params)
-    if @listing.save
+   # require 'pry' ; binding.pry
+   if @listing.save
+      params["listing_images"]["image"].each do |i|
+        @listing.listing_images.create(:image => i, :listing_id => @listing.id)
+      end
       redirect_to user_listing_path(current_user.slug, @listing.id)
     else
       render "new"
@@ -29,6 +35,10 @@ class User::ListingsController < ApplicationController
                                     :city,
                                     :state,
                                     :zip,
-                                    :shared_bathroom)
+                                    :shared_bathroom,
+                                    listing_images_attributes: [:id,
+                                                                :listing_id,
+                                                                :image]
+                                   )
   end
 end
