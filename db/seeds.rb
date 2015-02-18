@@ -49,7 +49,6 @@ categories = Category.create([{ name: "House" },
                                 }])
 
 path = 'app/assets/images/'
-# 
 # image1 = ListingImage.new(image: open(path + "ex_denver.jpg"),
 #                           listing_id: 1)
 # image2 = ListingImage.new(image: open(path + "ex_denver.jpg"),
