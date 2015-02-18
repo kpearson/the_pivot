@@ -54,11 +54,9 @@ describe "As an unauthenticated user" do
                 display_name: "joe")
     # click_link_or_button "View all properties"
     visit(listings_path)
-    within("div.listing") do
-      expect(page).to have_content listing.title
-      expect(page).to have_content listing.description
-      expect(page).to have_content "$200.00"
-    end
+    expect(page).to have_content listing.title
+    expect(page).to have_content listing.description
+    expect(page).to have_content "$200.00"
   end
 
   it "can browse a listing by clicking the listing's title" do
@@ -102,20 +100,20 @@ describe "As an unauthenticated user" do
                 id: 1,
                 display_name: "joe")
     Listing.create(title: "House",
-                  description: "House in the rain",
-                  category_id: 1,
-                  max_guests: 4,
-                  nightly_rate: 10000,
-                  address1: "124 Elm St",
-                  address2: nil,
-                  city: "Seattle",
-                  state: "WA",
-                  zip: 98106,
-                  shared_bathroom: true,
-                  user_id: 1)
+                   description: "House in the rain",
+                   category_id: 1,
+                   max_guests: 4,
+                   nightly_rate: 10000,
+                   address1: "124 Elm St",
+                   address2: nil,
+                   city: "Seattle",
+                   state: "WA",
+                   zip: 98106,
+                   shared_bathroom: true,
+                   user_id: 1)
     visit listings_path
-    fill_in('City', :with => 'Seattle')
-    click_link_or_button "Filter by city"
+    fill_in("City", with: "Seattle")
+    click_link_or_button "Filter"
     expect(page).to have_content("House in the rain")
     expect(page).not_to have_content("Super classy")
   end
@@ -130,20 +128,47 @@ describe "As an unauthenticated user" do
                 id: 1,
                 display_name: "joe")
     Listing.create(title: "Rainy day house",
-                  description: "house in the rain",
-                  category_id: 1,
-                  max_guests: 4,
-                  nightly_rate: 20000,
-                  address1: "124 Elm St",
-                  address2: nil,
-                  city: "Seattle",
-                  state: "WA",
-                  zip: 98106,
-                  shared_bathroom: true,
-                  user_id: 1)
+                   description: "house in the rain",
+                   category_id: 1,
+                   max_guests: 4,
+                   nightly_rate: 20000,
+                   address1: "124 Elm St",
+                   address2: nil,
+                   city: "Seattle",
+                   state: "WA",
+                   zip: 98106,
+                   shared_bathroom: true,
+                   user_id: 1)
     visit listings_path
-    find(:css, "#category_id_1[value='1']").set(true)
-    click_link_or_button "Filter by listing category"
+    select("House", from: "category_id")
+    click_link_or_button "Filter"
+    expect(page).to have_content("Rainy day house")
+    expect(page).not_to have_content("Super classy")
+  end
+
+  it "can filter listings page by Number of Guests" do
+    User.create(first_name: "John",
+                last_name: "Doe",
+                email: "joe@gmail.com",
+                password: "password",
+                about_me: "valid",
+                id: 1,
+                display_name: "joe")
+    Listing.create(title: "Rainy day house",
+                   description: "house in the rain",
+                   category_id: 1,
+                   max_guests: 4,
+                   nightly_rate: 10000,
+                   address1: "124 Elm St",
+                   address2: nil,
+                   city: "Seattle",
+                   state: "WA",
+                   zip: 98106,
+                   shared_bathroom: true,
+                   user_id: 1)
+    visit listings_path
+    select("3", from: "max_guests")
+    click_link_or_button "Filter"
     expect(page).to have_content("Rainy day house")
     expect(page).not_to have_content("Super classy")
   end
@@ -157,25 +182,26 @@ describe "As an unauthenticated user" do
                 id: 1,
                 display_name: "joe")
     Listing.create(title: "Rainy day house",
-                  description: "house in the rain",
-                  category_id: 1,
-                  max_guests: 4,
-                  nightly_rate: 10000,
-                  address1: "124 Elm St",
-                  address2: nil,
-                  city: "Seattle",
-                  state: "WA",
-                  zip: 98106,
-                  shared_bathroom: true,
-                  user_id: 1)
+                   description: "house in the rain",
+                   category_id: 1,
+                   max_guests: 4,
+                   nightly_rate: 10000,
+                   address1: "124 Elm St",
+                   address2: nil,
+                   city: "Seattle",
+                   state: "WA",
+                   zip: 98106,
+                   shared_bathroom: true,
+                   user_id: 1)
     visit listings_path
-    find(:css, "#max_guests_3[value='3']").set(true)
-    click_link_or_button "Filter by guests"
+    select("<$150", from: "nightly_rate")
+    click_link_or_button "Filter"
     expect(page).to have_content("Rainy day house")
     expect(page).not_to have_content("Super classy")
   end
 
-  it "can filter listings page by Nightly Rate" do
+  it "can filter listings page by Nightly Rate, Max Guests,
+  Category and City at the same time" do
     User.create(first_name: "John",
                 last_name: "Doe",
                 email: "joe@gmail.com",
@@ -183,23 +209,65 @@ describe "As an unauthenticated user" do
                 about_me: "valid",
                 id: 1,
                 display_name: "joe")
-    Listing.create(title: "Rainy day house",
-                  description: "house in the rain",
-                  category_id: 1,
-                  max_guests: 4,
-                  nightly_rate: 10000,
-                  address1: "124 Elm St",
-                  address2: nil,
-                  city: "Seattle",
-                  state: "WA",
-                  zip: 98106,
-                  shared_bathroom: true,
-                  user_id: 1)
+    Listing.create(title: "Rainy day room",
+                   description: "room in the rain",
+                   category_id: 2,
+                   max_guests: 2,
+                   nightly_rate: 20000,
+                   address1: "124 Elm St",
+                   address2: nil,
+                   city: "Seattle",
+                   state: "WA",
+                   zip: 98106,
+                   shared_bathroom: true,
+                   user_id: 1)
+    Listing.create(title: "Toga Party!",
+                   description: "Animal House",
+                   category_id: 1,
+                   max_guests: 2,
+                   nightly_rate: 20000,
+                   address1: "126 Elm St",
+                   address2: nil,
+                   city: "Denver",
+                   state: "CO",
+                   zip: 80222,
+                   shared_bathroom: true,
+                   user_id: 1)
+    Listing.create(title: "Sigma Alpha Epsilon",
+                   description: "Frat Room - Gotta be on the list bro.",
+                   category_id: 2,
+                   max_guests: 0,
+                   nightly_rate: 20000,
+                   address1: "125 Elm St",
+                   address2: nil,
+                   city: "Denver",
+                   state: "CO",
+                   zip: 80222,
+                   shared_bathroom: true,
+                   user_id: 1)
+    Listing.create(title: "Room with a view",
+                   description: "from space",
+                   category_id: 2,
+                   max_guests: 2,
+                   nightly_rate: 50000,
+                   address1: "125 Elm St",
+                   address2: nil,
+                   city: "Denver",
+                   state: "CO",
+                   zip: 80222,
+                   shared_bathroom: true,
+                   user_id: 1)
     visit listings_path
-    find(:css, "#nightly_rate_15000[value='15000']").set(true)
-    click_link_or_button "Filter by price"
-    expect(page).to have_content("Rainy day house")
-    expect(page).not_to have_content("Super classy")
+    fill_in("City", with: "Denver")
+    select("Room", from: "category_id")
+    select("1", from: "max_guests")
+    select("<$300", from: "nightly_rate")
+    click_link_or_button "Filter"
+    expect(page).to have_content("Super classy")
+    expect(page).not_to have_content("Rainy day house")
+    expect(page).not_to have_content("Animal House")
+    expect(page).not_to have_content("Sigma Alpha Epsilon")
+    expect(page).not_to have_content("from space")
   end
 
   xit "can add an item to a cart" do
