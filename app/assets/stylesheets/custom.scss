@@ -3,6 +3,16 @@ body {
   font-weight: bold;
 }
 
+
+a:link {
+  text-decoration: none;
+  color: #fff !important;
+}
+
+.center-block {
+  text-align: center;
+}
+
 .home-search {
   background:rgba(0 ,0 ,0 ,0.5);
   margin: 0 auto;
