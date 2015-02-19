@@ -12,10 +12,12 @@ class User::ListingsController < ApplicationController
 
   def create
     @listing = current_user.listings.new(listing_params)
-    params["listing_images"]["images"].each do |i|
-      @listing.listing_images.build(:image => i)
+    if params["listing_images"]
+      params["listing_images"]["images"].each do |i|
+        @listing.listing_images.build(:image => i)
+      end
     end
-   if @listing.save
+    if @listing.save
       redirect_to user_listing_path(current_user.slug, @listing.id)
     else
       render :new
