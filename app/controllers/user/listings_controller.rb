@@ -1,7 +1,5 @@
 class User::ListingsController < ApplicationController
   def show
-    require "pry"
-    binding.pry
     @listing = Listing.find(params[:id])
     @listing_images = @listing.listing_images.all
     @remaining_images = @listing_images[1..-1]
