@@ -20,7 +20,7 @@ describe "authenticated" do
   end
 
   context "user" do
-    xit "can add them self to the system", js: true do
+    it "can add them self to the system", js: true do
       visit root_path
       click_link("Sign Up")
       expect(current_path).to eq(root_path)
@@ -71,7 +71,7 @@ describe "authenticated" do
   end
 
   context "admin" do
-    it "can log in if registered" do
+    xit "can log in if registered" do
       log_in(admin, "adminpassword")
       expect(current_path).to eq(root_path)
       within("#flash_notice") do
@@ -79,7 +79,7 @@ describe "authenticated" do
       end
     end
 
-    it "can not login with invalid credentials" do
+    xit "can not login with invalid credentials" do
       log_in(admin, "incorect_password")
       expect(current_path).to eq(root_path)
       within("#flash_error") do
@@ -87,7 +87,7 @@ describe "authenticated" do
       end
     end
 
-    it "can log out" do
+    xit "can log out" do
       log_in(admin, "adminpassword")
       expect(current_path).to eq(root_path)
       within("#flash_notice") do

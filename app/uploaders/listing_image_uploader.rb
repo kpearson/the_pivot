@@ -25,7 +25,7 @@ class ListingImageUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [200, 200]
   end
 
-  def extension_white_list
-    %w(jpg jpeg gif png)
-  end
+  #def etension_white_list
+  #  %w(.jpg .jpeg .gif .png .tiff)
+  #end
 end

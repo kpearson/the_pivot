@@ -4,9 +4,11 @@
   <div class="center-block">
     <%= link_to  listings_path do %>
     <h1 class="welcome">Destinations</h1>
+    <% if current_user %>
     <button type="button" class="btn btn-lg btn-default create-listing">
-      <div class="active"><a href="#" data-toggle="modal" data-target="#new_listing-modal" id="new_listing">Create A Listing</a></div>
+      <div class="active"><%= link_to "Create A Listing", new_user_listing_path(current_user.slug), id: "new_listing" %></div>
     </button>
+  <% end %>
     <% end %>
   </div>
 </div>

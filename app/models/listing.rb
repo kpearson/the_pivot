@@ -15,6 +15,7 @@ class Listing < ActiveRecord::Base
   scope :category_id, -> (category_id) { where category_id: category_id }
   scope :nightly_rate, -> (nightly_rate) { where("nightly_rate <= ?", nightly_rate)
     .order(nightly_rate: :asc) }
+  accepts_nested_attributes_for :listing_images
 
   # def self.max_guests
   #   where("max_guests >= ?", max_guests)  #this class method is equivilant to the max_guest scope above
@@ -31,10 +32,5 @@ class Listing < ActiveRecord::Base
     else
       "#{address1}, #{city}, #{state} #{zip}"
     end
-  end
-
-  def self.filtered_results
-
-
   end
 end
