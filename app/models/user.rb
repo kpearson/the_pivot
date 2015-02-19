@@ -18,6 +18,8 @@ class User < ActiveRecord::Base
 
   before_save :generate_slug
 
+  enum role: [:user, :host]
+
   def generate_slug
     self.slug = display_name.parameterize
   end

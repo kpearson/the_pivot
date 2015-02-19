@@ -11,6 +11,7 @@ class User::ListingsController < ApplicationController
     @listing = current_user.listings.new(listing_params)
     if @listing.save
       redirect_to user_listing_path(current_user.slug, @listing.id)
+      current_user.role = 1
     else
       render "new"
     end

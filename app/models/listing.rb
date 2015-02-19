@@ -28,6 +28,5 @@ class Listing < ActiveRecord::Base
 
   def self.filtered_results
     
-
   end
 end
