@@ -6,7 +6,7 @@
     <div class="error_messages">
     <h2>Form is invalid</h2>
     <ul>
-      <% for message in person.errors.full_messages %>
+      <% for message in @listing.errors.full_messages %>
         <li><%= message %></li>
     <% end %>
     </ul>
@@ -24,6 +24,9 @@
       <%= f.text_field :city %>
       <%= f.text_field :state %>
       <%= f.text_field :zip %>
+      <%= f.fields_for :listing_images do |i| %>
+        <%= i.file_field :image, multiple: true, name: "listing_images[images][]" %>
+      <% end %>
       <%= f.submit "Create Listing" %>
     <% end %>
   </div>
