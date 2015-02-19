@@ -1,0 +1,40 @@
+<div class="col-md-12 filter">
+  <form class="form-inline">
+    <div class="form-group">
+      <%= form_tag("/listings", method: "get") do %>
+        <div class="form-group">
+          <%= label_tag(:city, "City") %>
+          <%= text_field_tag(:city, "City", :value => nil)%>
+          Home Type
+          <%= select_tag "category_id", options_for_select(categories_helper),:include_blank => true %>
+        </div>
+        <div class="form-group">
+          Nightly Rates
+          <%= select_tag "nightly_rate", options_for_select(nightly_rate_helper),:include_blank => true %>
+        </div>
+        <div class="form-group">
+          Guests
+          <%= select_tag "max_guests", options_for_select(guests_helper), :include_blank => true %>
+          <%= submit_tag "Filter", class: "btn btn-default" %>
+        </div>
+      <% end %>
+    </div>
+  </form>
+</div>
+
+<div class="col-md-12 filter">
+  <div class="form-inline">
+    <%= bootstrap_form_tag url: "/listings", method: "get" do |f| %>
+      <%= f.text_field :city, hide_label: true, placeholder: "City", class: "connector" %>
+      <%= f.select :category_id, options_for_select(categories_helper), hide_label: true, class: "connector" %>
+      <%= f.select :nightly_rate, options_for_select(nightly_rate_helper), hide_label: true, class: "connector" %>
+      <%= f.text_field :check_in, hide_label: true, placeholder: "Check In", class: "from_date connector", contenteditable: false %>
+      <%= f.text_field :check_out, hide_label: true, placeholder: "Check Out", class: "to_date connector", contenteditable: false %>
+      <%= f.select :max_guests, options_for_select(guests_helper), hide_label: true, class: "connector", placeholder: "Guests" %>
+      <%= f.submit "Filter", class: "btn btn-primary connector" %>
+    <% end %>
+    <%= bootstrap_form_tag url: "/listings", method: "get" do |f| %>
+      <%= f.submit "View All", class: "btn btn-default" %>
+    <% end %>
+  </div>
+</div>
