@@ -21,7 +21,7 @@ class Listing < ActiveRecord::Base
   #   where("max_guests >= ?", max_guests)
       # .order(max_guests: :asc)
   # end
-  
+
   def currency
     nightly_rate / 100
   end
@@ -32,10 +32,5 @@ class Listing < ActiveRecord::Base
     else
       "#{address1}, #{city}, #{state} #{zip}"
     end
-  end
-
-  def self.filtered_results
-
-
   end
 end
