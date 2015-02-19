@@ -6,7 +6,7 @@
     <li class="divider"></li>
     <li><a href="#">Manage Reservations</a></li>
     <li class="divider"></li>
-    <li><a href="#">View My Listings</a></li>
+    <li><%= link_to "Edit My Listing",user_edit_listings_path(current_user.slug) %></li>
     <li><%= link_to "Log Out", logout_path, method: "DELETE" %></li>
     <li class="active"><a href="#" data-toggle="modal" data-target="#profile-modal" id="edit">Edit Profile</a></li>
     <%= render partial: "users/profile_form", locals: {user: current_user} %></li>

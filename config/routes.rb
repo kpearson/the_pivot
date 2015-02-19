@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :listings, only: [:index]
   namespace :user, path: "/:slug" do
     resources :listings, except: [:index]
+    get "/edit_listings", to: "/listings#edit_index"
   end
 
   resources :users

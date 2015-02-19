@@ -20,18 +20,38 @@
 
 
 
-<div class="profile-page">
-    <div class="row">
-      <div class="col-lg-12">
-          <ul class="slides">
-            <% @listings.each do |listing| %>
-              <li class="listing-slide"><a href="#"><img src="listing.image" alt="listing.title">
-              <span class="d-hover"><%= listing.description %><p>View listing</p></span></a></li>
-              <% end %>
-          </ul>
-      </div>
-      </div>
-    </div>
+   <div class="row listings-index">
+     <div class="col-lg-12">
+         <ul class="slides">
+           <% @listings.each do |listing| %>
+           <li class="listing-slide" id="listing-slide">
+           <%= link_to user_listing_path(listing.user.slug, listing) do %>
+           <div id="img_container">
+             <img src="listing.image" alt="listing.title">
+             <div class="edit-button">
+               <a class="btn btn-sm btn-default", style=inline, href=<%=edit_user_listing_path(listing.user.slug, listing)%>>
+               <i class="fa fa-pencil-square-o"></i>Edit</a>
+             </div>
+             <div class="delete-button">
+               <a class="btn btn-sm btn-default", style=inline, href=<%=user_listing_path(listing.user.slug, listing)%>>
+               <i class="fa fa-trash-o"></i>Delete</a>
+             </div>
+           </div>
+             <span class="d-hover"><br>
+               <%#= link_to listing.title, user_listing_path(listing.user_id, listing) %><br>
+               Property Category: <%= listing.category.name %><br>
+               Property Description: <%= listing.description %><br>
+               Nightly Rate: <%= number_to_currency(listing.currency) %><br>
+               Max Guests: <%= listing.max_guests %><br></span></a></li>
+             <% end %>
+             <% end %>
+         </ul>
+     </div>
+     </div>
+   </div>
+   </div>
+
+
 
 
 
