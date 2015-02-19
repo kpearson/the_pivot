@@ -13,7 +13,6 @@ gem 'pg'
 gem 'foundation-rails'
 gem 'rails_12factor', group: :production
 gem 'unicorn'
-gem 'cancan'
 gem 'rmagick'
 gem 'carrierwave'
 gem 'unscoped_associations'
@@ -27,6 +26,7 @@ gem "therubyracer"
 gem 'bootstrap-modal-rails'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
+gem 'cancancan', '~> 1.10'
 
 group :development, :test do
   gem 'poltergeist'

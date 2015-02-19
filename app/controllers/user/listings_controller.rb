@@ -10,8 +10,8 @@ class User::ListingsController < ApplicationController
   def create
     @listing = current_user.listings.new(listing_params)
     if @listing.save
+      current_user.update_attributes(role: 1)
       redirect_to user_listing_path(current_user.slug, @listing.id)
-      current_user.role = 1
     else
       render "new"
     end
