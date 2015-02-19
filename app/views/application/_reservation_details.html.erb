@@ -1,0 +1,46 @@
+<% @reservation.line_items.each do |line_item| %>
+<div id="purchaser-details">
+  <% if current_user && current_user.admin? %>
+    <h3>Purchaser Details</h3>
+    <% user = @reservation.find_user_info(@reservation.user_id) %>
+    <%= user.last_name %>, <%= user.first_name %><br>
+    <%= user.email %>
+<% end %>
+<h3>Reservation Details</h3>
+</div>
+<div id="item-title">
+  Title: <%=link_to line_item.title, item_path(line_item.item_id) %>
+</div>
+<div id="item-description">
+  Description: <%= line_item.description %>
+</div>
+<div id="item-price">
+  Unit Price: <%= number_to_currency line_item.price %>
+</div>
+<div id="item-quantity">
+  Quantity: <%= line_item.quantity %>
+</div>
+<div id="item-subtotal">
+  Subtotal: <%= number_to_currency line_item.subtotal(line_item.price, line_item.quantity) %>
+</div><br>
+<% end %>
+
+<div id="item-total">
+  Total: <%= number_to_currency @reservation.total(@reservation.line_items) %>
+</div>
+<div id="reservation-submit-time">
+  Reservation Submitted At: <%= @reservation.formatted_created_at %>
+</div>
+<div id="reservation-status">
+  Order Status: <%= @reservation.status %><br>
+  <% if current_user && current_user.admin? %>
+    <% if @reservation.status == "ordered" %>
+      <%= link_to "change to paid", admin_reservation_path(status: "paid"), method: :patch %> |
+      <%= link_to "change to complete", admin_reservation_path(status: "completed"), method: :patch %> |
+      <%= link_to "change to cancel", admin_reservation_path(status: "cancelled"), method: :patch %>
+    <% elsif @reservation.status == "paid" %>
+      <%= link_to "change to complete", admin_reservation_path(status: "completed"), method: :patch %> |
+      <%= link_to "change to cancel", admin_reservation_path(status: "cancelled"), method: :patch %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,8 +1,9 @@
-class Order < ActiveRecord::Base
+class Reservation < ActiveRecord::Base
   validates :user_id, presence: true
   has_many :line_items
   has_many :items, through: :line_items
-  belongs_to :user
+  belongs_to :guest, through: :users
+  belongs_to :host, through: :users
   scope :ordered, -> { where(status: "ordered") }
   scope :completed, -> { where(status: "completed") }
   scope :paid, -> { where(status: "paid") }
@@ -20,8 +21,8 @@ class Order < ActiveRecord::Base
     end.reduce(:+)
   end
 
-  def format_order_number(order_id)
-    order_id.to_s.rjust(5, "0")
+  def format_reservation_number(reservation_id)
+    reservation_id.to_s.rjust(5, "0")
   end
 
   def formatted_created_at
@@ -32,5 +33,5 @@ class Order < ActiveRecord::Base
     User.find(user_id)
   end
 
-  
+
 end

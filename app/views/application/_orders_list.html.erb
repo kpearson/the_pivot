@@ -1,11 +1,11 @@
-<% orders.each do |order| %>
-<h3><%= order.status.capitalize %> orders</h3>
-<div id=<%= order.id %>>
+<% reservations.each do |reservation| %>
+<h3><%= reservation.status.capitalize %> reservations</h3>
+<div id=<%= reservation.id %>>
   <ul>
     <li>
-      <%= link_to "Order #{order.format_order_number(order.id)}",
-      order_path(order.id) %>
-      Status: <%= order.status %>
+      <%= link_to "Reservation #{reservation.format_reservation_number(reservation.id)}",
+      reservation_path(reservation.id) %>
+      Status: <%= reservation.status %>
     </li>
   </ul>
 </div>

@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   delete "/logout", to: "sessions#destroy"
   post "/carts", to: "carts#create"
   delete "/carts", to: "carts#destroy"
-  get "/admin/filtered_orders", to: "admin/orders#filtered_orders"
+  get "/admin/filtered_reservations", to: "admin/reservations#filtered_reservations"
 
   resources :categories, only: [:index, :show]
   resources :listings, only: [:index]
@@ -16,12 +16,12 @@ Rails.application.routes.draw do
   end
 
   resources :users
-  resources :orders
+  resources :reservations
 
   resources :admins
 
   namespace :admin do
     resources :categories, only: [:edit, :update, :create, :new, :destroy]
-    resources :orders
+    resources :reservations
   end
 end

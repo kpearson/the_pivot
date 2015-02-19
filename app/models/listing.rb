@@ -17,7 +17,7 @@ class Listing < ActiveRecord::Base
     .order(nightly_rate: :asc) }
 
   # def self.max_guests
-  #   where("max_guests >= ?", max_guests)
+  #   where("max_guests >= ?", max_guests)  #this class method is equivilant to the max_guest scope above
       # .order(max_guests: :asc)
   # end
 
