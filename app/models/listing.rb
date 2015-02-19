@@ -13,6 +13,7 @@ class Listing < ActiveRecord::Base
   scope :max_guests, -> (max_guests) { where("max_guests >= ?", max_guests) }
   scope :category_id, -> (category_id) { where category_id: category_id }
   scope :nightly_rate, -> (nightly_rate) { where("nightly_rate <= ?", nightly_rate) }
+  accepts_nested_attributes_for :listing_images
 
   def currency
     nightly_rate / 100
