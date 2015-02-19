@@ -19,3 +19,6 @@ logfile
 
 #ignore simple cov
 coverage
+
+#ignore carrierwave images
+/public/uploads

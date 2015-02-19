@@ -6,10 +6,6 @@ class ListingsController < ApplicationController
     end
   end
 
-  def show
-    @listing = Listing.find_by(id: params[:id])
-  end
-
 private
 
   def filtering_params(params)
