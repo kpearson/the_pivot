@@ -26,4 +26,9 @@ class Listing < ActiveRecord::Base
       "#{address1}, #{city}, #{state} #{zip}"
     end
   end
+
+  def self.filtered_results
+    
+
+  end
 end

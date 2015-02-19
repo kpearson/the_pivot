@@ -2,6 +2,7 @@ class User::ListingsController < ApplicationController
   def show
     @listing = Listing.find(params[:id])
     @listing_images = @listing.listing_images.all
+    @remaining_images = @listing_images[1..-1]
   end
 
   def new
@@ -11,14 +12,13 @@ class User::ListingsController < ApplicationController
 
   def create
     @listing = current_user.listings.new(listing_params)
-   # require 'pry' ; binding.pry
+    params["listing_images"]["images"].each do |i|
+      @listing.listing_images.build(:image => i)
+    end
    if @listing.save
-      params["listing_images"]["image"].each do |i|
-        @listing.listing_images.create(:image => i, :listing_id => @listing.id)
-      end
       redirect_to user_listing_path(current_user.slug, @listing.id)
     else
-      render "new"
+      render :new
     end
   end
 
