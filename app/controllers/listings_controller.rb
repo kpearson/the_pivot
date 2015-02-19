@@ -10,9 +10,6 @@ class ListingsController < ApplicationController
     @listing = Listing.find_by(id: params[:id])
   end
 
-  def edit_index
-    @listings = Listing.where(user: current_user)
-  end
 
 private
 

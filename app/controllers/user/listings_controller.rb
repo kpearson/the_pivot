@@ -3,6 +3,10 @@ class User::ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
   end
 
+  def edit_index
+    @listings = Listing.where(user_id: current_user.id)
+  end
+
   def new
     @listing = current_user.listings.new
   end
