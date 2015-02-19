@@ -10,9 +10,16 @@ class Listing < ActiveRecord::Base
   has_many :listing_images
   has_many :reservations
   scope :city, -> (city) { where city: city }
-  scope :max_guests, -> (max_guests) { where("max_guests >= ?", max_guests) }
+  scope :max_guests, -> (max_guests) { where("max_guests >= ?", max_guests)
+    .order(max_guests: :asc) }
   scope :category_id, -> (category_id) { where category_id: category_id }
-  scope :nightly_rate, -> (nightly_rate) { where("nightly_rate <= ?", nightly_rate) }
+  scope :nightly_rate, -> (nightly_rate) { where("nightly_rate <= ?", nightly_rate)
+    .order(nightly_rate: :asc) }
+
+  # def self.max_guests
+  #   where("max_guests >= ?", max_guests)
+      # .order(max_guests: :asc)
+  # end
 
   def currency
     nightly_rate / 100
@@ -27,7 +34,7 @@ class Listing < ActiveRecord::Base
   end
 
   def self.filtered_results
-    
+
 
   end
 end
