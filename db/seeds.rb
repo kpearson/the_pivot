@@ -335,16 +335,16 @@ listing14 = Listing.create(title: "Capital Hill House",
 # listing14.categories << categories[4]
 # listing14.save
 
-listing15 = Listing.create(title: "Filibuster Flat",
-                           description: "Perfet for those who never shut up.",
+listing15 = Listing.create(title: "Gateway to the West",
+                           description: "Perfet Apt for those who don't know their cardinal directions.",
                            category_id: 2,
                            max_guests: 2,
                            nightly_rate: 14000,
                            address1: "124 Elm St",
                            address2: nil,
-                           city: "Washington",
-                           state: "DC",
-                           zip: 22314,
+                           city: "St Louis",
+                           state: "MO",
+                           zip: 63114,
                            shared_bathroom: true,
                            user_id: 4
                            )
@@ -370,7 +370,7 @@ listing16 = Listing.create(title: "Lincoln Bedroom",
 # listing16.save
 
 listing17 = Listing.create(title: "Cherry Blossom B&B",
-                           description: "Stay in on our luxurious paddlewheel river boats on Tidal Basin",
+                           description: "Stay in on our luxurious paddlewheel river boat and cruise in style up the Tidal Basin",
                            category_id: 2,
                            max_guests: 2,
                            nightly_rate: 10000,
