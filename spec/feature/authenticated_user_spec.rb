@@ -278,7 +278,6 @@ describe "an authenticated user" do
     expect(page).to_not have_content("Log In")
   end
 
-
   xit "cannot modify an item" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)

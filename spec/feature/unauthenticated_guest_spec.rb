@@ -99,23 +99,23 @@ describe "As an unauthenticated user" do
                 about_me: "valid",
                 id: 1,
                 display_name: "joe")
-    Listing.create(title: "House",
-                   description: "House in the rain",
-                   category_id: 1,
-                   max_guests: 4,
-                   nightly_rate: 10000,
-                   address1: "124 Elm St",
-                   address2: nil,
-                   city: "Seattle",
-                   state: "WA",
-                   zip: 98106,
-                   shared_bathroom: true,
-                   user_id: 1)
+    new_listing = Listing.create(title: "House",
+                                 description: "House in the rain",
+                                 category_id: 1,
+                                 max_guests: 4,
+                                 nightly_rate: 10000,
+                                 address1: "124 Elm St",
+                                 address2: nil,
+                                 city: "Seattle",
+                                 state: "WA",
+                                 zip: 98106,
+                                 shared_bathroom: true,
+                                 user_id: 1)
     visit listings_path
-    fill_in("City", with: "Seattle")
+    fill_in("city", with: "Seattle")
     click_link_or_button "Filter"
-    expect(page).to have_content("House in the rain")
-    expect(page).not_to have_content("Super classy")
+    expect(page).to have_content(new_listing.description)
+    expect(page).to_not have_content(listing.title)
   end
 
 
@@ -140,7 +140,7 @@ describe "As an unauthenticated user" do
                    shared_bathroom: true,
                    user_id: 1)
     visit listings_path
-    select("House", from: "category_id")
+    select("House", from: "_category_id")
     click_link_or_button "Filter"
     expect(page).to have_content("house in the rain")
     expect(page).not_to have_content("Super classy")
@@ -167,7 +167,7 @@ describe "As an unauthenticated user" do
                    shared_bathroom: true,
                    user_id: 1)
     visit listings_path
-    select("3", from: "max_guests")
+    select("3", from: "_max_guests")
     click_link_or_button "Filter"
     expect(page).to have_content("house in the rain")
     expect(page).not_to have_content("Super classy")
@@ -194,7 +194,7 @@ describe "As an unauthenticated user" do
                    shared_bathroom: true,
                    user_id: 1)
     visit listings_path
-    select("<$150", from: "nightly_rate")
+    select("<$150", from: "_nightly_rate")
     click_link_or_button "Filter"
     expect(page).to have_content("house in the rain")
     expect(page).not_to have_content("Super classy")
@@ -258,10 +258,10 @@ describe "As an unauthenticated user" do
                    shared_bathroom: true,
                    user_id: 1)
     visit listings_path
-    fill_in("City", with: "Denver")
-    select("Room", from: "category_id")
-    select("1", from: "max_guests")
-    select("<$300", from: "nightly_rate")
+    fill_in("city", with: "Denver")
+    select("Room", from: "_category_id")
+    select("1", from: "_max_guests")
+    select("<$300", from: "_nightly_rate")
     click_link_or_button "Filter"
     expect(page).to have_content("Super classy")
     expect(page).not_to have_content("Rainy day house")
@@ -302,7 +302,7 @@ describe "As an unauthenticated user" do
   it "cannot see the logout button" do
     expect(page).to_not have_content("Log Out")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(nil)
+      and_return(nil)
     visit root_path
     expect(page).to_not have_content("Log Out")
   end
@@ -354,7 +354,7 @@ describe "As an unauthenticated user" do
 
   it "cannot view another person's private data" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(nil)
+      and_return(nil)
     user = User.create(first_name: "Rich",
                        last_name: "Shea",
                        display_name: "valid",
@@ -379,7 +379,7 @@ describe "As an unauthenticated user" do
 
   it "cannot view the admin dashboard" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(nil)
+      and_return(nil)
     expect(page).to_not have_content("Admin Dashboard")
   end
 
