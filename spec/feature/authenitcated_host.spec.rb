@@ -11,7 +11,7 @@ describe "a host" do
                  role: 0)
   end
 
-  let!(:host2) do
+  let!(:host) do
     Admin.create(first_name: "Jane",
                  last_name: "Doe",
                  email: "jane@gmail.com",
@@ -22,6 +22,7 @@ describe "a host" do
   it "after creating a listing a user becomes a host"
   allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                and_return(:host)
+      assert_equal 0, user.role
       visit root_path
       click_link_or_button "Create A Listing"
       fill_in "item[title]", with: "Sexy Beach House"
@@ -36,4 +37,5 @@ describe "a host" do
       fill_in "item[state]", with: "CO"
       fill_in "item[zip]", with: "80205"
       click_link_or_button('Create Listing')
-        expect
+      assert_equal 1,  user.role
+    end
