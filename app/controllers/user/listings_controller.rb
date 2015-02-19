@@ -22,6 +22,22 @@ class User::ListingsController < ApplicationController
     end
   end
 
+  def edit
+    @listing = Listing.find[:id]
+  end
+
+  def update
+    @listing = Listing.find(params[:id])
+    params["listing_images"]["images"].each do |i|
+      @listing.listing_images.build(:image => i)
+    end
+   if @listing.update_attributes(listing_params)
+      redirect_to user_listing_path(current_user.slug, @listing.id)
+    else
+      render :edit
+    end
+  end
+
   private
 
   def listing_params
