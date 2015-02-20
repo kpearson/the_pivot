@@ -352,17 +352,7 @@ describe "As an unauthenticated user" do
     end
   end
 
-  it "cannot view another person's private data" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-      and_return(nil)
-    user = User.create(first_name: "Rich",
-                       last_name: "Shea",
-                       display_name: "valid",
-                       about_me: "valid",
-                       email: "bryce@gmail.com",
-                       password: "secret")
-    visit user_path(user)
-    expect(current_path).to eq(not_found_path)
+  xit "cannot edit a user's profile" do
   end
 
   xit "cannot checkout" do

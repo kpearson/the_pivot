@@ -1,10 +1,7 @@
-
-
-
 <div class="jumbotron masthead">
   <div class="row profile-header">
     <div class="col-lg-12">
-        <h1><%= @user.first_name %></h1>
+      <h1><%= @user.first_name %></h1>
     </div>
     <div class="row">
       <div class="col-lg-4">
@@ -14,43 +11,42 @@
         <p><%= @user.about_me %></p>
       </div>
 
-     </div>
-   </div>
+    </div>
+  </div>
 
-
-
-
-<div class="profile-page">
-    <div class="row">
-      <div class="col-lg-12">
-          <ul class="slides">
-            <% @listings.each do |listing| %>
-              <li class="listing-slide"><a href="#"><img src="listing.image" alt="listing.title">
-              <span class="d-hover"><%= listing.description %><p>View listing</p></span></a></li>
-              <% end %>
+  <div class="row listings-index">
+    <div class="col-lg-12">
+      <ul class="slides">
+        <% @listings.each do |listing| %>
+        <li class="listing-slide" id="listing-slide"><%= link_to user_listing_path(listing.user.slug, listing) do %><img src="listing.image" alt="listing.title">
+          <span class="d-hover"><br>
+            <%#= link_to listing.title, user_listing_path(listing.user_id, listing) %><br>
+            Property Category: <%= listing.category.name %><br>
+            Property Description: <%= listing.description %><br>
+            Nightly Rate: <%= number_to_currency(listing.currency) %><br>
+            Max Guests: <%= listing.max_guests %><br></span></a></li>
+            <% end %>
+            <% end %>
           </ul>
+        </div>
       </div>
-      </div>
+
+      <section id="networks">
+        <div class="container">
+          <p>
+            <a href="#"><i class="facebook fa fa-facebook"></i></a><a href="#"><i class="twitter fa fa-twitter"></i></a><a href="#"><i class="mail fa fa-envelope"></i></a>
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- Bootstrap core JavaScript
+      ================================================== -->
+      <!-- Placed at the end of the document so the pages load faster -->
+      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+      <script src="assets/js/bootstrap.min.js"></script>
+      <script src="assets/js/jribbble.js"></script>
+      <script src="assets/js/site-ck.js"></script>
     </div>
-
-
-
-  <section id="networks">
-    <div class="container">
-      <p>
-        <a href="#"><i class="facebook fa fa-facebook"></i></a><a href="#"><i class="twitter fa fa-twitter"></i></a><a href="#"><i class="mail fa fa-envelope"></i></a>
-      </p>
-
-    </div>
-
-  </section>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-    <script src="assets/js/bootstrap.min.js"></script>
-    <script src="assets/js/jribbble.js"></script>
-    <script src="assets/js/site-ck.js"></script>
-</div>
