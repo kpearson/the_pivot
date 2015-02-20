@@ -104,4 +104,10 @@ RSpec.describe User, type: :model do
   it "has a full name" do
     expect(user.full_name).to eq("Alice Smith")
   end
+
+  it "has a default role" do
+    expect(user.role).to eq("default")
+    expect(user.default?).to eq(true)
+    expect(user.host?).to eq(false)
+  end
 end

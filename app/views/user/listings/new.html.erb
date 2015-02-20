@@ -1,18 +1,18 @@
 <div class="row listing-new-form">
   <div class="col-lg-6">
-  <h2>Add Your Listing</h2>
-  <%= bootstrap_form_for(@listing, url: user_listings_path(current_user.slug)) do |f| %>
-    <% if @listing.errors.any? %>
-    <div class="error_messages">
-    <h2>Form is invalid</h2>
-    <ul>
-      <% for message in @listing.errors.full_messages %>
-        <li><%= message %></li>
-    <% end %>
-    </ul>
-    </div>
-    <% end %>
-    <%= f.text_field :title %>
+    <h2>Add Your Listing</h2>
+    <%= bootstrap_form_for(@listing, url: user_listings_path(current_user.slug)) do |f| %>
+      <% if @listing.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% for message in @listing.errors.full_messages %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= f.text_field :title %>
       <%= f.text_field :description %>
       <%= f.number_field :nightly_rate %>
       <%= f.collection_radio_buttons :category_id, Category.all, :id, :name %>
