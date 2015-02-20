@@ -17,7 +17,7 @@ describe 'user edits a listing', type: :feature do
   it "and is redirected to the edited listing and sees the edits" do
     valid_user = create(:user)
     listing = create(:listing)
-    category = create(:category, name: "Condo")
+    create(:category, name: "Condo")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
     visit edit_user_listing_path(valid_user.slug, listing.id)
