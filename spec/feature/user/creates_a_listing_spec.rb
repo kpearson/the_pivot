@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe 'user creates a listing', type: :feature do
+describe "user creates a listing", type: :feature do
   before(:each) do
     visit root_path
   end
