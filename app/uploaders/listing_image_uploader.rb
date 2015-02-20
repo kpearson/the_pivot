@@ -22,10 +22,10 @@ class ListingImageUploader < CarrierWave::Uploader::Base
 
   # Create different versions of your uploaded files:
   version :thumb do
-    process resize_to_fit: [200, 200]
+    process resize_to_fit: [400, 400]
   end
 
-  #def etension_white_list
-  #  %w(.jpg .jpeg .gif .png .tiff)
-  #end
+  def etension_white_list
+    %w(jpg jpeg gif png tiff)
+  end
 end

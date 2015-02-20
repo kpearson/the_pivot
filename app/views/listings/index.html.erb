@@ -11,15 +11,18 @@
   <div class="col-lg-12">
     <ul class="slides">
       <% @listings.each do |listing| %>
-        <li class="listing-slide" id="listing-slide"><%= link_to user_listing_path(listing.user.slug, listing) do %><img src="listing.image" alt="listing.title">
-          <span class="d-hover"><br>
-            <%#= link_to listing.title, user_listing_path(listing.user_id, listing) %><br>
-            Property Category: <%= listing.category.name %><br>
-            Property Description: <%= listing.description %><br>
-            Nightly Rate: <%= number_to_currency(listing.currency) %><br>
-            Max Guests: <%= listing.max_guests %><br></span></a></li>
+        <li class="listing-slide" id="listing-slide">
+          <%= link_to user_listing_path(listing.user.slug, listing) do %>
+            <img src="listing.image" alt="listing.title">
+            <span class="d-hover"><br>
+              <%#= link_to listing.title, user_listing_path(listing.user_id, listing) %><br>
+              Property Category: <%= listing.category.name %><br>
+              Property Description: <%= listing.description %><br>
+              Nightly Rate: <%= number_to_currency(listing.currency) %><br>
+              Max Guests: <%= listing.max_guests %><br>
+            </span></a></li>
+          <% end %>
       <% end %>
-    <% end %>
-  </ul>
-</div>
+    </ul>
+  </div>
 </div>
