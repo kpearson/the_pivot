@@ -16,29 +16,30 @@ class User::ListingsController < ApplicationController
 
   def create
     @listing = current_user.listings.new(listing_params)
-    if @listing.save
-      current_user.update_attributes(role: 1)
+    if params["listing_images"]
       params["listing_images"]["images"].each do |i|
-        @listing.listing_images.build(:image => i)
+        @listing.listing_images.build(image: i)
       end
-      if @listing.save
-        redirect_to user_listing_path(current_user.slug, @listing.id)
-      else
-        render :new
-      end
+    end
+    if @listing.save
+      redirect_to user_listing_path(current_user.slug, @listing.id)
+    else
+      render :new
     end
   end
 
   def edit
-    @listing = Listing.find[:id]
+    @listing = Listing.find(params[:id])
   end
 
   def update
     @listing = Listing.find(params[:id])
-    params["listing_images"]["images"].each do |i|
-      @listing.listing_images.build(:image => i)
-    end
-    if @listing.update_attributes(listing_params)
+     if params["listing_images"]
+       params["listing_images"]["images"].each do |i|
+       @listing.listing_images.build(image: i)
+     end
+   end
+   if @listing.update_attributes(listing_params)
       redirect_to user_listing_path(current_user.slug, @listing.id)
     else
       render :edit

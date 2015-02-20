@@ -1,6 +1,8 @@
-<div class="marquee-listing-image">
-  <%#= image_tag listing.listing_images.first.image.url %>
-</div>
+<% if listing.listing_images.any? %>
+  <div class="marquee-listing-image">
+    <%= image_tag listing.listing_images.first.image.url %>
+  </div>
+<% end %>
 <%= link_to listing.title, user_listing_path(listing.user_id, listing) %><br>
 <%#= link_to listing.title, user_listing_path(listing.user.slug, listing) %><br>
 Property Category: <%= listing.category.name %><br>
