@@ -14,7 +14,7 @@
         <li><%= link_to "Menu", categories_path, :method => :get %></li>
       <% elsif current_user.role == 0 %>
       <%= render partial: "user_profile_dropdown", locals: {user: current_user} %></li>
-        <% elsif current_user.host? %>
+      <% elsif current_user.host? %>
         <%= render partial: "host_profile_dropdown", locals: {user: current_user} %></li>
       <% else %>
       <li class="dropdown">
