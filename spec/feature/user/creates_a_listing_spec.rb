@@ -7,9 +7,9 @@ describe 'user creates a listing', type: :feature do
 
   it "and is redirected to the new created listing" do
     valid_user = create(:user)
-    category = create(:category, name: "Condo")
+    create(:category, name: "Condo")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+      and_return(valid_user)
     visit new_user_listing_path(valid_user.slug)
     fill_in "listing[title]", with: "New Listing"
     fill_in "listing[description]", with: "New Listing description"
