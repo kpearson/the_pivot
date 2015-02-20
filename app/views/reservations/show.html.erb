@@ -1,5 +1,5 @@
-<h1>Order <%= @order.format_order_number(@order.id) %></h1>
+<h1>Reservation <%= @reservation.format_reservation_number(@reservation.id) %></h1>
 
-<div class="order-details">
-  <%= render partial: "order_details", locals: { orders: @orders } %>
+<div class="reservation-details">
+  <%= render partial: "reservation_details", locals: { reservations: @reservations } %>
 </div>

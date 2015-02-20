@@ -10,7 +10,7 @@
         <%= render partial: "signup", locals: { person: User.new } %>
         <li class="active"><a href="#" data-toggle="modal" data-target="#login-modal" id="login">Log In</a></li>
         <%= render "login" %>
-        <li><%= link_to "Cart: #{@cart.count(@cart.data)}", new_order_path %></li>
+        <li><%= link_to "Cart: #{@cart.count(@cart.data)}", new_reservation_path %></li>
         <li><%= link_to "Menu", categories_path, :method => :get %></li>
       <% elsif !current_user.admin? %>
         <li class="dropdown">

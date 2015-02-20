@@ -266,34 +266,34 @@ describe "an admin" do
 
   context "can view a dashboard with" do
 
-    xit "the total number of orders by status" do
+    xit "the total number of reservations by status" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                            and_return(admin)
-      create_user_orders_with_items
+      create_user_reservations_with_items
       visit root_path
-      click_link_or_button "View All Orders"
-      expect(page).to have_content("All Orders")
+      click_link_or_button "View All Reservations"
+      expect(page).to have_content("All Reservations")
       expect(page).to have_content("Completed: 2")
       expect(page).to have_content("Ordered: 1")
       expect(page).to have_content("Paid: 0")
     end
 
-    xit "links for each individual order" do
+    xit "links for each individual reservation" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                            and_return(admin)
-      create_user_orders_with_items
-      visit admin_orders_path
-      within(".orders-list") do
-        click_link_or_button "Order 00001"
+      create_user_reservations_with_items
+      visit admin_reservations_path
+      within(".reservations-list") do
+        click_link_or_button "Reservation 00001"
       end
-      expect(page).to have_content("Order 00001")
+      expect(page).to have_content("Reservation 00001")
     end
 
     context "a link to" do
-      xit "to cancel individual orders which are currently 'ordered' or paid" do
+      xit "to cancel individual reservations which are currently 'ordered' or paid" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).
         and_return(admin)
-        create_user_orders_with_items
+        create_user_reservations_with_items
         visit admin_orders_path
         within(".orders-list") do
           click_link_or_button "Order 00001"

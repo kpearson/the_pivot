@@ -1,19 +1,19 @@
-class Admin::OrdersController < ApplicationController
+class Admin::ReservationsController < ApplicationController
   def index
-    @completed_orders = Order.completed
-    @paid_orders = Order.paid
-    @cancelled_orders = Order.cancelled
-    @ordered_orders = Order.ordered
-    @orders = Order.all
+    @completed_reservations = Reservation.completed
+    @paid_reservations = Reservation.paid
+    @cancelled_reservations = Reservation.cancelled
+    @ordered_reservations = Reservation.ordered
+    @reservations = Reservation.all
   end
 
   def update
-    @order = Order.find(params[:id])
-    @order.update(status: params[:status])
-    redirect_to order_path(@order.id)
+    @reservation = Reservation.find(params[:id])
+    @reservation.update(status: params[:status])
+    redirect_to order_path(@reservation.id)
   end
 
-  def filtered_orders
-    @orders = Order.where(status: params[:status])
+  def filtered_reservations
+    @reservations = Reservation.where(status: params[:status])
   end
 end
