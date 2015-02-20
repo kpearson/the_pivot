@@ -31,8 +31,4 @@ class User < ActiveRecord::Base
   def admin?
     false
   end
-
-  def host?
-    true
-  end
 end
