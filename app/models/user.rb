@@ -29,4 +29,8 @@ class User < ActiveRecord::Base
   def admin?
     false
   end
+
+#  def to_param
+#    slug
+#  end
 end

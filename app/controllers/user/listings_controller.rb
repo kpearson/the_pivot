@@ -30,9 +30,11 @@ class User::ListingsController < ApplicationController
 
   def update
     @listing = Listing.find(params[:id])
-    params["listing_images"]["images"].each do |i|
-      @listing.listing_images.build(:image => i)
-    end
+   if params["listing_images"]
+     params["listing_images"]["images"].each do |i|
+        @listing.listing_images.build(:image => i)
+     end
+   end
    if @listing.update_attributes(listing_params)
       redirect_to user_listing_path(current_user.slug, @listing.id)
     else
