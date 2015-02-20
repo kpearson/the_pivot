@@ -6,7 +6,7 @@
     <h1 class="welcome">Destinations</h1>
 
       <% if current_user %>
-        <button type="button" class="btn btn-lg btn-default create-listing">
+        <button type="button" class="btn btn-default create-listing">
           <div class="active"><%= link_to "Create A Listing", new_user_listing_path(current_user.slug), id: "new_listing" %></div>
         </button>
       <% end %>
