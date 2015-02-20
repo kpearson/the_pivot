@@ -92,17 +92,7 @@ describe "an authenticated user" do
     expect(current_path).to eq(user_path(valid_user))
   end
 
-  it "cannot view another users private data" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
-    user2 = User.create(first_name: "Bob",
-                        last_name: "Smith",
-                        display_name: "differentname",
-                        about_me: "valid",
-                        email: "abcdef@kit.com",
-                        password: "password123")
-    visit user_path(user2)
-    expect(current_path).to eq(not_found_path)
+  xit "cannot edit another user's profile" do
   end
 
   it "cannot view admin dashboard" do
