@@ -18,7 +18,8 @@ FactoryGirl.define do
     end
 
     before(:create) do |listing|
-      listing.user = create(:user, display_name: "validd", email: "asmith@emial.com")
+      listing.user = create(:user, display_name: "validd",
+                                   email: "asmith@emial.com")
     end
 
     title "New Listing"

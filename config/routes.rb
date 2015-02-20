@@ -23,9 +23,6 @@ Rails.application.routes.draw do
  # put    '/:user_slug/listings/:id'      , 'user/listings#update'
  # delete '/:user_slug/listings/:id'      , 'user/listings#destroy'
 
-  # get '/:user_slug/listings/new'
-  # get '/:user_slug/listings/edit'
-
   resources :users
   resources :orders
 

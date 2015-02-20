@@ -14,7 +14,7 @@ class User::ListingsController < ApplicationController
     @listing = current_user.listings.new(listing_params)
     if params["listing_images"]
       params["listing_images"]["images"].each do |i|
-        @listing.listing_images.build(:image => i)
+        @listing.listing_images.build(image: i)
       end
     end
     if @listing.save
@@ -30,9 +30,9 @@ class User::ListingsController < ApplicationController
 
   def update
     @listing = Listing.find(params[:id])
-   if params["listing_images"]
+     if params["listing_images"]
      params["listing_images"]["images"].each do |i|
-        @listing.listing_images.build(:image => i)
+       @listing.listing_images.build(image: i)
      end
    end
    if @listing.update_attributes(listing_params)
