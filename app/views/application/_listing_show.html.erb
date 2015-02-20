@@ -1,0 +1,12 @@
+<div class="marquee-listing-image">
+  <%#= image_tag listing.listing_images.first.image.url %>
+</div>
+<%= link_to listing.title, user_listing_path(listing.user_id, listing) %><br>
+<%#= link_to listing.title, user_listing_path(listing.user.slug, listing) %><br>
+Property Category: <%= listing.category.name %><br>
+Property Description: <%= listing.description %><br>
+Nightly Rate: <%= number_to_currency(listing.currency) %><br>
+Max Guests: <%= listing.max_guests %><br>
+Address: <%= listing.full_address %><br>
+Shared Bathroom: <%= listing.shared_bathroom %><br>
+Host: <%#= link_to listing.user.display_name, user_path %><br>
