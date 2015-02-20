@@ -288,14 +288,14 @@ describe "As an unauthenticated user" do
 
   xit "can remove an item from a cart" do
     click_add_to_cart_link("Breakfast")
-    visit new_order_path
+    visit new_reservation_path
     within("#item_1") do
       click_link "Remove From Cart"
     end
     within("#cart-contents") do
       expect(page).to have_content("0")
     end
-    expect(current_path).to eq(new_order_path)
+    expect(current_path).to eq(new_reservation_path)
     expect(page).to_not have_content("Bacon")
   end
 
@@ -331,7 +331,7 @@ describe "As an unauthenticated user" do
 
   xit "can view their empty cart" do
     click_link_or_button "Cart"
-    expect(current_path).to eq(new_order_path)
+    expect(current_path).to eq(new_reservation_path)
     expect(page).to have_content("Your cart is empty")
   end
 
@@ -339,7 +339,7 @@ describe "As an unauthenticated user" do
     click_add_to_cart_link("Breakfast")
     click_add_to_cart_link("Breakfast")
     click_link_or_button "Cart:"
-    expect(current_path).to eq(new_order_path)
+    expect(current_path).to eq(new_reservation_path)
     expect(page).to have_content("Bacon")
     within "div#quantity" do
       expect(page).to have_content("2")
@@ -369,9 +369,9 @@ describe "As an unauthenticated user" do
     click_add_to_cart_link("Breakfast")
     click_add_to_cart_link("Breakfast")
     click_link_or_button "Cart:"
-    expect(current_path).to eq(new_order_path)
+    expect(current_path).to eq(new_reservation_path)
     click_link_or_button "Checkout"
-    expect(current_path).to eq(new_order_path)
+    expect(current_path).to eq(new_reservation_path)
     within("#flash_notice") do
       expect(page).to have_content("Please login or signup to continue with checkout")
     end

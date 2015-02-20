@@ -191,7 +191,7 @@ describe "an authenticated user" do
   xit "can view particular trips (trip show page)" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
     and_return(valid_user)
-    Order.create(user_id: valid_user.id)
+    Reservation.create(user_id: valid_user.id)
     visit user_path(valid_user.id)
     click_link_or_button "Cart"
     click_link_or_button "Reservation 00001"

@@ -2,12 +2,19 @@ class Reservation < ActiveRecord::Base
   validates :user_id, presence: true
   has_many :line_items
   has_many :items, through: :line_items
-  belongs_to :guest, through: :users
-  belongs_to :host, through: :users
+  belongs_to :user
   scope :ordered, -> { where(status: "ordered") }
   scope :completed, -> { where(status: "completed") }
   scope :paid, -> { where(status: "paid") }
   scope :cancelled, -> { where(status: "cancelled") }
+
+  def guest
+    user
+  end
+
+  def host
+    user
+  end
 
   def create_line_items(cart_items)
     cart_items.map do |item_id, quantity|

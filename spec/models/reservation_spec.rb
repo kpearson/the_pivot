@@ -2,24 +2,35 @@ require "rails_helper"
 
 RSpec.describe Reservation, type: :model do
   let(:user) do
-    User.create(first_name: "Alex",
-                last_name: "Robinson",
-                email: "alex@robinson.com",
+    User.create(first_name: "Bryce",
+                last_name: "Holcomb",
+                display_name: "valid",
+                about_me: "valid",
+                email: "bryce@gmail.com",
                 password: "password")
-  end
   let(:reservation) { Reservation.new(user_id: user.id) }
   let!(:item) do
     @category = Category.create(name: "NewCategory")
-    item = Item.new(title: "title",
-                    description: "desc",
-                    price: 2000,)
-    item.categories << @category
-    item.save
-    item
+    listing = Listing.new(title: "C&C Music Factory",
+                          description: "Jam",
+                          category_id: 2,
+                          max_guests: 10,
+                          nightly_rate: 10000,
+                          address1: "123 Elm St",
+                          address2: "Apt 21",
+                          city: "Denver",
+                          state: "CO",
+                          zip: 80022,
+                          shared_bathroom: true,
+                          user_id: 1)
+    listing.categories << @category
+    listing.save
+    listing
+  end
   end
 
-  xit "is valid" do
-    reservation.items << item
+  it "is valid" do
+    reservation.listings << listing
     expect(reservation).to be_valid
   end
 

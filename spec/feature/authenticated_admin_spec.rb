@@ -294,53 +294,53 @@ describe "an admin" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).
         and_return(admin)
         create_user_reservations_with_items
-        visit admin_orders_path
-        within(".orders-list") do
-          click_link_or_button "Order 00001"
+        visit admin_reservations_path
+        within(".reservations-list") do
+          click_link_or_button "Reservation 00001"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           click_link_or_button "change to paid"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           expect(page).to have_content("Status: paid")
         end
       end
 
-      xit "'mark as completed' individual orders which are currently 'paid'" do
+      xit "'mark as completed' individual reservations which are currently 'paid'" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                               and_return(admin)
-        create_user_orders_with_items
-        visit admin_orders_path
-        within(".orders-list") do
-          click_link_or_button "Order 00001"
+        create_user_reservations_with_items
+        visit admin_reservations_path
+        within(".reservations-list") do
+          click_link_or_button "Reservation 00001"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           click_link_or_button "change to complete"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           expect(page).to have_content("Status: completed")
         end
       end
 
-      xit "'cancel' individual orders which are currently 'ordered' or 'paid'" do
+      xit "'cancel' individual reservations which are currently 'ordered' or 'paid'" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                               and_return(admin)
-        create_user_orders_with_items
-        visit admin_orders_path
-        within(".orders-list") do
-          click_link_or_button "Order 00001"
+        create_user_reservations_with_items
+        visit admin_reservations_path
+        within(".reservations-list") do
+          click_link_or_button "Reservation 00001"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           click_link_or_button "change to cancel"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           expect(page).to have_content("Status: cancelled")
         end
       end
     end
   end
 
-  def create_user_orders_with_items
+  def create_user_reservations_with_items
     breakfast = Category.create(name: "Breakfast")
 
     item1 = Item.new(title: "Bacon and Eggs",
@@ -360,16 +360,16 @@ describe "an admin" do
                        email: "rich@gmail.com",
                        password: "password")
 
-    order = Order.create(user_id: user.id)
-    order.line_items.create(item_id: item1.id, quantity: 1)
-    order.line_items.create(item_id: item2.id, quantity: 2)
+    reservation = Reservation.create(user_id: user.id)
+    reservation.line_items.create(item_id: item1.id, quantity: 1)
+    reservation.line_items.create(item_id: item2.id, quantity: 2)
 
-    order2 = Order.create(user_id: user.id, status: "completed")
-    order2.line_items.create(item_id: item1.id, quantity: 10)
-    order2.line_items.create(item_id: item2.id, quantity: 11)
+    reservation2 = Reservation.create(user_id: user.id, status: "completed")
+    reservation2.line_items.create(item_id: item1.id, quantity: 10)
+    reservation2.line_items.create(item_id: item2.id, quantity: 11)
 
-    order3 = Order.create(user_id: user.id, status: "completed")
-    order3.line_items.create(item_id: item1.id, quantity: 10)
-    order3.line_items.create(item_id: item2.id, quantity: 11)
+    reservation3 = Reservation.create(user_id: user.id, status: "completed")
+    reservation3.line_items.create(item_id: item1.id, quantity: 10)
+    reservation3.line_items.create(item_id: item2.id, quantity: 11)
   end
 end
