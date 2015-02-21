@@ -361,15 +361,15 @@ describe "an admin" do
                        password: "password")
 
     reservation = Reservation.create(user_id: user.id)
-    reservation.line_items.create(item_id: item1.id, quantity: 1)
-    reservation.line_items.create(item_id: item2.id, quantity: 2)
+    reservation.reservation_listings.create(item_id: item1.id, quantity: 1)
+    reservation.reservation_listings.create(item_id: item2.id, quantity: 2)
 
     reservation2 = Reservation.create(user_id: user.id, status: "completed")
-    reservation2.line_items.create(item_id: item1.id, quantity: 10)
-    reservation2.line_items.create(item_id: item2.id, quantity: 11)
+    reservation2.reservation_listings.create(item_id: item1.id, quantity: 10)
+    reservation2.reservation_listings.create(item_id: item2.id, quantity: 11)
 
     reservation3 = Reservation.create(user_id: user.id, status: "completed")
-    reservation3.line_items.create(item_id: item1.id, quantity: 10)
-    reservation3.line_items.create(item_id: item2.id, quantity: 11)
+    reservation3.reservation_listings.create(item_id: item1.id, quantity: 10)
+    reservation3.reservation_listings.create(item_id: item2.id, quantity: 11)
   end
 end

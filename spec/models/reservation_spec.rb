@@ -1,42 +1,46 @@
 require "rails_helper"
 
 RSpec.describe Reservation, type: :model do
-  let(:user) do
-    User.create(first_name: "Bryce",
-                last_name: "Holcomb",
-                display_name: "valid",
-                about_me: "valid",
-                email: "bryce@gmail.com",
-                password: "password")
-  let(:reservation) { Reservation.new(user_id: user.id) }
-  let!(:item) do
-    @category = Category.create(name: "NewCategory")
-    listing = Listing.new(title: "C&C Music Factory",
-                          description: "Jam",
-                          category_id: 2,
-                          max_guests: 10,
-                          nightly_rate: 10000,
-                          address1: "123 Elm St",
-                          address2: "Apt 21",
-                          city: "Denver",
-                          state: "CO",
-                          zip: 80022,
-                          shared_bathroom: true,
-                          user_id: 1)
-    listing.categories << @category
-    listing.save
-    listing
-  end
-  end
+  let (:reservation) {
+    Reservation.create(user_id: 1,
+                       status: "ordered",
+                       start_date: nil,
+                       end_date: nil)
+                     }
+  let (:listing) {
+    Listing.create(title: "C&C Music Factory",
+                   description: "Jam",
+                   nightly_rate: 10000,
+                   category_id: 2,
+                   max_guests: 10,
+                   address1: "123 Elm St",
+                   address2: "Apt 21",
+                   city: "Denver",
+                   state: "CO",
+                   zip: 80022,
+                   shared_bathroom: true,
+                   user_id: 1
+                   ) }
+  # reservation.reservation_listings.create(item_id: item1.id, quantity: 1)
+  #   listing.categories << @category
+  #   listing.save
+  #   listing
+  #   category = Category.create(name: "NewCategory")
+  # let(:user) do
+  #   User.create(first_name: "Bryce",
+  #               last_name: "Holcomb",
+  #               display_name: "valid",
+  #               about_me: "valid",
+  #               email: "bryce@gmail.com",
+  #               password: "password",
+  #               slug: "Bryce")
 
   it "is valid" do
-    reservation.listings << listing
     expect(reservation).to be_valid
   end
 
-  xit "can have items" do
-    reservation.items << item
-    expect(reservation.items.first).to eq(item)
+  it "can have listings" do
+    expect(reservation.listings).to eq([])
   end
 
   xit "defaults to ordered" do

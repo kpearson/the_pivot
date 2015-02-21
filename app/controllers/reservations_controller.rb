@@ -11,8 +11,8 @@ class ReservationsController < ApplicationController
   def create
     if current_user
       @reservation = Reservation.new(user_id: current_user.id)
-      line_items = @reservation.create_line_items(@cart.data)
-      @reservation.line_items << line_items
+      reservation_listings = @reservation.create_reservation_listings(@cart.data)
+      @reservation.reservation_listings << reservation_listings
       if @reservation.save
         flash[:notice] = "Your delicious food is on the way"
         redirect_to reservation_path(@reservation.id)

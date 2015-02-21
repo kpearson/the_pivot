@@ -1,4 +1,4 @@
-<% @reservation.line_items.each do |line_item| %>
+<% @reservation.reservation_listings.each do |reservation_listing| %>
 <div id="purchaser-details">
   <% if current_user && current_user.admin? %>
     <h3>Purchaser Details</h3>
@@ -9,24 +9,24 @@
 <h3>Reservation Details</h3>
 </div>
 <div id="item-title">
-  Title: <%=link_to line_item.title, item_path(line_item.item_id) %>
+  Title: <%=link_to reservation_listing.title, item_path(reservation_listing.item_id) %>
 </div>
 <div id="item-description">
-  Description: <%= line_item.description %>
+  Description: <%= reservation_listing.description %>
 </div>
 <div id="item-price">
-  Unit Price: <%= number_to_currency line_item.price %>
+  Unit Price: <%= number_to_currency reservation_listing.price %>
 </div>
 <div id="item-quantity">
-  Quantity: <%= line_item.quantity %>
+  Quantity: <%= reservation_listing.quantity %>
 </div>
 <div id="item-subtotal">
-  Subtotal: <%= number_to_currency line_item.subtotal(line_item.price, line_item.quantity) %>
+  Subtotal: <%= number_to_currency reservation_listing.subtotal(reservation_listing.price, reservation_listing.quantity) %>
 </div><br>
 <% end %>
 
 <div id="item-total">
-  Total: <%= number_to_currency @reservation.total(@reservation.line_items) %>
+  Total: <%= number_to_currency @reservation.total(@reservation.reservation_listings) %>
 </div>
 <div id="reservation-submit-time">
   Reservation Submitted At: <%= @reservation.formatted_created_at %>

@@ -1,7 +1,7 @@
 class Reservation < ActiveRecord::Base
   validates :user_id, presence: true
-  has_many :line_items
-  has_many :items, through: :line_items
+  has_many :reservation_listings
+  has_many :listings, through: :reservation_listings
   belongs_to :user
   scope :ordered, -> { where(status: "ordered") }
   scope :completed, -> { where(status: "completed") }
@@ -16,15 +16,15 @@ class Reservation < ActiveRecord::Base
     user
   end
 
-  def create_line_items(cart_items)
+  def create_reservation_listings(cart_items)
     cart_items.map do |item_id, quantity|
       LineItem.create(item_id: item_id.to_i, quantity: quantity)
     end
   end
 
-  def total(line_items)
-    line_items.map do |line_item|
-      (line_item.quantity * line_item.item.price) / 100
+  def total(reservation_listings)
+    reservation_listings.map do |reservation_listing|
+      (line_item.quantity * reservation_listing.item.price) / 100
     end.reduce(:+)
   end
 
