@@ -6,3 +6,14 @@
   </div>
 </div>
 <%= render partial: "image_carousel" %>
+
+<section id="networks">
+  <div class="container">
+    <div class="show-info">
+      <%= render partial: "listing_show", locals: {listing: @listing, images: @listing_images} %>
+    </div>
+    <p>
+      <a href="#"><i class="facebook fa fa-facebook"></i></a><a href="#"><i class="twitter fa fa-twitter"></i></a><a href="#"><i class="mail fa fa-envelope"></i></a>
+    </p>
+
+  </div>
