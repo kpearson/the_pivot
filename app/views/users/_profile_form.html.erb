@@ -5,9 +5,7 @@
         Edit Profile
       </div>
       <div class="modal-body">
-
-        <%= bootstrap_form_for user, :html => { :multipart => true }  do |f| %>
-
+       <%= bootstrap_form_for user, :html => { :multipart => true }  do |f| %>
           <%= f.file_field :image %>
 
           <%= f.text_area :about_me %>
@@ -16,13 +14,13 @@
 
           <%= f.text_field :last_name %>
 
-          <%= f.text_field :display_name %>
+          <%= f.text_field :display_name  %>
 
-          <%= f.text_field :email %>
+          <%= f.text_field :email, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}'%>
 
-          <%= f.password_field :password %>
+          <%= f.password_field :password, :required => true %>
 
-          <%= f.password_field :password_confirmation %>
+          <%= f.password_field :password_confirmation, :required => true %>
 
           <%= f.submit "Submit" %>
         <% end %>
@@ -30,4 +28,3 @@
       </div>
     </div>
   </div>
-</div>
