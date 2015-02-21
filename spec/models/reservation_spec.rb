@@ -1,14 +1,14 @@
 require "rails_helper"
 
 RSpec.describe Reservation, type: :model do
-  let (:reservation) do
-    Reservation.new(user_id: 1,
-                    listing_id: 1,
-                    start_date: Date.new,
-                    end_date: Date.new)
+  let!(:reservation) do
+    Reservation.create(user_id: 1,
+                       listing_id: 1,
+                       start_date: Date.new,
+                       end_date: Date.new)
   end
 
-  let (:listing) do
+  let!(:listing) do
     Listing.create(title: "C&C Music Factory",
                    description: "Jam",
                    nightly_rate: 10000,
@@ -23,7 +23,7 @@ RSpec.describe Reservation, type: :model do
                    user_id: 1)
   end
 
-  let(:user) do
+  let!(:user) do
     User.create(first_name: "Bryce",
                 last_name: "Holcomb",
                 display_name: "valid",

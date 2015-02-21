@@ -78,6 +78,7 @@ RSpec.describe User, type: :model do
   it "can create a reservation" do
     user.save
     user.reservations.create(start_date: Date.new,
+                             listing_id: 1,
                              end_date: Date.new)
     expect(user.reservations.count).to eq(1)
   end
