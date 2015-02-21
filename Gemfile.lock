@@ -88,6 +88,9 @@ GEM
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
     erubis (2.7.0)
     excon (0.44.2)
     execjs (2.2.2)
@@ -371,6 +374,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.1.0)
   database_cleaner
+  dotenv-rails
   factory_girl_rails
   fog
   font-awesome-less
