@@ -13,7 +13,9 @@
       <% @listings.each do |listing| %>
         <li class="listing-slide" id="listing-slide">
           <%= link_to user_listing_path(listing.user.slug, listing) do %>
-            <%= image_tag listing.listing_images.first.image.url %>
+            <% if listing.listing_images.any? %>
+              <%= image_tag listing.listing_images.first.image.url %>
+            <% end %>
             <span class="d-hover"><br>
               <%#= link_to listing.title, user_listing_path(listing.user_id, listing) %><br>
               Property Category: <%= listing.category.name %><br>

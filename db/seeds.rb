@@ -54,6 +54,7 @@ categories = Category.create([{ name: "House" },
                                 }])
 
 #Denver -----------------------------------------------------------------
+
 listing1 = Listing.create(title: "Denver B&B",
                           description: "Denver Omeletes and Canibus for everyone!",
                           category_id: 5,
@@ -67,9 +68,6 @@ listing1 = Listing.create(title: "Denver B&B",
                           shared_bathroom: true,
                           user_id: 1
                           )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/denver.jpg')))
-listing1.listing_images << li
-listing1.save
 
 listing2 = Listing.create(title: "Denver Love Shack",
                           description: "Mile High Escape",
@@ -84,9 +82,6 @@ listing2 = Listing.create(title: "Denver Love Shack",
                           shared_bathroom: true,
                           user_id: 1
                           )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/denver.jpg')))
-listing2.listing_images << li
-listing2.save
 
 listing3 = Listing.create(title: "Denver Mountain Retreat",
                           description: "The Air is thin up there, boil your eggs a couple minutes longer than normal.",
@@ -101,11 +96,9 @@ listing3 = Listing.create(title: "Denver Mountain Retreat",
                           shared_bathroom: true,
                           user_id: 2
                           )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/denver.jpg')))
-listing3.listing_images << li
-listing3.save
 
 #New York --------------------------------------------------------------------
+
 listing4 = Listing.create(title: "Big lights will inspire you",
                           description: "City so nice they named it twice",
                           category_id: 2,
@@ -119,9 +112,6 @@ listing4 = Listing.create(title: "Big lights will inspire you",
                           shared_bathroom: true,
                           user_id: 4
                           )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/new_york.jpg')))
-listing4.listing_images << li
-listing4.save
 
 listing5 = Listing.create(title: "Empire State of Mind",
                           description: "City so nice they named it thrice",
@@ -136,9 +126,6 @@ listing5 = Listing.create(title: "Empire State of Mind",
                           shared_bathroom: true,
                           user_id: 4
                           )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/new_york.jpg')))
-listing5.listing_images << li
-listing5.save
 
 listing6 = Listing.create(title: "These streets will make you feel brand new",
                           description: "City so nice they named it one-time",
@@ -153,10 +140,6 @@ listing6 = Listing.create(title: "These streets will make you feel brand new",
                           shared_bathroom: true,
                           user_id: 1
                           )
-
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/new_york2.jpg')))
-listing6.listing_images << li
-listing6.save
 
 #Seattles ----------------------------------------------------------------
 
@@ -173,9 +156,6 @@ listing7 = Listing.create(title: "Rain City, USA Condo",
                           shared_bathroom: true,
                           user_id: 1
                           )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/seattle.jpg')))
-listing7.listing_images << li
-listing7.save
 
 listing8 = Listing.create(title: "Pike Place Market Bungalo",
                           description: "Copper River Salmon!",
@@ -190,9 +170,6 @@ listing8 = Listing.create(title: "Pike Place Market Bungalo",
                           shared_bathroom: true,
                           user_id: 2
                           )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/seattle.jpg')))
-listing8.listing_images << li
-listing8.save
 
 listing9 = Listing.create(title: "Mt Rainier Cabin",
                           description: "If you like camping on a volcano, we have the place for you!",
@@ -207,9 +184,6 @@ listing9 = Listing.create(title: "Mt Rainier Cabin",
                           shared_bathroom: true,
                           user_id: 3
                           )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/seattle.jpg')))
-listing9.listing_images << li
-listing9.save
 
 # San Francisco-------------------------------------------------------------
 listing10 = Listing.create(title: "Haight-Ashbury Hostel",
@@ -225,9 +199,6 @@ listing10 = Listing.create(title: "Haight-Ashbury Hostel",
                            shared_bathroom: true,
                            user_id: 4
                            )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/san_francisco.jpg')))
-listing10.listing_images << li
-listing10.save
 
 listing11 = Listing.create(title: "Golden Gate Escape",
                            description: "aka Alcatraz",
@@ -242,9 +213,6 @@ listing11 = Listing.create(title: "Golden Gate Escape",
                            shared_bathroom: true,
                            user_id: 2
                            )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/san_francisco.jpg')))
-listing11.listing_images << li
-listing11.save
 
 listing12 = Listing.create(title: "Planet of the Apes Treehouse",
                            description: "We've got Funky Monkeys!",
@@ -259,10 +227,6 @@ listing12 = Listing.create(title: "Planet of the Apes Treehouse",
                            shared_bathroom: true,
                            user_id: 1
                            )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/san_francisco.jpg')))
-listing12.listing_images << li
-listing12.save
-
 
 # Washington-----------------------------------------------------------
 listing13 = Listing.create(title: "Condo on the Mall",
@@ -278,9 +242,6 @@ listing13 = Listing.create(title: "Condo on the Mall",
                            shared_bathroom: true,
                            user_id: 2
                            )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/washington_dc.jpg')))
-listing13.listing_images << li
-listing13.save
 
 listing14 = Listing.create(title: "Capital Hill House",
                            description: "We like our house guests like we like our politicians, clean and self-serving.",
@@ -295,9 +256,6 @@ listing14 = Listing.create(title: "Capital Hill House",
                            shared_bathroom: true,
                            user_id: 3
                            )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/washington_dc.jpg')))
-listing14.listing_images << li
-listing14.save
 
 listing15 = Listing.create(title: "Gateway to the West",
                            description: "Perfet Apt for those who don't know their cardinal directions.",
@@ -312,9 +270,6 @@ listing15 = Listing.create(title: "Gateway to the West",
                            shared_bathroom: true,
                            user_id: 4
                            )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/washington_dc.jpg')))
-listing15.listing_images << li
-listing15.save
 
 listing16 = Listing.create(title: "Lincoln Bedroom",
                            description: "In the White Horse!",
@@ -329,9 +284,6 @@ listing16 = Listing.create(title: "Lincoln Bedroom",
                            shared_bathroom: true,
                            user_id: 3
                            )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/washington_dc.jpg')))
-listing16.listing_images << li
-listing16.save
 
 listing17 = Listing.create(title: "Cherry Blossom B&B",
                            description: "Stay in on our luxurious paddlewheel river boat and cruise in style up the Tidal Basin",
@@ -346,9 +298,6 @@ listing17 = Listing.create(title: "Cherry Blossom B&B",
                            shared_bathroom: true,
                            user_id: 1
                            )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/washington_dc.jpg')))
-listing17.listing_images << li
-listing17.save
 
 listing18 = Listing.create(title: "Private Ford Theatre Balcony Suite",
                            description: "Privacy guarenteed, or your money back",
@@ -363,9 +312,6 @@ listing18 = Listing.create(title: "Private Ford Theatre Balcony Suite",
                            shared_bathroom: true,
                            user_id: 2
                            )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/washington_dc2.jpg')))
-listing18.listing_images << li
-listing18.save
 
 listing19 = Listing.create(title: "House of Cards",
                            description: "I’ve always loathed the necessity of sleep. Like death, it puts even the most powerful men on their backs.",
@@ -380,9 +326,6 @@ listing19 = Listing.create(title: "House of Cards",
                            shared_bathroom: true,
                            user_id: 3
                            )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/washington_dc2.jpg')))
-listing19.listing_images << li
-listing19.save
 
 listing20 = Listing.create(title: "The West Wing",
                            description: "Join the Bartlet's, Leo (now deceased), C. J., Josh, Toby, Donna, Charlie and Sam in this White house replica",
@@ -397,6 +340,3 @@ listing20 = Listing.create(title: "The West Wing",
                            shared_bathroom: true,
                            user_id: 4
                            )
-li = ListingImage.create(image: File.open(File.join(Rails.root, 'app/assets/images/washington_dc.jpg')))
-listing20.listing_images << li
-listing20.save
