@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
     false
   end
 
-  # def to_param
-  #   slug
-  # end
+  def to_param
+    slug
+  end
 end
