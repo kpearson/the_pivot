@@ -1,27 +1,8 @@
-<div class="span4">
-  <h1 class="listing-header"><%= @listing.title %></h1>
-  <p><%= @listing.description %></p>
-  <p><a href="#" class="btn btn-primary btn-large">Book It!</a></p>
-</div>
-
-<div class="row-fluid span6">
-  <div id="myCarousel" class="carousel slide well">
-    <div class="carousel-inner">
-      <% @listing.listing_images.each_with_index do |listing_image, i| %>
-        <div class="item <%= 'active' if i == 0 %>">
-          <%= image_tag listing_image.image.url %>
-          <div class="container span3">
-            <div class="carousel-caption">
-              <h4></h4>
-              <p class="lead"></p>
-              <a class="btn btn-large btn-primary" href="#">Learn more</a>
-            </div>
-          </div>
-        </div>
-      <% end %>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-    </div><!-- /.carousel -->
+<div class="row">
+  <div class="col-lg-4">
+    <h1 class="listing-header"><%= @listing.title %></h1>
+    <p><%= @listing.description %></p>
+    <p><a href="#" class="btn btn-primary btn-large">Book It!</a></p>
   </div>
 </div>
-</div>
+<%= render partial: "image_carousel" %>
