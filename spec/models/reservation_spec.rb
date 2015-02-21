@@ -2,10 +2,10 @@ require "rails_helper"
 
 RSpec.describe Reservation, type: :model do
   let!(:reservation) do
-    Reservation.create(user_id: 1,
-                       listing_id: 1,
-                       start_date: Date.new,
-                       end_date: Date.new)
+    Reservation.new(user_id: 1,
+                    listing_id: 1,
+                    start_date: Date.new,
+                    end_date: Date.new)
   end
 
   let!(:listing) do
@@ -73,8 +73,26 @@ RSpec.describe Reservation, type: :model do
     expect(user.reservations.first).to eq(Reservation.first)
   end
 
-  xit "can have formatted reservation numbers" do
-    reservation = Reservation.create(user_id: 1)
-    expect(reservation.format_reservation_number(reservation.id)).to eq("00001")
+  it "has cancelled reservations" do
+    reservation.status = "cancelled"
+    reservation.save
+    expect(Reservation.cancelled.first).to eq(reservation)
+  end
+
+  it "has pending reservations" do
+    reservation.save
+    expect(Reservation.pending.first).to eq(reservation)
+  end
+
+  it "has paid reservation" do
+    reservation.status = "paid"
+    reservation.save
+    expect(Reservation.paid.first).to eq(reservation)
+  end
+
+  it "has past reservation" do
+    reservation.status = "past"
+    reservation.save
+    expect(Reservation.past.first).to eq(reservation)
   end
 end

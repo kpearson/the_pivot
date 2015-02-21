@@ -2,8 +2,8 @@ class Reservation < ActiveRecord::Base
   validates :user_id, :start_date, :end_date, :listing_id, presence: true
   belongs_to :listing
   belongs_to :user
-  scope :ordered, -> { where(status: "ordered") }
-  scope :completed, -> { where(status: "completed") }
+  scope :pending, -> { where(status: "pending") }
+  scope :past, -> { where(status: "past") }
   scope :paid, -> { where(status: "paid") }
   scope :cancelled, -> { where(status: "cancelled") }
 
@@ -21,10 +21,6 @@ class Reservation < ActiveRecord::Base
     reservation_listings.map do |reservation_listing|
       (line_item.quantity * reservation_listing.item.price) / 100
     end.reduce(:+)
-  end
-
-  def format_reservation_number(reservation_id)
-    reservation_id.to_s.rjust(5, "0")
   end
 
   def formatted_created_at
