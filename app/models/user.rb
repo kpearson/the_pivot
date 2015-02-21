@@ -8,7 +8,6 @@ class User < ActiveRecord::Base
             format: {
               with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/
             }, uniqueness: true
-  has_many :listings
   has_many :listing_images, :through => :listings
   has_many :reservations
   has_attached_file :image, styles: { medium: "300x300>",

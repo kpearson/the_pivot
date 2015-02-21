@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(version: 20150221011148) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "password_digest"
     t.string   "image_file_name"
     t.string   "image_content_type"
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(version: 20150221011148) do
     t.text     "about_me"
     t.string   "display_name"
     t.string   "slug"
+    t.integer  "role",               default: 0
   end
 
   add_foreign_key "reservation_listings", "listings"
