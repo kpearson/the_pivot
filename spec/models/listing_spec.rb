@@ -118,12 +118,21 @@ RSpec.describe Listing, type: :model do
     expect(valid_listing.category).to eq(category)
   end
 
-  xit "can have many reservations" do
+  it "can have many reservations" do
     expect(valid_listing.reservations).to eq([])
   end
 
-  xit "can have many photos" do
-    expect(valid_listing.photos).to eq([])
+  it "has a reservation" do
+    valid_listing.save
+    reservation = Reservation.create(user_id: 1,
+                                     listing_id: 1,
+                                     start_date: Date.new,
+                                     end_date: Date.new)
+    expect(valid_listing.reservations.first).to eq(reservation)
+  end
+
+  it "can have many photos" do
+    expect(valid_listing.listing_images).to eq([])
   end
 
   it "has a currency that converts cents to dollars" do

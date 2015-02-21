@@ -8,8 +8,7 @@ class Listing < ActiveRecord::Base
   belongs_to :user
   belongs_to :category
   has_many :listing_images
-  has_many :reservation_listings
-  has_many :reservations, through: :reservation_listings
+  has_many :reservations
   scope :city, -> (city) { where city: city }
   scope :max_guests, -> (max_guests) { where("max_guests >= ?", max_guests)
     .order(max_guests: :asc) }

@@ -62,3 +62,5 @@ $(".to_date")
     $('#myCarousel').carousel()
   })
 }(window.jQuery)
+
+$('.dropdown-toggle').dropdown();

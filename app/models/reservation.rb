@@ -1,7 +1,6 @@
 class Reservation < ActiveRecord::Base
-  validates :user_id, presence: true
-  has_many :reservation_listings
-  has_many :listings, through: :reservation_listings
+  validates :user_id, :start_date, :end_date, :listing_id, presence: true
+  belongs_to :listing
   belongs_to :user
   scope :ordered, -> { where(status: "ordered") }
   scope :completed, -> { where(status: "completed") }
@@ -9,10 +8,6 @@ class Reservation < ActiveRecord::Base
   scope :cancelled, -> { where(status: "cancelled") }
 
   def guest
-    user
-  end
-
-  def host
     user
   end
 
@@ -39,6 +34,4 @@ class Reservation < ActiveRecord::Base
   def find_user_info(user_id)
     User.find(user_id)
   end
-
-
 end

@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   scope :host, -> (host) { where()}
   before_save :generate_slug
 
+  enum role: [:default, :host]
+
   def generate_slug
     self.slug = display_name.parameterize
   end
@@ -28,4 +30,8 @@ class User < ActiveRecord::Base
   def admin?
     false
   end
+
+  # def to_param
+  #   slug
+  # end
 end

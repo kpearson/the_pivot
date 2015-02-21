@@ -3,6 +3,7 @@ require "rails_helper"
 RSpec.describe Reservation, type: :model do
   let (:reservation) do
     Reservation.new(user_id: 1,
+                    listing_id: 1,
                     start_date: Date.new,
                     end_date: Date.new)
   end
@@ -35,8 +36,8 @@ RSpec.describe Reservation, type: :model do
     expect(reservation).to be_valid
   end
 
-  it "can have listings" do
-    expect(reservation.listings).to eq([])
+  it "belongs to a listing" do
+    expect(reservation.listing).to eq(listing)
   end
 
   it "status defaults to pending" do
@@ -48,10 +49,26 @@ RSpec.describe Reservation, type: :model do
       reservation.user_id = nil
       expect(reservation.save).to eq false
     end
+
+    it "a start date to be valid" do
+      reservation.start_date = nil
+      expect(reservation.save).to eq false
+    end
+
+    it "an end date to be valid" do
+      reservation.end_date = nil
+      expect(reservation.save).to eq false
+    end
+
+    it "a listing to be valid" do
+      reservation.listing_id = nil
+      expect(reservation.save).to eq false
+    end
   end
 
   it "belongs to a user" do
     user.reservations.create(start_date: Date.new,
+                             listing_id: 1,
                              end_date: Date.new)
     expect(user.reservations.first).to eq(Reservation.first)
   end

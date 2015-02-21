@@ -5,6 +5,10 @@ class User::ListingsController < ApplicationController
     @remaining_images = @listing_images[1..-1]
   end
 
+  def edit_index
+    @listings = Listing.where(user_id: current_user.id)
+  end
+
   def new
     @listing = current_user.listings.new
     @listing_image = @listing.listing_images.build
@@ -12,10 +16,12 @@ class User::ListingsController < ApplicationController
 
   def create
     @listing = current_user.listings.new(listing_params)
-    params["listing_images"]["images"].each do |i|
-      @listing.listing_images.build(:image => i)
+    if params["listing_images"]
+      params["listing_images"]["images"].each do |i|
+        @listing.listing_images.build(image: i)
+      end
     end
-   if @listing.save
+    if @listing.save
       redirect_to user_listing_path(current_user.slug, @listing.id)
     else
       render :new
@@ -23,14 +29,16 @@ class User::ListingsController < ApplicationController
   end
 
   def edit
-    @listing = Listing.find[:id]
+    @listing = Listing.find(params[:id])
   end
 
   def update
     @listing = Listing.find(params[:id])
-    params["listing_images"]["images"].each do |i|
-      @listing.listing_images.build(:image => i)
-    end
+     if params["listing_images"]
+       params["listing_images"]["images"].each do |i|
+       @listing.listing_images.build(image: i)
+     end
+   end
    if @listing.update_attributes(listing_params)
       redirect_to user_listing_path(current_user.slug, @listing.id)
     else
@@ -38,23 +46,40 @@ class User::ListingsController < ApplicationController
     end
   end
 
+
+  def edit
+    @listing = Listing.find(params[:id])
+  end
+
+  def update
+    @listing = Listing.find(params[:id])
+    @listing.update(listing_params)
+    redirect_to :back
+  end
+
+  def destroy
+    @listing = Listing.find(params[:id])
+    @listing.destroy
+    redirect_to user_show_path
+  end
+
   private
 
   def listing_params
     params.require(:listing).permit(:title,
-                                    :description,
-                                    :nightly_rate,
-                                    :category_id,
-                                    :max_guests,
-                                    :address1,
-                                    :address2,
-                                    :city,
-                                    :state,
-                                    :zip,
-                                    :shared_bathroom,
-                                    listing_images_attributes: [:id,
-                                                                :listing_id,
-                                                                :image]
-                                   )
+    :description,
+    :nightly_rate,
+    :category_id,
+    :max_guests,
+    :address1,
+    :address2,
+    :city,
+    :state,
+    :zip,
+    :shared_bathroom,
+    listing_images_attributes: [:id,
+      :listing_id,
+      :image]
+      )
+    end
   end
-end

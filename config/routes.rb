@@ -15,6 +15,14 @@ Rails.application.routes.draw do
     resources :listings, except: [:index]
   end
 
+ # post   '/:user_slug/listings'          , 'user/listings#create' , as: :user_listings
+ # get    '/:user_slug/listings/new'      , 'user/listings#new'    , as: :new_user_listing
+ # get    '/:user_slug/listings/:id/edit' , 'user/listings#edit'   , as: :edit_user_listing
+ # get    '/:user_slug/listings/:id'      , 'user/listings#show'   , as: :user_listing
+ # patch  '/:user_slug/listings/:id'      , 'user/listings#update'
+ # put    '/:user_slug/listings/:id'      , 'user/listings#update'
+ # delete '/:user_slug/listings/:id'      , 'user/listings#destroy'
+
   resources :users
   resources :reservations
 
