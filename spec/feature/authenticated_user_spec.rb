@@ -33,6 +33,14 @@ describe "an authenticated user" do
     visit root_path
   end
 
+  it "cannot see a host's dashboard in their profile dropdown" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(valid_user)
+    visit root_path
+    expect(page).to_not have_content("Dashboard")
+  end
+
+
   it "can browse all listings (listings index page)" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)

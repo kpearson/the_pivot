@@ -316,6 +316,16 @@ describe "As an unauthenticated user" do
     expect(page).to_not have_content("Log Out")
   end
 
+  it "cannot see a profile dropdown" do
+    visit root_path
+    expect(page).to_not have_content("Profile")
+  end
+
+  it "cannot see a create a listing link" do
+    visit root_path
+    expect(page).to_not have_content("Create A listing")
+  end
+
   xit "can log out which does not clear cart" do
     click_add_to_cart_link("Breakfast")
     User.create(first_name: "Rich",

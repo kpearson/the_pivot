@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :listings, only: [:index]
   namespace :user, path: "/:slug" do
     resources :listings, except: [:index]
+    get '/dashboard', to: 'dashboard#index'
   end
 
  # post   '/:user_slug/listings'          , 'user/listings#create' , as: :user_listings
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
  # delete '/:user_slug/listings/:id'      , 'user/listings#destroy'
 
   resources :users
+
   resources :orders
 
   resources :admins
