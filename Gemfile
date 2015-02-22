@@ -40,6 +40,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'database_cleaner'
+  gem 'dotenv-rails', :groups => [:development, :test]
   gem 'better_errors'
   gem 'binding_of_caller'
 end
