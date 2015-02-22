@@ -9,7 +9,8 @@ describe "authenticated" do
                 display_name: "valid",
                 about_me: "valid",
                 email: "bryce@gmail.com",
-                password: "userpassword")
+                password: "userpassword",
+                password_confirmation: "userpassword")
   end
 
   let!(:admin) do

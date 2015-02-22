@@ -20,8 +20,8 @@ class User::ListingsController < ApplicationController
       params["listing_images"]["images"].each do |i|
         @listing.listing_images.build(image: i)
       end
-    end
-    if @listing.save
+    elsif @listing.save
+      current_user.update_attributes(role: 1)
       redirect_to user_listing_path(current_user.slug, @listing.id)
     else
       render :new

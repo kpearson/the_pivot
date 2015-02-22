@@ -5,7 +5,8 @@ RSpec.describe Order, type: :model do
     User.create(first_name: "Alex",
                 last_name: "Robinson",
                 email: "alex@robinson.com",
-                password: "password")
+                password: "password",
+                password_confirmation: "password")
   end
   let(:order) { Order.new(user_id: user.id) }
   let!(:item) do

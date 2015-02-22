@@ -31,7 +31,8 @@ describe "As an unauthenticated user" do
                 display_name: "valid",
                 about_me: "valid",
                 email: "valid@gmail.com",
-                password: "secret")
+                password: "secret",
+                password_confirmation: "secret")
     click_link "Log In"
     fill_in "session[email]", with: "valid@gmail.com"
     fill_in "session[password]", with: "secret"
@@ -49,6 +50,7 @@ describe "As an unauthenticated user" do
                 last_name: "Doe",
                 email: "joe@gmail.com",
                 password: "password",
+                password_confirmation: "password",
                 about_me: "valid",
                 id: 1,
                 display_name: "joe")
@@ -64,6 +66,7 @@ describe "As an unauthenticated user" do
                 last_name: "Doe",
                 email: "joe@gmail.com",
                 password: "password",
+                password_confirmation: "password",
                 about_me: "valid",
                 id: 1,
                 display_name: "joe")
@@ -84,6 +87,7 @@ describe "As an unauthenticated user" do
                 last_name: "Doe",
                 email: "joe@gmail.com",
                 password: "password",
+                password_confirmation: "password",
                 about_me: "valid",
                 id: 1,
                 display_name: "joe")
@@ -96,6 +100,7 @@ describe "As an unauthenticated user" do
                 last_name: "Doe",
                 email: "joe@gmail.com",
                 password: "password",
+                password_confirmation: "password",
                 about_me: "valid",
                 id: 1,
                 display_name: "joe")
@@ -124,6 +129,7 @@ describe "As an unauthenticated user" do
                 last_name: "Doe",
                 email: "joe@gmail.com",
                 password: "password",
+                password_confirmation: "password",
                 about_me: "valid",
                 id: 1,
                 display_name: "joe")
@@ -151,6 +157,7 @@ describe "As an unauthenticated user" do
                 last_name: "Doe",
                 email: "joe@gmail.com",
                 password: "password",
+                password_confirmation: "password",
                 about_me: "valid",
                 id: 1,
                 display_name: "joe")
@@ -178,6 +185,7 @@ describe "As an unauthenticated user" do
                 last_name: "Doe",
                 email: "joe@gmail.com",
                 password: "password",
+                password_confirmation: "password",
                 about_me: "valid",
                 id: 1,
                 display_name: "joe")
@@ -206,6 +214,7 @@ describe "As an unauthenticated user" do
                 last_name: "Doe",
                 email: "joe@gmail.com",
                 password: "password",
+                password_confirmation: "password",
                 about_me: "valid",
                 id: 1,
                 display_name: "joe")
@@ -312,7 +321,8 @@ describe "As an unauthenticated user" do
     User.create(first_name: "Rich",
                 last_name: "Shea",
                 email: "bryce@gmail.com",
-                password: "secret")
+                password: "secret",
+                password_confirmation: "secret")
     click_link "Log In"
     fill_in "session[email]", with: "bryce@gmail.com"
     fill_in "session[password]", with: "secret"

@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  has_secure_password validations: false
+  has_secure_password
   has_many :listings
   validates :first_name, :last_name, :display_name, :about_me, presence: true
   validates :display_name, format: { with: /\A[a-zA-Z]+\z/ }
@@ -15,7 +15,8 @@ class User < ActiveRecord::Base
                                       thumb: "100x100>" },
                                       default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
-  validates :password, presence: true, confirmation: true
+  validates :password, presence: true, on: :create
+  validates :password_confirmation, presence: true, on: :create
 
   before_save :generate_slug
 

@@ -25,7 +25,8 @@ describe "an authenticated user" do
                 display_name: "valid",
                 about_me: "valid",
                 email: "alice@gmail.com",
-                password: "password")
+                password: "password",
+                password_confirmation: "password")
   end
 
   before(:each) do
