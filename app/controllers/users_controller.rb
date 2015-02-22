@@ -38,6 +38,7 @@ class UsersController < ApplicationController
                                  :display_name,
                                  :password,
                                  :password_confirmation,
-                                 :about_me)
+                                 :about_me,
+                                 :image)
   end
 end
