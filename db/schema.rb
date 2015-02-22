@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 20150221033750) do
     t.string   "display_name"
     t.string   "slug"
     t.integer  "role",               default: 0
+    t.string   "image"
   end
 
 end

@@ -15,6 +15,9 @@ class User < ActiveRecord::Base
                                       default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   scope :host, -> (host) { where()}
+
+  mount_uploader :image, UserUploader
+
   before_save :generate_slug
 
   enum role: [:default, :host]
@@ -30,8 +33,4 @@ class User < ActiveRecord::Base
   def admin?
     false
   end
-
-#  def to_param
-#    slug
-#  end
 end
