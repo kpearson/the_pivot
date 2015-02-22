@@ -22,4 +22,4 @@ coverage
 
 #ignore carrierwave images
 /public/uploads
-aws_cred.md
+.env

@@ -1,8 +1,7 @@
 # encoding: utf-8
 class ListingImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
-  # storage :file
-  storage :fog
+
   if Rails.env.production?
     storage :fog
   else
