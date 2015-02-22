@@ -17,7 +17,6 @@
             <%= image_tag listing.listing_images.first.image.url %>
           <% end %>
           <span class="d-hover"><br>
-            <%#= link_to listing.title, user_listing_path(listing.user_id, listing) %><br>
             Property Category: <%= listing.category.name %><br>
             Property Description: <%= listing.description %><br>
             Nightly Rate: <%= number_to_currency(listing.currency) %><br>
