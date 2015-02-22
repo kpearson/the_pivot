@@ -28,6 +28,7 @@ gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 gem 'factory_girl_rails', :group => :test
 gem 'cancancan', '~> 1.10'
+gem 'fog'
 
 group :development, :test do
   gem 'poltergeist'
@@ -39,6 +40,7 @@ group :development, :test do
   gem 'launchy'
   gem 'pry'
   gem 'database_cleaner'
+  gem 'dotenv-rails', :groups => [:development, :test]
   gem 'better_errors'
   gem 'binding_of_caller'
 end

@@ -30,6 +30,7 @@ class User::ListingsController < ApplicationController
 
   def edit
     @listing = Listing.find(params[:id])
+    @listing_image = @listing.listing_images.build
   end
 
   def update
@@ -44,17 +45,6 @@ class User::ListingsController < ApplicationController
     else
       render :edit
     end
-  end
-
-
-  def edit
-    @listing = Listing.find(params[:id])
-  end
-
-  def update
-    @listing = Listing.find(params[:id])
-    @listing.update(listing_params)
-    redirect_to :back
   end
 
   def destroy

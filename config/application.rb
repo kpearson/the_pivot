@@ -15,6 +15,7 @@ require "carrierwave"
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 # config.autoload_paths += "#{Rails.root}/app/uploaders"
+# Dotenv::Railtie.load
 
 module DinnerDash
   class Application < Rails::Application
