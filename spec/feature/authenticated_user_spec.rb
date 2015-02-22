@@ -40,17 +40,26 @@ describe "an authenticated user" do
     expect(page).to_not have_content("Dashboard")
   end
 
+  it "can see a user profile dropdown" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(valid_user)
+    visit root_path
+    expect(page).to have_content("Profile")
+    expect(page).to have_content("Edit Profile")
+    expect(page).to have_content("Trips")
+  end
+
 
   it "can browse all listings (listings index page)" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
-    # click_link_or_button "View all properties"
+    click_link_or_button "Destinations"
     visit(listings_path)
     expect(page).to have_content listing.description
     expect(page).to have_content "$100.00"
   end
 
-  xit "can browse a listing by clicking the listing's title" do
+  xit "can browse a listing by clicking the listing" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
     visit listings_path

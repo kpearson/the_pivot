@@ -372,7 +372,9 @@ describe "As an unauthenticated user" do
     end
   end
 
-  xit "cannot edit a user's profile" do
+  it "cannot edit a user's profile" do
+    visit root_path
+    expect(page).to_not have_content('Edit Profile')
   end
 
   xit "cannot checkout" do
