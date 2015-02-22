@@ -20,9 +20,9 @@
 
   <%= f.text_field :email, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %>
 
-  <%= f.password_field :password, autocomplete: "off", class: 'form-control', :required => true  %>
+  <%= f.password_field :password, :required => true  %>
 
-  <%= f.password_field :password_confirmation, autocomplete: "off", class: 'form-control', :required => true %>
+  <%= f.password_field :password_confirmation, :required => true %>
 
   <%= f.submit "Sign Up" %>
 <% end %>
