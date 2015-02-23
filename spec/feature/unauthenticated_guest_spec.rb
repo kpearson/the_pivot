@@ -387,28 +387,10 @@ describe "As an unauthenticated user" do
     expect(page).to_not have_content("Admin Dashboard")
   end
 
-  xit "cannot create an item" do
-    visit new_admin_item_path
-    expect(page).to have_content("Page Not Found")
+  xit "cannot create a listing" do
   end
 
-  xit "cannot modify an item" do
-    visit edit_admin_item_path(item)
-    expect(page).to have_content("Page Not Found")
-  end
-
-  xit "cannot assign an item to a category" do
-    visit edit_admin_category_path(category1)
-    expect(page).to have_content("Page Not Found")
-    visit categories_path
-    expect(page).to_not have_content("Add to Category")
-  end
-
-  xit "cannot remove an item from a category" do
-    visit new_admin_category_path
-    expect(page).to have_content("Page Not Found")
-    visit categories_path
-    expect(page).to_not have_content("Remove from Category")
+  xit "cannot modify a listing" do
   end
 
   xit "cannot create a category" do
