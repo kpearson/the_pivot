@@ -1,5 +1,6 @@
 class User::DashboardController < ApplicationController
-  def index
+
+  def index 
     @listings = Listing.all
   end
 end
