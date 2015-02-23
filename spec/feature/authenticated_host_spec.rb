@@ -82,4 +82,13 @@ describe "a host" do
     expect(page).to have_content("Edited Listing")
     expect(page).to have_link("Book It!")
   end
+
+  it " it cannot view another hosts dashboard" do
+    valid_user = create(:user, role: 1)
+    another_host = create(:user, role: 1, email: "new@y.com", display_name: "username")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(another_host)
+    visit user_dashboard_path(valid_user)
+    expect(current_path).to eq(root_path)
+  end
 end
