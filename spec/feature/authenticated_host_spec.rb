@@ -54,4 +54,32 @@ describe "a host" do
     expect(page).to have_content("Jane's Dashboard")
   end
 
+  it "can visit its host dashboard and see their dashboard links" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(host_user)
+    visit root_path
+    click_link_or_button("Dashboard")
+    expect(page).to have_content("Edit Your Listings")
+    expect(page).to have_content("Manage Reservations")
+    expect(page).to have_content("Reservation Requests")
+  end
+
+  it "can view their listings as links to the edit page" do
+    valid_user = create(:user, role: 1)
+    listing = create(:listing)
+    create(:category, name: "Condo")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(valid_user)
+      visit root_path
+      click_link_or_button("Dashboard")
+      expect(page).to have_content("New Listing")
+
+      click_link_or_button("New Listing")
+      expect(page).to have_content("Edit listing")
+    fill_in "listing[title]", with: "Edited Listing"
+    fill_in "listing[description]", with: "edited Listing description"
+    click_link_or_button("Update Listing")
+    expect(page).to have_content("Edited Listing")
+    expect(page).to have_link("Book It!")
+  end
 end

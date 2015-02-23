@@ -58,7 +58,7 @@ $(".to_date")
 
 //fadeout flash messages
 $(document).ready(function() {
-    setTimeout(hideFlashes, 4000);
+    setTimeout(hideFlashes, 6000);
 });
 
 var hideFlashes = function() {
