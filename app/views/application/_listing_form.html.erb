@@ -1,5 +1,5 @@
-<form class="form-horizontal well">
-  <fieldset class="listing-create-form">
+<form class="form-horizontal well listing-create-form">
+  <fieldset>
     <%= bootstrap_form_for([current_user, @listing]) do |f| %>
       <% if @listing.errors.any? %>
         <div class="error_messages">
