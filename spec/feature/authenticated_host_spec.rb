@@ -5,22 +5,22 @@ describe "a host" do
 
   let!(:user) do
     User.create(first_name: "John",
-                display_name: "john",
-                last_name: "Doe",
-                about_me: "valid",
-                email: "john@gmail.com",
-                password: "password",
-                role: 0)
+    display_name: "john",
+    last_name: "Doe",
+    about_me: "valid",
+    email: "john@gmail.com",
+    password: "password",
+    role: 0)
   end
 
   let!(:host_user) do
     User.create(first_name: "Jane",
-                last_name: "Doe",
-                display_name: "jane",
-                about_me: "valid",
-                email: "jane@gmail.com",
-                password: "password",
-                role: 1)
+    last_name: "Doe",
+    display_name: "jane",
+    about_me: "valid",
+    email: "jane@gmail.com",
+    password: "password",
+    role: 1)
   end
 
   it "after creating a listing a user becomes a host" do
@@ -28,7 +28,7 @@ describe "a host" do
     valid_user = create(:user)
     create(:category, name: "Condo")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-    and_return(valid_user)
+      and_return(valid_user)
     visit new_user_listing_path(valid_user.slug)
     fill_in "listing[title]", with: "New Listing"
     fill_in "listing[description]", with: "New Listing description"
@@ -70,12 +70,12 @@ describe "a host" do
     create(:category, name: "Condo")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(valid_user)
-      visit root_path
-      click_link_or_button("Dashboard")
-      expect(page).to have_content("New Listing")
+    visit root_path
+    click_link_or_button("Dashboard")
+    expect(page).to have_content("New Listing")
 
-      click_link_or_button("New Listing")
-      expect(page).to have_content("Edit listing")
+    click_link_or_button("New Listing")
+    expect(page).to have_content("Edit listing")
     fill_in "listing[title]", with: "Edited Listing"
     fill_in "listing[description]", with: "edited Listing description"
     click_link_or_button("Update Listing")
@@ -87,7 +87,7 @@ describe "a host" do
     valid_user = create(:user, role: 1)
     another_host = create(:user, role: 1, email: "new@y.com", display_name: "username")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-      and_return(another_host)
+    and_return(another_host)
     visit user_dashboard_path(valid_user)
     expect(current_path).to eq(root_path)
   end
