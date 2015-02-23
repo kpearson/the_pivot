@@ -39,6 +39,5 @@ class UsersController < ApplicationController
                                  :password,
                                  :about_me,
                                  :image)
-
   end
 end
