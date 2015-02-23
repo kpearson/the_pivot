@@ -51,7 +51,7 @@ class User::ListingsController < ApplicationController
   def destroy
     @listing = Listing.find(params[:id])
     @listing.destroy
-    redirect_to user_show_path
+    redirect_to user_dashboard_path(current_user.id)
   end
 
   private

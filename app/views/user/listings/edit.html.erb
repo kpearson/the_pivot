@@ -1,6 +1,19 @@
 <div class="row edit-new-listing">
   <div class="col-md-8 col-md-offset-2">
-    <h2>Edit listing</h2>
+    <table>
+      <thead>
+        <th>
+          <h2 class="edit-listing-header">Edit listing</h2>
+        </th>
+        <th>
+          <div class="delete-listing">
+            <button class="btn btn-sm btn-danger">
+              <%= link_to "Delete This Listing", user_listing_path(@listing.user, @listing), method: "delete" %>
+            </button>
+          </div>
+        </th>
+      </thead>
+    </table>
     <%= render partial: "listing_form" %>
   </div>
 </div>
