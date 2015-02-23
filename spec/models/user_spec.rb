@@ -7,8 +7,7 @@ RSpec.describe User, type: :model do
              email: "valid@gmail.com",
              about_me: "valid",
              display_name: "valid",
-             password: "valid",
-             password_confirmation: "valid")
+             password: "valid")
   end
 
   it "is valid" do
@@ -53,8 +52,7 @@ RSpec.describe User, type: :model do
                 display_name: "valid",
                 about_me: "valid",
                 email: "valid@gmail.com",
-                password: "password",
-                password_confirmation: "password")
+                password: "password")
     expect(user).to_not be_valid
   end
 
@@ -64,8 +62,7 @@ RSpec.describe User, type: :model do
                 display_name: "valid",
                 about_me: "valid",
                 email: "different@gmail.com",
-                password: "password",
-                password_confirmation: "password")
+                password: "password")
     expect(user).to_not be_valid
   end
 
@@ -84,8 +81,7 @@ RSpec.describe User, type: :model do
                              display_name: "valid",
                              about_me: "valid",
                              email: "valid@email.com",
-                             password: "password",
-                             password_confirmation: "password")
+                             password: "password")
     expect(saved_user.slug).to eq("valid")
   end
 
@@ -95,15 +91,14 @@ RSpec.describe User, type: :model do
                 display_name: "valid",
                 about_me: "valid",
                 email: "different@gmail.com",
-                password: "password",
-                password_confirmation: "password")
+                password: "password")
+
     invalid_user = User.create(first_name: "Valid",
                                last_name: "User",
                                display_name: "valid",
                                about_me: "valid",
                                email: "valid@email.com",
-                               password: "password",
-                               password_confirmation: "password")
+                               password: "password")
     expect(invalid_user).to_not be_valid
   end
 

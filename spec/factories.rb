@@ -6,7 +6,6 @@ FactoryGirl.define do
     email "alica@email.com"
     about_me "I am Alice"
     password "password"
-    password_confirmation "password"
   end
 
   factory :category do

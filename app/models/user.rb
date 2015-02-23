@@ -12,7 +12,6 @@ class User < ActiveRecord::Base
   has_many :listing_images, :through => :listings
   has_many :orders
   validates :password, presence: true, on: :create
-  validates :password_confirmation, presence: true, on: :create
   mount_uploader :image, UserUploader
 
   before_save :generate_slug

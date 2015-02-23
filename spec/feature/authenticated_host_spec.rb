@@ -10,7 +10,6 @@ describe "a host" do
                 about_me: "valid",
                 email: "john@gmail.com",
                 password: "password",
-                password_confirmation: "password",
                 role: 0)
   end
 
@@ -21,7 +20,6 @@ describe "a host" do
                 about_me: "valid",
                 email: "jane@gmail.com",
                 password: "password",
-                password_confirmation: "password",
                 role: 1)
   end
 
