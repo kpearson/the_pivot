@@ -18,7 +18,7 @@ class Listing < ActiveRecord::Base
   accepts_nested_attributes_for :listing_images
 
   # def self.max_guests
-  #   where("max_guests >= ?", max_guests)  #this class method is equivilant to the max_guest scope above
+  #   where("max_guests >= ?", max_guests)
       # .order(max_guests: :asc)
   # end
 
