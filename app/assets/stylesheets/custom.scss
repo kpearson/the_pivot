@@ -355,3 +355,33 @@ ul, menu, dir {
   text-align: center;
   margin-top: 120px;
 }
+
+ul.edit-listings  {
+  list-style-type: none;
+}
+
+.host-dashboard-head {
+  background: #C5EAEA;
+  padding-bottom: 130px;
+}
+
+.host-dashboard-h2 {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 45px;
+}
+
+
+// /* =========================
+//
+//      EDIT/CREATE LISTINGS FORM
+//
+//    =========================*/
+
+.listing-create-form {
+  background: #C5EAEA;
+}
+
+.edit-new-listing {
+  margin-top: 70px;
+}
