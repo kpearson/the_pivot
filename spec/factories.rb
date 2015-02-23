@@ -6,6 +6,7 @@ FactoryGirl.define do
     email "alica@email.com"
     about_me "I am Alice"
     password "password"
+    role 0
   end
 
   factory :category do
