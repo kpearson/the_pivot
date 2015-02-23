@@ -71,8 +71,16 @@ RSpec.describe User, type: :model do
     expect(user).to_not be_valid
   end
 
-  it "can have orders" do
-    expect(user.orders).to eq([])
+  it "can have reservations" do
+    expect(user.reservations).to eq([])
+  end
+
+  it "can create a reservation" do
+    user.save
+    user.reservations.create(start_date: Date.new,
+                             listing_id: 1,
+                             end_date: Date.new)
+    expect(user.reservations.count).to eq(1)
   end
 
   it "is saved with a slug" do

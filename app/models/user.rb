@@ -4,14 +4,15 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :display_name, :about_me, presence: true
   validates :display_name, format: { with: /\A[a-zA-Z]+\z/ }
   validates :display_name, :slug, uniqueness: true
+  validates :password, presence: true, on: :create
   validates :email,
             format: {
               with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/
             }, uniqueness: true
-  has_many :listings
   has_many :listing_images, :through => :listings
-  has_many :orders
-  validates :password, presence: true, on: :create
+  has_many :reservations
+  # scope :host, -> (_host) { where()}
+
   mount_uploader :image, UserUploader
 
   before_save :generate_slug
@@ -25,9 +26,9 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
-  
-  #  def to_param		
-  #    slug		
+
+  #  def to_param
+  #    slug
   #  end
 
   def admin?

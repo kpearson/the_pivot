@@ -39,337 +39,85 @@ describe "an admin" do
     expect(current_path).to eq(not_found_path)
   end
 
-  xit "can create item listings incl name, description, price, and category" do
-    Category.create(name: "Breakfast")
-    Category.create(name: "Brunch")
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                 and_return(admin)
-    visit root_path
-    click_link_or_button "New Item"
-    fill_in "item[title]", with: "BLT"
-    fill_in "item[description]", with: "Description"
-    fill_in "item[price]", with: "1000"
-    select "Breakfast", from: "item_categories"
-    select "Brunch", from: "item_categories"
-    click_link_or_button "Create Item"
-    within("#flash_notice") do
-      expect(page).to have_content("Successfully Created")
-    end
-    within("#item_1") do
-      expect(page).to have_content("BLT")
-      expect(page).to have_content("Description")
-      expect(page).to have_content("$10.00")
-      expect(page).to have_content("Breakfast")
-    end
+  xit "retire a listing which removes it from users' view" do
   end
 
-  xit "can modify existing items’ name, description, price, and category" do
-    Category.create(name: "Brunch")
-    category = Category.create(name: "Breakfast")
-    item = Item.new(title: "Bacon",
-                       description: "desc",
-                       price: 1000)
-    item.categories << category
-    item.save
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                 and_return(admin)
-    visit item_path(item)
-    click_link_or_button "Edit"
-    expect(current_path).to eq(edit_admin_item_path(item))
-    fill_in "item[title]", with: "Eggs"
-    fill_in "item[description]", with: "a different description"
-    fill_in "item[price]", with: "2000"
-    select "Brunch", from: "item_categories"
-    click_link_or_button "Update Item"
-    expect(page).to have_content("Successfully Updated")
-    expect(page).to have_content("Eggs")
-    expect(page).to have_content("a different description")
-    expect(page).to have_content("$20.00")
-    expect(page).to have_content("Brunch")
-    expect(page).to have_content("Breakfast")
-  end
-
-  xit "can create named categories for items" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                 and_return(admin)
-    visit new_admin_category_path
-    fill_in "category[name]", with: "Breakfast"
-    click_link_or_button "Create"
-    within("#flash_notice") do
-      expect(page).to have_content("Successfully Created")
-    end
-    within(".category") do
-      expect(page).to have_content("Breakfast")
-    end
-  end
-
-  xit "can remove items from categories on index page" do
-    category = Category.create(name: "Breakfast")
-    item = Item.new(title: "Bacon",
-                    description: "desc",
-                    price: 1000)
-    item.categories << category
-    item.save
-    item2 = Item.new(title: "Eggs",
-                     description: "another",
-                     price: 2000)
-    item2.categories << category
-    item2.save
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                 and_return(admin)
-    visit categories_path
-    expect(page).to have_content("Bacon")
-    expect(page).to have_content("desc")
-    expect(page).to have_content("$10.00")
-    within("#item_1") do
-      click_link_or_button "Remove from Category"
-    end
-    expect(current_path).to eq(categories_path)
-    expect(page).to have_content("Successfully Removed Item from Breakfast")
-    expect(page).to_not have_content("Bacon")
-    expect(page).to_not have_content("desc")
-    expect(page).to_not have_content("$10.00")
-  end
-
-  xit "can remove items from categories on show page" do
-    category = Category.create(name: "Breakfast")
-    item = Item.create(title: "Bacon",
-                       description: "desc",
-                       price: 1000)
-    item.categories << category
-    item.save
-    item2 = Item.new(title: "Eggs",
-                        description: "another",
-                        price: 2000)
-    item2.categories << category
-    item2.save
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                 and_return(admin)
-    visit category_path(category)
-    expect(page).to have_content("Bacon")
-    expect(page).to have_content("desc")
-    expect(page).to have_content("$10.00")
-    within("#item_1") do
-      click_link_or_button "Remove from Category"
-    end
-    expect(current_path).to eq(categories_path)
-    expect(page).to have_content("Successfully Removed Item from Breakfast")
-    expect(page).to_not have_content("Bacon")
-    expect(page).to_not have_content("desc")
-    expect(page).to_not have_content("$10.00")
-  end
-
-  xit "can navegate to the cat index page" do
-    category = Category.create(name: "Breakfast")
-    item = Item.new(title: "Bacon",
-                       description: "desc",
-                       price: 1000)
-    item.categories << category
-    item.save
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                 and_return(admin)
-    visit categories_path
-    expect(page).to have_content("Bacon")
-    expect(page).to have_content("desc")
-    expect(page).to have_content("$10.00")
-    expect(page).to have_content("Breakfast")
-    click_link_or_button "Edit"
-    expect(current_path).to eq(edit_admin_item_path(item))
-  end
-
-  xit "retire an item from being sold, which hides it from non-administrator" do
-    category = Category.create(name: "Breakfast")
-    item = Item.new(title: "Bacon",
-                       description: "desc",
-                       price: 1000)
-    item.categories << category
-    item.save
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                 and_return(admin)
-    visit categories_path
-    within("#item_1") do
-      expect(page).to have_content("Bacon")
-      expect(page).to have_content("desc")
-      expect(page).to have_content("$10.00")
-    end
-    within("#item_1") do
-      click_link_or_button "Hide"
-    end
-    expect(page).to have_content("Item Successfully Hidden")
-    within(".shown_items") do
-      expect(page).to_not have_content("Bacon")
-      expect(page).to_not have_content("desc")
-      expect(page).to_not have_content("$10.00")
-    end
-    within(".hidden_items") do
-      expect(page).to have_content("Bacon")
-      expect(page).to have_content("desc")
-      expect(page).to have_content("$10.00")
-    end
-  end
-
-  xit "can retire an item from the category show page" do
-    category = Category.create(name: "Breakfast")
-    item = Item.new(title: "Bacon",
-                       description: "desc",
-                       price: 1000)
-    item.categories << category
-    item.save
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                 and_return(admin)
-    visit category_path(category)
-    within("#item_1") do
-      expect(page).to have_content("Bacon")
-      expect(page).to have_content("desc")
-      expect(page).to have_content("$10.00")
-    end
-    within("#item_1") do
-      click_link_or_button "Hide"
-    end
-    expect(page).to have_content("Item Successfully Hidden")
-    within(".shown_items") do
-      expect(page).to_not have_content("Bacon")
-      expect(page).to_not have_content("desc")
-      expect(page).to_not have_content("$10.00")
-    end
-    within(".hidden_items") do
-      expect(page).to have_content("Bacon")
-      expect(page).to have_content("desc")
-      expect(page).to have_content("$10.00")
-    end
-  end
-
-  xit "can reveal an item previously hidden from cat index page" do
-    category = Category.create(name: "Breakfast")
-    item = Item.new(title: "Bacon",
-                       description: "desc",
-                       price: 1000,
-                       status: "hidden")
-    item.categories << category
-    item.save
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                 and_return(admin)
-    visit categories_path
-    within(".hidden_items") do
-      expect(page).to have_content("Bacon")
-      expect(page).to have_content("desc")
-      expect(page).to have_content("$10.00")
-      click_link_or_button "Reveal"
-    end
-    within(".shown_items") do
-      expect(page).to have_content("Bacon")
-      expect(page).to have_content("desc")
-      expect(page).to have_content("$10.00")
-    end
-    expect(Item.hidden).to eq([])
+  xit "can reveal a previously hidden listing" do
   end
 
   context "can view a dashboard with" do
 
-    xit "the total number of orders by status" do
+    xit "the total number of reservations by status" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                            and_return(admin)
-      create_user_orders_with_items
+      create_user_reservations_with_items
       visit root_path
-      click_link_or_button "View All Orders"
-      expect(page).to have_content("All Orders")
+      click_link_or_button "View All Reservations"
+      expect(page).to have_content("All Reservations")
       expect(page).to have_content("Completed: 2")
       expect(page).to have_content("Ordered: 1")
       expect(page).to have_content("Paid: 0")
     end
 
-    xit "links for each individual order" do
+    xit "links for each individual reservation" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                            and_return(admin)
-      create_user_orders_with_items
-      visit admin_orders_path
-      within(".orders-list") do
-        click_link_or_button "Order 00001"
+      create_user_reservations_with_items
+      visit admin_reservations_path
+      within(".reservations-list") do
+        click_link_or_button "Reservation 00001"
       end
-      expect(page).to have_content("Order 00001")
+      expect(page).to have_content("Reservation 00001")
     end
 
     context "a link to" do
-      xit "to cancel individual orders which are currently 'ordered' or paid" do
+      xit "to cancel individual reservations which are currently 'ordered' or paid" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).
         and_return(admin)
-        create_user_orders_with_items
-        visit admin_orders_path
-        within(".orders-list") do
-          click_link_or_button "Order 00001"
+        create_user_reservations_with_items
+        visit admin_reservations_path
+        within(".reservations-list") do
+          click_link_or_button "Reservation 00001"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           click_link_or_button "change to paid"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           expect(page).to have_content("Status: paid")
         end
       end
 
-      xit "'mark as completed' individual orders which are currently 'paid'" do
+      xit "'mark as completed' individual reservations which are currently 'paid'" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                               and_return(admin)
-        create_user_orders_with_items
-        visit admin_orders_path
-        within(".orders-list") do
-          click_link_or_button "Order 00001"
+        create_user_reservations_with_items
+        visit admin_reservations_path
+        within(".reservations-list") do
+          click_link_or_button "Reservation 00001"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           click_link_or_button "change to complete"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           expect(page).to have_content("Status: completed")
         end
       end
 
-      xit "'cancel' individual orders which are currently 'ordered' or 'paid'" do
+      xit "'cancel' individual reservations which are currently 'ordered' or 'paid'" do
         allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                               and_return(admin)
-        create_user_orders_with_items
-        visit admin_orders_path
-        within(".orders-list") do
-          click_link_or_button "Order 00001"
+        create_user_reservations_with_items
+        visit admin_reservations_path
+        within(".reservations-list") do
+          click_link_or_button "Reservation 00001"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           click_link_or_button "change to cancel"
         end
-        within("#order-status") do
+        within("#reservation-status") do
           expect(page).to have_content("Status: cancelled")
         end
       end
     end
-  end
-
-  def create_user_orders_with_items
-    breakfast = Category.create(name: "Breakfast")
-
-    item1 = Item.new(title: "Bacon and Eggs",
-                     description: "The classic breakfast dish",
-                     price: 1000)
-    item1.categories << breakfast
-    item1.save
-
-    item2 = Item.new(title: "Lunch Item",
-                     description: "The classic Lunch dish",
-                     price: 1000)
-    item2.categories << breakfast
-    item2.save
-
-    user = User.create(first_name: "Alice",
-                       last_name: "Smith",
-                       email: "rich@gmail.com",
-                       password: "password")
-
-    order = Order.create(user_id: user.id)
-    order.line_items.create(item_id: item1.id, quantity: 1)
-    order.line_items.create(item_id: item2.id, quantity: 2)
-
-    order2 = Order.create(user_id: user.id, status: "completed")
-    order2.line_items.create(item_id: item1.id, quantity: 10)
-    order2.line_items.create(item_id: item2.id, quantity: 11)
-
-    order3 = Order.create(user_id: user.id, status: "completed")
-    order3.line_items.create(item_id: item1.id, quantity: 10)
-    order3.line_items.create(item_id: item2.id, quantity: 11)
   end
 end
