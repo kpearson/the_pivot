@@ -10,10 +10,10 @@ class User < ActiveRecord::Base
             }, uniqueness: true
   has_many :listing_images, :through => :listings
   has_many :reservations
-  has_attached_file :image, styles: { medium: "300x300>",
-                                      thumb: "100x100>" },
-                                      default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  #has_attached_file :image, styles: { medium: "300x300>",
+                                      #thumb: "100x100>" },
+                                      #default_url: "/images/:style/missing.png"
+  #validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   scope :host, -> (host) { where()}
 
   mount_uploader :image, UserUploader

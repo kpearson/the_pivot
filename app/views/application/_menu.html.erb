@@ -10,14 +10,11 @@
       <%= render partial: "signup", locals: { person: User.new } %>
       <li class="active"><a href="#" data-toggle="modal" data-target="#login-modal" id="login">Log In</a></li>
       <%= render "login" %>
-      <li><%= link_to "Cart: #{@cart.count(@cart.data)}", new_order_path %></li>
     <% elsif current_user.default? %>
       <li><%= link_to "Create A Listing", new_user_listing_path(current_user.slug), id: "new_listing" %></li>
-      <li><%= link_to "Cart: #{@cart.count(@cart.data)}", new_order_path %></li>
       <%= render partial: "user_profile_dropdown", locals: {user: current_user} %></li>
     <% elsif current_user.host? %>
       <li><%= link_to "Create A Listing", new_user_listing_path(current_user.slug), id: "new_listing" %></li>
-      <li><%= link_to "Cart: #{@cart.count(@cart.data)}", new_order_path %></li>
       <%= render partial: "host_profile_dropdown", locals: {user: current_user} %></li>
     <% else %>
       <li class="dropdown">
