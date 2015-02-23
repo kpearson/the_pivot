@@ -32,7 +32,6 @@ describe "authenticated" do
       fill_in "user[display_name]", with: "anothername"
       fill_in "user[about_me]", with: "desc"
       fill_in "user[password]", with: "password"
-      fill_in "user[password_confirmation]", with: "password"
       click_button("Sign Up")
       expect(current_path).to eq(root_path)
       within("#flash_notice") do

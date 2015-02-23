@@ -100,6 +100,7 @@ RSpec.describe User, type: :model do
                 about_me: "valid",
                 email: "different@gmail.com",
                 password: "password")
+
     invalid_user = User.create(first_name: "Valid",
                                last_name: "User",
                                display_name: "valid",

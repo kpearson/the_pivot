@@ -32,6 +32,7 @@ describe "As an unauthenticated user" do
                 about_me: "valid",
                 email: "valid@gmail.com",
                 password: "secret")
+
     click_link "Log In"
     fill_in "session[email]", with: "valid@gmail.com"
     fill_in "session[password]", with: "secret"
@@ -313,6 +314,7 @@ describe "As an unauthenticated user" do
                 last_name: "Shea",
                 email: "bryce@gmail.com",
                 password: "secret")
+                
     click_link "Log In"
     fill_in "session[email]", with: "bryce@gmail.com"
     fill_in "session[password]", with: "secret"

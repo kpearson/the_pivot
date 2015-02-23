@@ -22,6 +22,7 @@ class User::ListingsController < ApplicationController
       end
     end
     if @listing.save
+      current_user.update_attributes(role: 1)
       redirect_to user_listing_path(current_user.slug, @listing.id)
     else
       render :new

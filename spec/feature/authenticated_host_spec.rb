@@ -23,25 +23,26 @@ describe "a host" do
                 role: 1)
   end
 
-  xit "after creating a listing a user becomes a host" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                 and_return(host_user)
-    expect(user.role).to eq("default")
-    visit root_path
-    click_link "Create A Listing"
-    fill_in "listing[title]", with: "Sexy Beach House"
-    fill_in "listing[description]", with: "Description"
-    fill_in "listing[nightly_rate]", with: "10000"
-    choose("House")
-    fill_in "listing[max_guests]", with: "10"
-    check(:shared_bathroom)
-    fill_in "listing[address1]", with: "10 Blake st."
-    fill_in "listing[address2]", with: "10 Blake st."
-    fill_in "listing[city]", with: "Denver"
-    fill_in "listing[state]", with: "CO"
-    fill_in "listing[zip]", with: "80205"
-    click_link_or_button('Create Listing')
-    expect(user.role).to eq("host")
-    expect(user.host?).to eq(true)
+  it "after creating a listing a user becomes a host" do
+
+        valid_user = create(:user)
+        create(:category, name: "Condo")
+        allow_any_instance_of(ApplicationController).to receive(:current_user).
+          and_return(valid_user)
+        visit new_user_listing_path(valid_user.slug)
+        fill_in "listing[title]", with: "New Listing"
+        fill_in "listing[description]", with: "New Listing description"
+        fill_in "listing[nightly_rate]", with: "100"
+        fill_in "listing[max_guests]", with: "2"
+        choose "Condo"
+        check ("listing[shared_bathroom]")
+        fill_in "listing[address1]", with: "2424 W. Olive Ave."
+        fill_in "listing[address2]", with: "apt 2"
+        fill_in "listing[city]", with: "Chicago"
+        fill_in "listing[state]", with: "MI"
+        fill_in "listing[zip]", with: "43601"
+        click_link_or_button("Create Listing")
+    expect(valid_user.role).to eq("host")
+    expect(valid_user.host?).to eq(true)
   end
 end

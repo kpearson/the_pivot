@@ -4,16 +4,13 @@ class User < ActiveRecord::Base
   validates :first_name, :last_name, :display_name, :about_me, presence: true
   validates :display_name, format: { with: /\A[a-zA-Z]+\z/ }
   validates :display_name, :slug, uniqueness: true
+  validates :password, presence: true, on: :create
   validates :email,
             format: {
               with: /\b[A-Z0-9._%a-z\-]+@(?:[A-Z0-9a-z\-]+\.)+[A-Za-z]{2,4}\z/
             }, uniqueness: true
   has_many :listing_images, :through => :listings
   has_many :reservations
-  #has_attached_file :image, styles: { medium: "300x300>",
-                                      #thumb: "100x100>" },
-                                      #default_url: "/images/:style/missing.png"
-  #validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   scope :host, -> (host) { where()}
 
   mount_uploader :image, UserUploader
@@ -29,6 +26,10 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  #  def to_param
+  #    slug
+  #  end
 
   def admin?
     false
