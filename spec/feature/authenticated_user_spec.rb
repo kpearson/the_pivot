@@ -257,6 +257,15 @@ describe "an authenticated user" do
     visit new_admin_path
     expect(page).to have_content("Page Not Found")
   end
+
+  it " it cannot view a hosts dashboard" do
+    another_user = create(:user, email: "yes@yahoo.com", display_name: "harry")
+    host = create(:user, role: 1, email: "no@yahoo.com", display_name: "sally" )
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(another_user)
+    visit user_dashboard_path(host)
+    expect(current_path).to eq(root_path)
+  end
   #
   # def click_add_to_cart_link(category)
   #   click_link_or_button "Menu"
