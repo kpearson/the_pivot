@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   validates :password_confirmation, presence: true, on: :create
   mount_uploader :image, UserUploader
+
   before_save :generate_slug
 
   enum role: [:default, :host]
