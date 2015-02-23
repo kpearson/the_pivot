@@ -11,7 +11,6 @@ describe "a host" do
                 email: "john@gmail.com",
                 password: "password",
                 role: 0)
->>>>>>> 2d1756b202fbaa344c5799641f670c27de73a867
   end
 
   let!(:host_user) do
