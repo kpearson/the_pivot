@@ -109,8 +109,7 @@ RSpec.describe Listing, type: :model do
                        display_name: "valid",
                        about_me: "valid",
                        email: "bryce@gmail.com",
-                       password: "password",
-                       password_confirmation: "password")
+                       password: "password")
     expect(valid_listing.user).to eq(user)
   end
 

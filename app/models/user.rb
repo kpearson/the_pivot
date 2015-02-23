@@ -16,7 +16,6 @@ class User < ActiveRecord::Base
                                       default_url: "/images/:style/missing.png"
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates :password, presence: true, on: :create
-  validates :password_confirmation, presence: true, on: :create
 
   before_save :generate_slug
 
