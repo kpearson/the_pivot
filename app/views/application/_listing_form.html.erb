@@ -1,4 +1,6 @@
-<%= bootstrap_form_for([current_user, @listing]) do |f| %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <%= bootstrap_form_for([current_user, @listing]) do |f| %>
   <% if @listing.errors.any? %>
     <div class="error_messages">
     <h2>Form is invalid</h2>
