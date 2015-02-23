@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :listings
   has_many :listing_images, :through => :listings
   has_many :orders
-
+  validates :password, presence: true, on: :create
   mount_uploader :image, UserUploader
 
   before_save :generate_slug
@@ -25,12 +25,12 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+  
+  #  def to_param		
+  #    slug		
+  #  end
 
   def admin?
     false
   end
-
-#  def to_param
-#    slug
-#  end
 end
