@@ -30,6 +30,5 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :categories, only: [:edit, :update, :create, :new, :destroy]
-    resources :reservations
   end
 end
