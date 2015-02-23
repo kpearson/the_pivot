@@ -37,7 +37,7 @@ class UsersController < ApplicationController
                                  :email,
                                  :display_name,
                                  :password,
-                                 :password_confirmation,
-                                 :about_me)
+                                 :about_me,
+                                 :image)
   end
 end

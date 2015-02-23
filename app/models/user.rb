@@ -11,12 +11,8 @@ class User < ActiveRecord::Base
   has_many :listings
   has_many :listing_images, :through => :listings
   has_many :orders
-  has_attached_file :image, styles: { medium: "300x300>",
-                                      thumb: "100x100>" },
-                                      default_url: "/images/:style/missing.png"
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
   validates :password, presence: true, on: :create
-  validates :password_confirmation, presence: true, on: :create
+  mount_uploader :image, UserUploader
 
   before_save :generate_slug
 
@@ -29,6 +25,10 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
+  
+  #  def to_param		
+  #    slug		
+  #  end
 
   def admin?
     false

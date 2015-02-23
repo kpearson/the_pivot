@@ -14,7 +14,7 @@ describe 'user edits a listing', type: :feature do
     expect(page).to have_content("Edit listing")
   end
 
-  xit "and is redirected to the edited listing and sees the edits" do
+  it "and is redirected to the edited listing and sees the edits" do
     valid_user = create(:user)
     listing = create(:listing)
     create(:category, name: "Condo")

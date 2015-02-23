@@ -1,5 +1,5 @@
 # encoding: utf-8
-class ListingImageUploader < CarrierWave::Uploader::Base
+class UserUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
 
   # Override the directory where uploaded files will be stored.
