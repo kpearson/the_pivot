@@ -24,7 +24,7 @@ describe "As an unauthenticated user" do
     visit root_path
   end
 
-  it " it cannot view a dashboard" do
+  it "it cannot view a dashboard" do
     host = create(:user, role: 1, email: "no@yahoo.com", display_name: "sally" )
     visit user_dashboard_path(host)
     expect(current_path).to eq(root_path)
