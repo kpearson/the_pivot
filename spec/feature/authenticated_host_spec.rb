@@ -5,22 +5,22 @@ describe "a host" do
 
   let!(:user) do
     User.create(first_name: "John",
-    display_name: "john",
-    last_name: "Doe",
-    about_me: "valid",
-    email: "john@gmail.com",
-    password: "password",
-    role: 0)
+                display_name: "john",
+                last_name: "Doe",
+                about_me: "valid",
+                email: "john@gmail.com",
+                password: "password",
+                role: 0)
   end
 
   let!(:host_user) do
     User.create(first_name: "Jane",
-    last_name: "Doe",
-    display_name: "jane",
-    about_me: "valid",
-    email: "jane@gmail.com",
-    password: "password",
-    role: 1)
+                last_name: "Doe",
+                display_name: "jane",
+                about_me: "valid",
+                email: "jane@gmail.com",
+                password: "password",
+                role: 1)
   end
 
   it "after creating a listing a user becomes a host" do
