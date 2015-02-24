@@ -1,14 +1,14 @@
 <div class="well listing-create-form">
   <%= bootstrap_form_for([current_user, @listing]) do |f| %>
     <% if @listing.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @listing.errors.full_messages %>
-          <li><%= message %></li>
-      <% end %>
+      <div class="error_messages">
+        <h2>Form is invalid</h2>
+        <ul>
+          <% for message in @listing.errors.full_messages %>
+            <li><%= message %></li>
+        <% end %>
       </ul>
-    </div>
+      </div>
     <% end %>
     <%= f.text_field :title %>
     <%= f.text_field :description %>
