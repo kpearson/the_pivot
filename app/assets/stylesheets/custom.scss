@@ -246,7 +246,7 @@ ul, menu, dir {
 
 #networks i {
   font-size: 60px;
-  color: #D1EC53;
+  color: #d1ec53;
   padding: 18px;
 }
 
@@ -255,7 +255,7 @@ ul, menu, dir {
 }
 
 #networks .twitter:hover {
-  color: #2094CA;
+  color: #2094ca;
 }
 
 #networks .mail:hover {
@@ -282,21 +282,21 @@ ul, menu, dir {
 }
 
 .listing-header {
-  margin-top: 50px;
   margin-left: 50px;
+  margin-top: 50px;
 }
 
 .user-show-row {
-  background: #C5EAEA;
-  margin-right: 50px;
+  background: #c5eaea;
   margin-left: 50px;
+  margin-right: 50px;
   margin-top: 10px;
   padding: 20px;
 }
 
 #map {
+  float: right;
   height: 340px;
-  float:right;
 }
 
 .directions-hide {
@@ -304,8 +304,8 @@ ul, menu, dir {
 }
 
 #route-narrative {
-  padding: 20px;
   margin-top: 50px;
+  padding: 20px;
 }
 
 // /* =========================
@@ -360,11 +360,11 @@ ul, menu, dir {
 #flash_notice {
   &.error {
     border: solid 4px #900;
-          background-color: #FF6565;
+          background-color: #ff6565;
         }
   &.notice {
     border: solid 4px #26722D;
-          background-color: #A4E7A0;
+          background-color: #a4e7a0;
         }
   color: black;
   z-index: 999;
@@ -396,7 +396,7 @@ ul.edit-listings  {
 }
 
 .host-dashboard-head {
-  background: #C5EAEA;
+  background: #c5eaea;
   padding-bottom: 130px;
 }
 
@@ -414,7 +414,7 @@ ul.edit-listings  {
 //    =========================*/
 
 .listing-create-form {
-  background: #C5EAEA;
+  background: #c5eaea;
 }
 
 .edit-new-listing {
