@@ -23,3 +23,5 @@ coverage
 #ignore carrierwave images
 /public/uploads
 .env
+
+/app/assets/images/**/
