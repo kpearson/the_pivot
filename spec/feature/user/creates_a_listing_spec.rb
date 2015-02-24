@@ -24,6 +24,6 @@ describe "user creates a listing", type: :feature do
     fill_in "listing[zip]", with: "43601"
     click_link_or_button("Create Listing")
     expect(page).to have_content("New Listing")
-    expect(page).to have_link("Book It!")
+    expect(page).to have_button("Book It!")
   end
 end

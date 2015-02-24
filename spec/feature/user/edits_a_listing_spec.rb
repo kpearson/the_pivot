@@ -25,6 +25,6 @@ describe 'user edits a listing', type: :feature do
     fill_in "listing[description]", with: "edited Listing description"
     click_link_or_button("Update Listing")
     expect(page).to have_content("Edited Listing")
-    expect(page).to have_link("Book It!")
+    expect(page).to have_button("Book It!")
   end
 end

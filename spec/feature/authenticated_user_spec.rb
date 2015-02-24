@@ -28,6 +28,16 @@ describe "an authenticated user" do
                 password: "password")
   end
 
+  let!(:user) do
+    User.create(first_name: "John",
+                last_name: "Doe",
+                display_name: "john",
+                about_me: "valid",
+                email: "john@gmail.com",
+                password: "password",
+                role: 0)
+  end
+
   before(:each) do
     visit root_path
   end
@@ -71,9 +81,25 @@ describe "an authenticated user" do
     end
   end
 
-  xit "can add a listing to a cart" do
+  it "can add a listing to a cart", js: true do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
+    visit user_listing_path(valid_user.slug, listing)
+    page.execute_script("$('#check_in').val('24/2/2015')")
+    page.execute_script("$('#check_out').val('25/2/2015')")
+    click_button('Book It!')
+    save_and_open_page
+    expect(current_path).to eq(user_listing_path(valid_user.slug, listing))
+    expect(page).to have_content('Listing Successfully Added To Reservations')
+  end
+
+  it "can visit the new reservation page and see pending listings" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(user)
+    visit root_path
+    click_link_or_button("Reservations")
+    expect(current_path).to eq(new_reservation_path)
+    expect(page).to have_content('Your Reservations')
   end
 
   xit "can remove a listing from a cart" do
