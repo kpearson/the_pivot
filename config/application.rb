@@ -33,5 +33,14 @@ module DinnerDash
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.action_mailer.smtp_settings = {
+      address: "smtp.mandrill.com",
+      port: 587,
+      domain: "your_email.com",
+      user_name: ENV[:EMAIL_NAME] ,
+      password: ENV[:EMAIL_KEY],
+      authentication: plane,
+
+    }
   end
 end

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
   end
 
+  post /noteifications
+
  # post   '/:user_slug/listings'          , 'user/listings#create' , as: :user_listings
  # get    '/:user_slug/listings/new'      , 'user/listings#new'    , as: :new_user_listing
  # get    '/:user_slug/listings/:id/edit' , 'user/listings#edit'   , as: :edit_user_listing
