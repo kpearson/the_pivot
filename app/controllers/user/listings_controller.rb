@@ -32,7 +32,7 @@ class User::ListingsController < ApplicationController
   def edit
     @listing = Listing.find(params[:id])
     @listing_image = @listing.listing_images.build
-    @user = User.find(params[:id])
+    @user = User.find_by(slug: params[:slug])
   end
 
   def update
