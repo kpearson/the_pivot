@@ -33,6 +33,7 @@ describe "authenticated" do
       fill_in "user[about_me]", with: "desc"
       fill_in "user[password]", with: "password"
       click_button("Sign Up")
+    save_and_open_page
       expect(current_path).to eq(root_path)
       within("#flash_notice") do
         expect(page).to have_content("Welcome Joe")

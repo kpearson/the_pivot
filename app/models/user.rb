@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :listings
   validates :first_name, :last_name, :display_name, :about_me, presence: true
-  validates :display_name, format: { with: /\A[a-z0-9A-Z]+\z/ }
+  validates :display_name, format: { with: /\A[a-zA-Z]+\z/ }
   validates :display_name, :slug, uniqueness: true
   validates :password, presence: true, on: :create
   validates :email,

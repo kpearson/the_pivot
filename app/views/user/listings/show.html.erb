@@ -1,11 +1,12 @@
 <div class="listing-show-page"
+
 <div class="row">
   <div class="col-lg-6"></div>
     <h1 class="listing-header"><%= @listing.title %></h1>
-  <div class="col-lg-8"></div>
-  <%= render partial: "image_carousel" %>
+
   <div class="row user-show-row">
     <div class="col-lg-5 user-listing-show">
+      <%= image_tag @listing.listing_images.first.image.hero.url, class: "img-responsive" if @listing.listing_images.any? %>
       <%= render partial: "listing_show", locals: {listing: @listing, images: @listing_images} %>
     </div>
     <div id='map' class="col-lg-7 user-listing-show">
