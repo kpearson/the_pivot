@@ -4,7 +4,13 @@ describe "a host" do
   include Capybara::DSL
 
   let!(:user) do
-    User.create
+    User.create(first_name: "John",
+                last_name: "Doe",
+                display_name: "john",
+                about_me: "valid",
+                email: "john@gmail.com",
+                password: "password",
+                role: 0)
   end
 
   let!(:host_user) do
@@ -63,9 +69,9 @@ describe "a host" do
   end
 
   it "can visit its host dashboard and see their dashboard links" do
-    host_user = create(:user, role: 1)
+    factory_host_user = create(:user, role: 1)
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-      and_return(host_user)
+      and_return(factory_host_user)
     visit root_path
     click_link_or_button("Dashboard")
     expect(page).to have_content("Edit Your Listings")
@@ -75,7 +81,7 @@ describe "a host" do
 
   it "can view their listings as links to the edit page" do
     valid_user = create(:user, role: 1)
-    listing = create(:listing)
+    listing = create(:listing, user_id: 3)
     expect(listing.user).to eq(valid_user)
     create(:category, name: "Condo")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
@@ -95,8 +101,8 @@ describe "a host" do
 
   it "can view their manange reservations page" do
     listing.reservations.create(user_id: 1,
-                               start_date: Date.new,
-                               end_date: Date.new)
+                                start_date: Date.new,
+                                end_date: Date.new)
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(host_user)
     visit root_path
@@ -110,8 +116,8 @@ describe "a host" do
 
   it "can cancel a reservation" do
     listing.reservations.create(user_id: 1,
-                               start_date: Date.new,
-                               end_date: Date.new)
+                                start_date: Date.new,
+                                end_date: Date.new)
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(host_user)
     visit host_reservations_path(host_user.slug)
@@ -132,7 +138,7 @@ describe "a host" do
 
   it "can delete their listing on their edit page" do
     valid_user = create(:user, role: 1)
-    listing = create(:listing)
+    listing = create(:listing, user_id: 3)
     create(:category, name: "Condo")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(listing.user)
