@@ -23,14 +23,27 @@ describe "a host" do
                 role: 1)
   end
 
-  it "after creating a listing a user becomes a host" do
+  let!(:listing) do
+    Listing.create(title: "Another Listing",
+                   description: "A Great Place",
+                   nightly_rate: 1900,
+                   category_id: 1,
+                   max_guests: 12,
+                   address1: "1500 Blake st",
+                   city: "Denver",
+                   state: "CO",
+                   zip: 80211,
+                   shared_bathroom: true,
+                   user_id: 2)
+  end
 
+  it "after creating a listing a user becomes a host" do
     valid_user = create(:user)
     create(:category, name: "Condo")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(valid_user)
     visit new_user_listing_path(valid_user.slug)
-    fill_in "listing[title]", with: "New Listing"
+    fill_in "listing[title]", with: "Yet Another Listing"
     fill_in "listing[description]", with: "New Listing description"
     fill_in "listing[nightly_rate]", with: "100"
     fill_in "listing[max_guests]", with: "2"
@@ -83,11 +96,39 @@ describe "a host" do
     expect(page).to have_link("Book It!")
   end
 
+  it "can view their manange reservations page" do
+    listing.reservations.create(user_id: 1,
+                               start_date: Date.new,
+                               end_date: Date.new)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(host_user)
+    visit root_path
+    click_link_or_button "Dashboard"
+    click_link_or_button "Manage"
+    expect(current_path).to eq(host_reservations_path(host_user.slug))
+    expect(page).to have_content("John Doe")
+    expect(page).to have_content("Another Listing")
+    expect(page).to have_content("pending")
+  end
+
+  it "can cancel a reservation" do
+    listing.reservations.create(user_id: 1,
+                               start_date: Date.new,
+                               end_date: Date.new)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(host_user)
+    visit host_reservations_path(host_user.slug)
+    click_link_or_button "Cancel"
+    expect(current_path).to eq(user_reservations_path(host_user.slug))
+    expect(page).to have_content("Reservation successfully cancelled")
+    expect(page).to_not have_content("pending")
+  end
+
   it " it cannot view another hosts dashboard" do
     valid_user = create(:user, role: 1)
     another_host = create(:user, role: 1, email: "new@y.com", display_name: "username")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-    and_return(another_host)
+      and_return(another_host)
     visit user_dashboard_path(valid_user)
     expect(current_path).to eq(root_path)
   end
