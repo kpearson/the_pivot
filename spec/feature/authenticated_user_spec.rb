@@ -266,16 +266,7 @@ describe "an authenticated user" do
     visit user_dashboard_path(host)
     expect(current_path).to eq(root_path)
   end
-  #
-  # def click_add_to_cart_link(category)
-  #   click_link_or_button "Menu"
-  #   within(".categories") do
-  #     within("div##{category}") do
-  #         click_link "Add to Cart"
-  #     end
-  #   end
-  # end
-  #
+
   def valid_user_logs_in
     click_link "Log In"
     fill_in "session_email", with: "alice@gmail.com"
