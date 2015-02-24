@@ -32,6 +32,7 @@ class User::ListingsController < ApplicationController
   def edit
     @listing = Listing.find(params[:id])
     @listing_image = @listing.listing_images.build
+    @user = User.find(params[:id])
   end
 
   def update
@@ -51,7 +52,7 @@ class User::ListingsController < ApplicationController
   def destroy
     @listing = Listing.find(params[:id])
     @listing.destroy
-    redirect_to user_dashboard_path(current_user.id)
+    redirect_to user_dashboard_path(current_user.slug)
   end
 
   private

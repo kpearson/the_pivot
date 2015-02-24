@@ -4,28 +4,12 @@ describe "a host" do
   include Capybara::DSL
 
   let!(:user) do
-    User.create(first_name: "John",
-                display_name: "john",
-                last_name: "Doe",
-                about_me: "valid",
-                email: "john@gmail.com",
-                password: "password",
-                role: 0)
+    User.create
   end
 
-  let!(:host_user) do
-    User.create(first_name: "Jane",
-                last_name: "Doe",
-                display_name: "jane",
-                about_me: "valid",
-                email: "jane@gmail.com",
-                password: "password",
-                role: 1)
-  end
+  it "has their role changed from user to host after creating a listing" do
 
-  it "after creating a listing a user becomes a host" do
-
-    valid_user = create(:user)
+    valid_user = create(:user, role: 1)
     create(:category, name: "Condo")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(valid_user)
@@ -47,14 +31,16 @@ describe "a host" do
   end
 
   it "can view its host dashboard" do
+    host_user = create(:user, role: 1)
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(host_user)
     visit root_path
     click_link_or_button("Dashboard")
-    expect(page).to have_content("Jane's Dashboard")
+    expect(page).to have_content("Alice's Dashboard")
   end
 
   it "can visit its host dashboard and see their dashboard links" do
+    host_user = create(:user, role: 1)
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(host_user)
     visit root_path
@@ -67,6 +53,7 @@ describe "a host" do
   it "can view their listings as links to the edit page" do
     valid_user = create(:user, role: 1)
     listing = create(:listing)
+    expect(listing.user).to eq(valid_user)
     create(:category, name: "Condo")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(valid_user)
@@ -85,10 +72,26 @@ describe "a host" do
 
   it " it cannot view another hosts dashboard" do
     valid_user = create(:user, role: 1)
-    another_host = create(:user, role: 1, email: "new@y.com", display_name: "username")
+    another_host = create(:user, email: "new@y.com", display_name: "username", role: 1)
     allow_any_instance_of(ApplicationController).to receive(:current_user).
     and_return(another_host)
     visit user_dashboard_path(valid_user)
     expect(current_path).to eq(root_path)
+  end
+
+  it "can delete their listing on their edit page" do
+    valid_user = create(:user, role: 1)
+    listing = create(:listing)
+    create(:category, name: "Condo")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(listing.user)
+    visit root_path
+    click_link_or_button("Dashboard")
+    expect(page).to have_content("New Listing")
+    click_link_or_button("New Listing")
+    expect(page).to have_content("Edit listing")
+    click_link_or_button("Delete This Listing")
+    visit user_dashboard_path(valid_user.slug)
+    expect(page).to_not have_content("New Listing")
   end
 end

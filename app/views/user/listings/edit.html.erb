@@ -7,9 +7,7 @@
         </th>
         <th>
           <div class="delete-listing">
-            <button class="btn btn-sm btn-danger">
-              <%= link_to "Delete This Listing", user_listing_path(@listing.user, @listing), method: "delete" %>
-            </button>
+              <%= link_to "Delete This Listing", user_listing_path(@listing.user.slug, @listing), method: "delete" %>
           </div>
         </th>
       </thead>

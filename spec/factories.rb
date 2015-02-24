@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :user do
     first_name "Alice"
     last_name "Smith"
@@ -18,11 +19,6 @@ FactoryGirl.define do
       listing.category = create(:category)
     end
 
-    before(:create) do |listing|
-      listing.user = create(:user, display_name: "validd",
-                                   email: "asmith@emial.com")
-    end
-
     title "New Listing"
     description "New Listing description"
     nightly_rate "100"
@@ -33,5 +29,6 @@ FactoryGirl.define do
     city "Chicago"
     state "MI"
     zip "43601"
+    user_id 1
   end
 end
