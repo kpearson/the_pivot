@@ -1,4 +1,4 @@
-class Admin::ReservationsController < ApplicationController
+class Admin::ReservationsController < Admin::BaseController
   def index
     @completed_reservations = Reservations.completed
     @paid_reservations = Reservations.paid
