@@ -15,7 +15,7 @@ class Listing < ActiveRecord::Base
   scope :category_id, -> (category_id) { where category_id: category_id }
   scope :nightly_rate, -> (nightly_rate) { where("nightly_rate <= ?", nightly_rate)
     .order(nightly_rate: :asc) }
-  accepts_nested_attributes_for :listing_images
+  accepts_nested_attributes_for :listing_images, allow_destroy: true
 
   # def self.max_guests
   #   where("max_guests >= ?", max_guests)

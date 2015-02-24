@@ -3,7 +3,6 @@ body {
   font-weight: bold;
 }
 
-
 a {
   text-decoration: none;
   color: black;
@@ -121,10 +120,11 @@ a {
     background-color: #474e5d;
   }
 
-// .hero-image {
-//   width: auto;
-//   height: auto; }
-//
+.listing-hero-image {
+  width: auto;
+  max-height: 50%;
+}
+
 .footer-block {
   height: 180px;
   margin-top: -90px;

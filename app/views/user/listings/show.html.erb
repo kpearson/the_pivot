@@ -1,3 +1,7 @@
+<div class="listing-hero-image">
+  <%= image_tag @listing.listing_images.first.image.hero.url, class: "img-responsive" if @listing.listing_images.any? %>
+</div>
+<%#= render partial: "image_carousel" %>
 <div class="row">
   <div class="col-lg-4">
     <h1 class="listing-header"><%= @listing.title %></h1>
@@ -5,8 +9,6 @@
     <p><a href="#" class="btn btn-primary btn-large">Book It!</a></p>
   </div>
 </div>
-<%= render partial: "image_carousel" %>
-
 <section id="networks">
   <div class="container">
     <div class="show-info">

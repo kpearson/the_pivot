@@ -1,6 +1,5 @@
 class ListingImagesController < ApplicationController
 
-  def create
-
-  end
+xdef create
+xend
 end

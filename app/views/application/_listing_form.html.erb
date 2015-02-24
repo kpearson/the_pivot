@@ -22,7 +22,14 @@
   <%= f.text_field :state %>
   <%= f.text_field :zip %>
   <%= f.fields_for :listing_images do |i| %>
-    <%= i.file_field :image, multiple: true, name: "listing_images[images][]" %>
+    <% if @listing.listing_images.any? { |i| i.persisted? } %>
+      <%= image_tag i.object.image.thumb.url if i.object.persisted? %>
+      <%= i.check_box :_destroy, label: "Remove photo" if i.object.persisted? %>
+      <%= i.file_field :image, multiple: true, name: "listing_images[images][]" if
+      i.object == @listing.listing_images[-2] %>
+    <% else %>
+      <%= i.file_field :image, multiple: true, name: "listing_images[images][]" %>
+    <% end %>
   <% end %>
   <%= f.submit %>
 <% end %>
