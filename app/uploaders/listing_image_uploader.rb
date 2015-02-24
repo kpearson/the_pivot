@@ -13,13 +13,23 @@ class ListingImageUploader < CarrierWave::Uploader::Base
   end
 
   # Process files as they are uploaded:
-  # process :scale => [200, 300]
+  # process resize_to_fit: => [500, 400]
   #
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
+
+
+  version :hero do
+    process resize_to_fit: [2600, 900]
+  end
+
+  version :medium do
+    process resize_to_fit: [900, 600]
+  end
+
   version :thumb do
     process resize_to_fit: [400, 400]
   end

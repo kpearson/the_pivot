@@ -28,6 +28,7 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.0.0'
 gem 'factory_girl_rails', :group => :test
 gem 'cancancan', '~> 1.10'
 gem 'fog'
+gem 'mandrill-api', '~> 1.0.53'
 
 group :development, :test do
   gem 'poltergeist'
