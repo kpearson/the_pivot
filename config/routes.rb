@@ -11,10 +11,6 @@ Rails.application.routes.draw do
 
   resources :categories, only: [:index, :show]
   resources :listings, only: [:index]
-  namespace :user, path: "/:slug" do
-    resources :listings, except: [:index]
-    get '/dashboard', to: 'dashboard#index'
-  end
 
  # post   '/:user_slug/listings'          , 'user/listings#create' , as: :user_listings
  # get    '/:user_slug/listings/new'      , 'user/listings#new'    , as: :new_user_listing
@@ -26,9 +22,17 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :reservations
-
   resources :admins
+
+  namespace :user, path: "/:slug" do
+    resources :listings, except: [:index]
+    get '/dashboard', to: 'dashboard#index'
+    resources :reservations, only: [:new, :create, :index]
+  end
+
+  namespace :user, path: "/:slug", as: :host do
+    resources :reservations, only: [:index, :edit, :update, :destroy]
+  end
 
   namespace :admin do
     resources :categories, only: [:edit, :update, :create, :new, :destroy]
