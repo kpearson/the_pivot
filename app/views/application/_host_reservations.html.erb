@@ -1,0 +1,24 @@
+<table class="table table-hover">
+  <tr>
+    <th>#</th>
+    <th>Listing</th>
+    <th>Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Status</th>
+    <th>Change Status</th>
+  </tr>
+  <% listings.each do |listing| %>
+    <% listing.reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.id %></td>
+        <td><%= link_to reservation.listing.title, user_listing_path(listing.user.slug, listing) %></td>
+        <td><%= link_to reservation.user.full_name, user_path(reservation.user) %></td>
+        <td><%= reservation.start_date %></td>
+        <td><%= reservation.end_date %></td>
+        <td><%= reservation.status %></td>
+        <td><%= link_to "Cancel", host_reservation_path(reservation.user.slug, reservation), method: "delete", class: "btn btn-default" %></td>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

@@ -267,6 +267,14 @@ ul, menu, dir {
 //      LISTING SHOW PAGE
 //
 //    =========================*/
+.delete-listing {
+  margin-left: 20px;
+  margin-top: 15px;
+}
+
+.edit-listing-header {
+  font-size: 40px;
+}
 
 .listing-show-page {
   margin-bottom: 20px;
@@ -412,10 +420,3 @@ ul.edit-listings  {
 .edit-new-listing {
   margin-top: 70px;
 }
-
-
-// /* =========================
-//
-//    USER SHOW LISTINGS PAGE
-//
-//    =========================*/
