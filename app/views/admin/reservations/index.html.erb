@@ -1,0 +1,13 @@
+<h1>All Reservations</h1>
+
+Reservations By Status<br>
+
+  Ordered: <%= link_to @ordered_reservations.count, admin_filtered_reservations_path(status: "ordered") %><br>
+     Paid: <%= link_to @paid_reservations.count, admin_filtered_reservations_path(status: "paid")%><br>
+Completed: <%= link_to @completed_reservations.count, admin_filtered_reservations_path(status: "completed") %><br>
+Cancelled: <%= link_to @cancelled_reservations.count, admin_filtered_reservations_path(status: "cancelled") %><br>
+
+<hr>
+<div class="reservations-list">
+  <%= render partial: "reservations_list", locals: { reservations: @reservations } %>
+</div>

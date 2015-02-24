@@ -24,6 +24,12 @@ describe "As an unauthenticated user" do
     visit root_path
   end
 
+  it "it cannot view a dashboard" do
+    host = create(:user, role: 1, email: "no@yahoo.com", display_name: "sally" )
+    visit user_dashboard_path(host)
+    expect(current_path).to eq(root_path)
+  end
+
   xit "can login which does not clear cart" do
     click_add_to_cart_link("Breakfast")
     User.create(first_name: "Valid",
@@ -32,6 +38,7 @@ describe "As an unauthenticated user" do
                 about_me: "valid",
                 email: "valid@gmail.com",
                 password: "secret")
+
     click_link "Log In"
     fill_in "session[email]", with: "valid@gmail.com"
     fill_in "session[password]", with: "secret"
@@ -288,14 +295,14 @@ describe "As an unauthenticated user" do
 
   xit "can remove an item from a cart" do
     click_add_to_cart_link("Breakfast")
-    visit new_order_path
+    visit new_reservation_path
     within("#item_1") do
       click_link "Remove From Cart"
     end
     within("#cart-contents") do
       expect(page).to have_content("0")
     end
-    expect(current_path).to eq(new_order_path)
+    expect(current_path).to eq(new_reservation_path)
     expect(page).to_not have_content("Bacon")
   end
 
@@ -307,12 +314,23 @@ describe "As an unauthenticated user" do
     expect(page).to_not have_content("Log Out")
   end
 
+  it "cannot see a profile dropdown" do
+    visit root_path
+    expect(page).to_not have_content("Profile")
+  end
+
+  it "cannot see a create a listing link" do
+    visit root_path
+    expect(page).to_not have_content("Create A listing")
+  end
+
   xit "can log out which does not clear cart" do
     click_add_to_cart_link("Breakfast")
     User.create(first_name: "Rich",
                 last_name: "Shea",
                 email: "bryce@gmail.com",
                 password: "secret")
+
     click_link "Log In"
     fill_in "session[email]", with: "bryce@gmail.com"
     fill_in "session[password]", with: "secret"
@@ -331,7 +349,7 @@ describe "As an unauthenticated user" do
 
   xit "can view their empty cart" do
     click_link_or_button "Cart"
-    expect(current_path).to eq(new_order_path)
+    expect(current_path).to eq(new_reservation_path)
     expect(page).to have_content("Your cart is empty")
   end
 
@@ -339,7 +357,7 @@ describe "As an unauthenticated user" do
     click_add_to_cart_link("Breakfast")
     click_add_to_cart_link("Breakfast")
     click_link_or_button "Cart:"
-    expect(current_path).to eq(new_order_path)
+    expect(current_path).to eq(new_reservation_path)
     expect(page).to have_content("Bacon")
     within "div#quantity" do
       expect(page).to have_content("2")
@@ -352,16 +370,18 @@ describe "As an unauthenticated user" do
     end
   end
 
-  xit "cannot edit a user's profile" do
+  it "cannot edit a user's profile" do
+    visit root_path
+    expect(page).to_not have_content('Edit Profile')
   end
 
   xit "cannot checkout" do
     click_add_to_cart_link("Breakfast")
     click_add_to_cart_link("Breakfast")
     click_link_or_button "Cart:"
-    expect(current_path).to eq(new_order_path)
+    expect(current_path).to eq(new_reservation_path)
     click_link_or_button "Checkout"
-    expect(current_path).to eq(new_order_path)
+    expect(current_path).to eq(new_reservation_path)
     within("#flash_notice") do
       expect(page).to have_content("Please login or signup to continue with checkout")
     end
@@ -373,28 +393,10 @@ describe "As an unauthenticated user" do
     expect(page).to_not have_content("Admin Dashboard")
   end
 
-  xit "cannot create an item" do
-    visit new_admin_item_path
-    expect(page).to have_content("Page Not Found")
+  xit "cannot create a listing" do
   end
 
-  xit "cannot modify an item" do
-    visit edit_admin_item_path(item)
-    expect(page).to have_content("Page Not Found")
-  end
-
-  xit "cannot assign an item to a category" do
-    visit edit_admin_category_path(category1)
-    expect(page).to have_content("Page Not Found")
-    visit categories_path
-    expect(page).to_not have_content("Add to Category")
-  end
-
-  xit "cannot remove an item from a category" do
-    visit new_admin_category_path
-    expect(page).to have_content("Page Not Found")
-    visit categories_path
-    expect(page).to_not have_content("Remove from Category")
+  xit "cannot modify a listing" do
   end
 
   xit "cannot create a category" do

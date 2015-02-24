@@ -1,0 +1,43 @@
+<div class="jumbotron masthead">
+  <div class="row host-dashboard-head">
+    <div class="col-lg-12">
+      <h2 class="host-dashboard-h2"><%= current_user.first_name %>'s Dashboard</h2>
+    </div>
+  </div>
+</div>
+<hr class="">
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 col-lg-offset-1">
+      <div class="thumbnail">
+        <%= image_tag("rsz_pencil.jpg")%>
+        <div class="caption">
+          <h4 class="dashboard-titles">Edit Your Listings</h4>
+          <ul class="edit-listings">
+            <% @listings.each do |listing| %>
+              <li><%= link_to listing.title, edit_user_listing_path(listing.user_id, listing) %></li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="thumbnail">
+        <%= image_tag("rsz_1calender.jpg")%>
+        <div class="caption">
+          <h4 class="dashboard-titles">Manage Reservations</h4>
+          <p class="">View and manage all your Reservations. </p> <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a>  <a href="#" class="btn btn-default btn-xs" role="button">Manage</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="thumbnail">
+          <%= image_tag("rsz_1mail.jpg")%>
+        <div class="caption">
+          <h4 class="dashboard-titles">Reservation Requests</h4>
+          <p class="">View and update your reservation requests.</p> <a href="#" class="btn btn-default btn-xs pull-right" role="button"><i class="glyphicon glyphicon-edit"></i></a>  <a href="#" class="btn btn-default btn-xs" role="button">My Requests</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

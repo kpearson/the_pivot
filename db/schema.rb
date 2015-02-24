@@ -56,11 +56,14 @@ ActiveRecord::Schema.define(version: 20150222060531) do
     t.json     "images"
   end
 
-  create_table "orders", force: :cascade do |t|
+  create_table "reservations", force: :cascade do |t|
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
+    t.string   "status",     default: "pending"
     t.integer  "user_id"
-    t.string   "status",     default: "ordered"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.integer  "listing_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -8,6 +8,6 @@ class CartsController < ApplicationController
   def destroy
     @cart.remove_item(params[:item_id])
     session[:cart] = @cart.data
-    redirect_to new_order_path
+    redirect_to new_reservation_path
   end
 end

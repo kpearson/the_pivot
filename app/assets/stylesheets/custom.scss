@@ -321,3 +321,67 @@ ul, menu, dir {
     width: 100px;
     height: 30px;
 }
+
+#flash_notice {
+  &.error {
+    border: solid 4px #900;
+          background-color: #FF6565;
+        }
+  &.notice {
+    border: solid 4px #26722D;
+          background-color: #A4E7A0;
+        }
+  color: black;
+  z-index: 999;
+  position: fixed;
+  font-weight: bold;
+  width: 96%;
+  margin: 20px;
+  padding-top: 50px;
+        p {
+                font-size: 110%;
+                margin: 15px 0;
+        }
+}
+
+
+// /* =========================
+//
+//      HOST DASHBOARD INDEX PAGE
+//
+//    =========================*/
+
+.dashboard {
+  text-align: center;
+  margin-top: 120px;
+}
+
+ul.edit-listings  {
+  list-style-type: none;
+}
+
+.host-dashboard-head {
+  background: #C5EAEA;
+  padding-bottom: 130px;
+}
+
+.host-dashboard-h2 {
+  text-align: center;
+  margin-top: 100px;
+  font-size: 45px;
+}
+
+
+// /* =========================
+//
+//      EDIT/CREATE LISTINGS FORM
+//
+//    =========================*/
+
+.listing-create-form {
+  background: #C5EAEA;
+}
+
+.edit-new-listing {
+  margin-top: 70px;
+}

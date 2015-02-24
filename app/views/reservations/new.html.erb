@@ -1,0 +1,13 @@
+<h1>Cart</h1>
+
+<% if @reservation.listings.empty? %>
+  <p> Your cart is empty </p>
+<% else %>
+  <div class="items">
+    <%= render partial: "reservation_items", locals: { reservation: @reservation} %>
+  </div>
+  <h3>Total: <%= number_to_currency @reservation.total(@reservation.reservation_listings) %></h3>
+  <div id="checkout">
+    <%= button_to "Checkout", reservations_path, method: :post %>
+  </div>
+<% end %>

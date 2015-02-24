@@ -1,0 +1,12 @@
+<% reservations.each do |reservation| %>
+<h3><%= reservation.status.capitalize %> reservations</h3>
+<div id=<%= reservation.id %>>
+  <ul>
+    <li>
+      <%= link_to "Reservation #{reservation.format_reservation_number(reservation.id)}",
+      reservation_path(reservation.id) %>
+      Status: <%= reservation.status %>
+    </li>
+  </ul>
+</div>
+<% end %>

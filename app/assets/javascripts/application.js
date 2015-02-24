@@ -56,6 +56,14 @@ $(".to_date")
     });
 });
 
+//fadeout flash messages
+$(document).ready(function() {
+    setTimeout(hideFlashes, 6000);
+});
+
+var hideFlashes = function() {
+  $("#flash_notice, #flash_error").fadeOut(4000);
+}
 
 !function ($) {
   $(function(){
