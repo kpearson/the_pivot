@@ -6,14 +6,14 @@ class Cart
   end
 
   def add_listing(params, user_id)
-    data[:reservations] ||= []
+    data["reservations"] ||= []
     listing = Listing.find(params[:listing_id])
-     reservation = listing.reservations.new(
-      start_date: params[:check_in],
-      end_date: params[:check_out],
+    reservation = listing.reservations.new(
+      start_date: Date.strptime(params[:check_in], "%m/%d/%Y"),
+      end_date: Date.strptime(params[:check_out], "%m/%d/%Y"),
       user_id: user_id
     )
-    data[:reservations] << reservation.cart_data
+    data["reservations"] << reservation.cart_data
   end
 
   def count(listing)

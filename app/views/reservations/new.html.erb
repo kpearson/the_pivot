@@ -10,6 +10,7 @@
     <th>Start Date</th>
     <th>End Date</th>
     <th>Total</th>
+    <th>Checkout</th>
   </tr>
   <% @listings.each do |listing| %>
       <tr>
@@ -18,10 +19,12 @@
         <td><%= @dates[:start_date] %></td>
         <td><%= @dates[:end_date] %></td>
         <td><%= number_to_currency listing.nightly_rate %></td>
+        <td>
+          <div id="checkout">
+            <%= button_to "Checkout", user_reservations_path(current_user.slug), method: :post %>
+          </div>
+        </td>
       </tr>
   <% end %>
 </table>
-  <div id="checkout">
-    <%= button_to "Checkout", user_reservations_path(current_user.slug), method: :post %>
-  </div>
 <% end %>
