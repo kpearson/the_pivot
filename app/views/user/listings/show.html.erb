@@ -2,7 +2,7 @@
 
 <div class="row">
   <div class="col-lg-6"></div>
-    <h1 class="listing-header"><%= @listing.title %></h1>
+  <h1 class="listing-header"><%= @listing.title %></h1>
 
   <div class="row user-show-row">
     <div class="col-lg-5 user-listing-show">
@@ -10,125 +10,125 @@
       <%= render partial: "listing_show", locals: {listing: @listing, images: @listing_images} %>
     </div>
     <div id='map' class="col-lg-7 user-listing-show">
-      <script type="text/javascript">
+    <script type="text/javascript">
 
-      window.onload = function() {
-        var map,
-        dir;
+    window.onload = function() {
+      var map,
+      dir;
 
-        map = L.map('map', {
-          layers: MQ.mapLayer(),
-          center: [ 40.045049, -105.961737 ],
-          zoom: 7
-        });
+      map = L.map('map', {
+        layers: MQ.mapLayer(),
+        center: [ 40.045049, -105.961737 ],
+        zoom: 7
+      });
 
-        dir = MQ.routing.directions()
-        .on('success', function(data) {
-          var legs = data.route.legs,
-          html = '',
-          maneuvers,
-          i;
+      dir = MQ.routing.directions()
+      .on('success', function(data) {
+        var legs = data.route.legs,
+        html = '',
+        maneuvers,
+        i;
 
-          if (legs && legs.length) {
-            maneuvers = legs[0].maneuvers;
+        if (legs && legs.length) {
+          maneuvers = legs[0].maneuvers;
 
-            for (i=0; i<maneuvers.length; i++) {
-              html += (i+1) + '. ';
-              html += maneuvers[i].narrative + '<br />';
-            }
-
-            L.DomUtil.get('route-narrative').innerHTML = html;
+          for (i=0; i<maneuvers.length; i++) {
+            html += (i+1) + '. ';
+            html += maneuvers[i].narrative + '<br />';
           }
-        });
-        map.locate({setView: false, maxZoom: 16});
 
-        function onLocationFound(e) {
-          // var radius = e.accuracy / 2;
-          // L.marker(e.latlng).addTo(map)
-          // .bindPopup("You are within " + radius + " meters from this point").openPopup();
-          //
-          // L.circle(e.latlng, radius).addTo(map);
-          dir.route({
-            locations: [
-            { latLng: { lat: e.latlng.lat, lng: e.latlng.lng}},
-            // { latLng: { lat: 39.781, lng: -105.078 }},
-            // "Golden, CO",
-            // {postalCode: '80127'},
-            // {city: 'Steamboat Springs', state: 'CO'},
-            // { street: '8500 Pena Blvd', city: 'Denver', state: 'CO' },
-            "<%= @listing.full_address %>"
-            ]
-          });
-
-          map.addLayer(MQ.routing.routeLayer({
-            directions: dir,
-            fitBounds: true
-          }));
+          L.DomUtil.get('route-narrative').innerHTML = html;
         }
+      });
+      map.locate({setView: false, maxZoom: 16});
 
-        map.on('locationfound', onLocationFound);
-
-        function onLocationError(e) {
-          alert(e.message);
-        };
-
-        map.on('locationerror', onLocationError);
-
-        // var scottIcon = L.icon({
-        //   iconUrl: 'https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/10155510_10204458136868133_2678102298998605784_n.jpg?oh=1b229d0033f64ab07645de7a59ecc41c&oe=5582A623',
+      function onLocationFound(e) {
+        // var radius = e.accuracy / 2;
+        // L.marker(e.latlng).addTo(map)
+        // .bindPopup("You are within " + radius + " meters from this point").openPopup();
         //
-        //   iconSize:     [64, 64], // size of the icon
-        //   popupAnchor:  [0, -76] // point from which the popup should open relative to the iconAnchor
-        // });
-        // L.marker([39.781, -105.078], {icon: scottIcon}).addTo(map).bindPopup("Still famous in Lightning Talks!");
-        //
-        // var turingIcon = L.icon({
-        //   iconUrl: 'https://pbs.twimg.com/profile_images/444146105312243712/EHdy1GyV_400x400.png',
-        //
-        //   iconSize:     [64, 64], // size of the icon
-        //   popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
-        // });
-        // L.marker([39.749747, -104.999977], {icon: turingIcon}).addTo(map).bindPopup("Turing School of Software and Design<br>1510 Blake Street, Denver, CO 80202");
+        // L.circle(e.latlng, radius).addTo(map);
+        dir.route({
+          locations: [
+          // { latLng: { lat: e.latlng.lat, lng: e.latlng.lng}},
+          { latLng: { lat: 39.781, lng: -105.078 }},
+          // "Golden, CO",
+          // {postalCode: '80127'},
+          // {city: 'Steamboat Springs', state: 'CO'},
+          // { street: '8500 Pena Blvd', city: 'Denver', state: 'CO' },
+          "<%= @listing.full_address %>"
+          ]
+        });
+
+        map.addLayer(MQ.routing.routeLayer({
+          directions: dir,
+          fitBounds: true
+        }));
       }
-      </script>
+
+      map.on('locationfound', onLocationFound);
+
+      function onLocationError(e) {
+        alert(e.message);
+      };
+
+      map.on('locationerror', onLocationError);
+
+      // var scottIcon = L.icon({
+      //   iconUrl: 'https://scontent.xx.fbcdn.net/hphotos-xpf1/v/t1.0-9/10155510_10204458136868133_2678102298998605784_n.jpg?oh=1b229d0033f64ab07645de7a59ecc41c&oe=5582A623',
+      //
+      //   iconSize:     [64, 64], // size of the icon
+      //   popupAnchor:  [0, -76] // point from which the popup should open relative to the iconAnchor
+      // });
+      // L.marker([39.781, -105.078], {icon: scottIcon}).addTo(map).bindPopup("Still famous in Lightning Talks!");
+      //
+      // var turingIcon = L.icon({
+      //   iconUrl: 'https://pbs.twimg.com/profile_images/444146105312243712/EHdy1GyV_400x400.png',
+      //
+      //   iconSize:     [64, 64], // size of the icon
+      //   popupAnchor:  [0, -40] // point from which the popup should open relative to the iconAnchor
+      // });
+      // L.marker([39.749747, -104.999977], {icon: turingIcon}).addTo(map).bindPopup("Turing School of Software and Design<br>1510 Blake Street, Denver, CO 80202");
+    }
+  </script>
+</div>
+<section id="networks">
+  <div class="col-lg-0">
+    <p>
+      <a href="#"><i class="facebook fa fa-facebook"></i></a><a href="#"><i class="twitter fa fa-twitter"></i></a><a href="#"><i class="mail fa fa-envelope"></i></a>
+    </p>
   </div>
-    <section id="networks">
-      <div class="col-lg-0">
-        <p>
-          <a href="#"><i class="facebook fa fa-facebook"></i></a><a href="#"><i class="twitter fa fa-twitter"></i></a><a href="#"><i class="mail fa fa-envelope"></i></a>
-        </p>
-      </div>
-      <p><a href="#" class="btn btn-primary btn-large">Book It!</a></p>
-    </section>
-  <div class="col-lg-5 container"></div>
-    <button id="show-directions">Show Directions</button>
-    <div id='route-narrative' class="directions-hide" style='margin-top:20px;'>
+  <p><a href="#" class="btn btn-primary btn-large">Book It!</a></p>
+</section>
+<div class="col-lg-5 container"></div>
+<button id="show-directions">Show Directions</button>
+<div id='route-narrative' class="directions-hide" style='margin-top:20px;'>
 
-    <script charset="utf-8">
-      $(document).ready(function(){
-        var toggleDirections = function() {
-          $("#show-directions").on("click", function(){
-            $("#route-narrative").toggleClass("directions-hide")
+  <script charset="utf-8">
+    $(document).ready(function(){
+      var toggleDirections = function() {
+        $("#show-directions").on("click", function(){
+          $("#route-narrative").toggleClass("directions-hide")
 
-            toggleButtonText()
-          })
+          toggleButtonText()
+        })
+      }
+
+      var toggleButtonText = function() {
+        if($("#show-directions").text() === "Show Directions") {
+          addText("Hide Directions")
+        } else {
+          addText("Show Directions")
         }
+      }
 
-        var toggleButtonText = function() {
-          if($("#show-directions").text() === "Show Directions") {
-            addText("Hide Directions")
-          } else {
-            addText("Show Directions")
-          }
-        }
+      var addText = function(text) {
+        $("#show-directions").text(text)
+      }
 
-        var addText = function(text) {
-          $("#show-directions").text(text)
-        }
-
-        toggleDirections()
-      })
-    </script>
-    </div>
-  </div>
+      toggleDirections()
+    })
+  </script>
+</div>
+</div>
 </div>
