@@ -20,8 +20,9 @@ class Cart
     listing.values.reduce(0, :+)
   end
 
-  def remove_item(item_id)
-    @params[item_id] -= 1
-    @params.delete_if { |_item, quantity| quantity == 0 }
+  def remove_listing(params)
+    data["reservations"].delete_if do |listing|
+      listing["listing_id"] == params["listing_id"].to_i && listing["start_date"] == params["start_date"]
+    end
   end
 end

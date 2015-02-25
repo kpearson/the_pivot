@@ -11,6 +11,7 @@
     <th>End Date</th>
     <th>Total</th>
     <th>Checkout</th>
+    <th>Remove Listing</th>
   </tr>
   <% @listings.each do |listing| %>
       <tr>
@@ -24,6 +25,11 @@
             <%= button_to "Request Listing", user_reservations_path(current_user.slug, listing_id: listing.id, user_id: current_user.id, start_date: @dates[:start_date], end_date: @dates[:end_date]), method: :post %>
           </div>
         </td>
+      <td>
+        <div id="delete-listing">
+            <%= button_to "Remove", user_reservation_path(current_user.slug, listing.id, listing_id: listing.id, user_id: current_user.id, start_date: @dates[:start_date], end_date: @dates[:end_date]), method: "delete" %>
+        </div>
+      </td>
       </tr>
   <% end %>
 </table>

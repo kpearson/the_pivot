@@ -34,9 +34,7 @@ class User::ReservationsController < ApplicationController
     if current_user
       set_reservation_attributes(params)
       if @reservation.save
-        @cart.data["reservations"].delete_if do |listing|
-          listing["listing_id"] == params["listing_id"].to_i && listing["start_date"] == params["start_date"]
-        end
+        @cart.remove_listing(params)
         flash[:notice] = "Request Sent!"
         redirect_to :back
       else
@@ -44,6 +42,12 @@ class User::ReservationsController < ApplicationController
         redirect_to :back
       end
     end
+  end
+
+  def destroy
+    @cart.remove_listing(params)
+    flash[:notice] = "Listing Removed"
+    redirect_to :back
   end
 
   private
