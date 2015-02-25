@@ -20,22 +20,27 @@ class User::ReservationsController < ApplicationController
   end
 
   def create
-    require 'pry' ; binding.pry
     if current_user
-      @reservation = Reservation.new(listing_id: params[:listing_id])
-      @reservation.user = User.find(session)
-      @reservation = Reservation.new(user_id: session["cart"]["reservations"].first["user_id"])
+      set_reservation_attributes(params)
       if @reservation.save
+        @cart.data["reservations"].delete_if do |listing|
+          listing["listing_id"] == params["listing_id"].to_i && listing["start_date"] == params["start_date"]
+        end
         flash[:notice] = "Request Sent!"
+        redirect_to :back
       else
         flash[:notice] = "Unable to send request"
+        redirect_to :back
       end
     end
   end
 
   private
-  #
-  # def reservation_params
-  #   params.require(:reservation).permit(:listing_id, :user_id, :start_date, :end_date)
-  # end
+
+  def set_reservation_attributes(params)
+    @reservation = Reservation.new(listing_id: params[:listing_id])
+    @reservation.user = User.find(params["user_id"])
+    @reservation.start_date = Date.parse(params["start_date"])
+    @reservation.end_date = Date.parse(params["end_date"])
+  end
 end
