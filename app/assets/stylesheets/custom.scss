@@ -73,9 +73,15 @@ a {
   vertical-align: right;
 }
 
+.text-listing-index {
+  display: block;
+  margin-top: 20px;
+}
+
 .listing {
   border: 1px solid;
-  padding: 15px;
+  padding-bottom: 50px;
+  background-color: white;
 }
 
 .col-md-6 {
@@ -149,7 +155,7 @@ a {
 
 .listing-slide {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   margin-left: 20px;
   margin-right: 20px;
 }

@@ -12,18 +12,28 @@
     <ul class="slides">
       <% @listings.each do |listing| %>
         <li class="listing-slide" id="listing-slide">
+        <div class="listing">
           <%= link_to user_listing_path(listing.user.slug, listing) do %>
-          <% if listing.listing_images.any? %>
-            <%= image_tag listing.listing_images.first.image.url %>
-          <% end %>
-          <span class="d-hover"><br>
-            Property Category: <%= listing.category.name %><br>
-            Property Description: <%= listing.description %><br>
-            Nightly Rate: <%= number_to_currency(listing.currency) %><br>
-            Max Guests: <%= listing.max_guests %><br>
-          </span></a></li>
-          <% end %>
+            <% if listing.listing_images.any? %>
+              <%= image_tag listing.listing_images.first.image.url %>
+            <% end %>
+            <span class="d-hover"><br>
+              Property Category: <%= listing.category.name %><br>
+              Property Description: <%= listing.description %><br>
+              Nightly Rate: <%= number_to_currency(listing.currency) %><br>
+              Max Guests: <%= listing.max_guests %><br>
+            </span>
+          </a>
+          <div class="text-listing-index">
+            <div class="row text-listing-title">
+              <%= listing.title.upcase %><br>
+            </div>
+            <%= listing.city %>, <%= listing.state %>
+          </div>
+        </div>
+        </li>
       <% end %>
-    </ul>
-  </div>
+    <% end %>
+  </ul>
+</div>
 </div>
