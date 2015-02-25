@@ -142,6 +142,9 @@ describe "a host" do
     click_link_or_button "Approve"
     expect(page).to have_content("Reservation status successfully changed to approved")
     expect(page).to_not have_content("pending")
+    within("table") do
+      expect(page).to have_content("approved")
+    end
   end
 
   it "can decline a request" do
@@ -157,6 +160,9 @@ describe "a host" do
     click_link_or_button "Decline"
     expect(page).to have_content("Reservation status successfully changed to cancelled")
     expect(page).to_not have_content("pending")
+    within("table") do
+      expect(page).to have_content("cancelled")
+    end
   end
 
   it "can cancel a reservation" do
@@ -171,6 +177,9 @@ describe "a host" do
     expect(current_path).to eq(user_reservations_path(host_user.slug))
     expect(page).to have_content("Reservation status successfully changed to cancelled")
     expect(page).to_not have_content("approved")
+    within("table") do
+      expect(page).to have_content("cancelled")
+    end
   end
 
   it "can restore a cancelled reservation" do
@@ -185,6 +194,9 @@ describe "a host" do
     expect(current_path).to eq(user_reservations_path(host_user.slug))
     expect(page).to have_content("Reservation status successfully changed to pending")
     expect(page).to_not have_content("cancelled")
+    within("table") do
+      expect(page).to have_content("pending")
+    end
   end
 
   it "it cannot view another hosts dashboard" do
