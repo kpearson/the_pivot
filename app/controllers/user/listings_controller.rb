@@ -1,6 +1,7 @@
 class User::ListingsController < ApplicationController
   def show
-    @listing = Listing.find(params[:id])
+    user = User.find_by!(slug: params[:slug])
+    @listing = user.listings.find(params[:id])
     @listing_images = @listing.listing_images.all
     @remaining_images = @listing_images[1..-1]
   end
@@ -30,12 +31,14 @@ class User::ListingsController < ApplicationController
   end
 
   def edit
-    @listing = Listing.find(params[:id])
+    user = User.find_by!(slug: params[:slug])
+    @listing = user.listings.find(params[:id])
     @listing_image = @listing.listing_images.build
+    @user = User.find_by(slug: params[:slug])
   end
 
   def update
-    @listing = Listing.find(params[:id])
+    @listing = current_user.listings.find(params[:id])
      if params["listing_images"]
        params["listing_images"]["images"].each do |i|
        @listing.listing_images.build(image: i)
@@ -51,7 +54,7 @@ class User::ListingsController < ApplicationController
   def destroy
     @listing = Listing.find(params[:id])
     @listing.destroy
-    redirect_to user_show_path
+    redirect_to user_dashboard_path(current_user.slug)
   end
 
   private

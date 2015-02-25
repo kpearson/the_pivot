@@ -82,8 +82,8 @@ describe "an authenticated user" do
   it "can view their own page" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
-    visit user_path(valid_user)
-    expect(current_path).to eq(user_path(valid_user))
+    visit user_path(valid_user.id)
+    expect(current_path).to eq(user_path(valid_user.id))
   end
 
   xit "cannot edit another user's profile" do
@@ -266,16 +266,7 @@ describe "an authenticated user" do
     visit user_dashboard_path(host)
     expect(current_path).to eq(root_path)
   end
-  #
-  # def click_add_to_cart_link(category)
-  #   click_link_or_button "Menu"
-  #   within(".categories") do
-  #     within("div##{category}") do
-  #         click_link "Add to Cart"
-  #     end
-  #   end
-  # end
-  #
+
   def valid_user_logs_in
     click_link "Log In"
     fill_in "session_email", with: "alice@gmail.com"
