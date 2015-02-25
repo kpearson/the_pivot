@@ -107,7 +107,7 @@ describe "an authenticated user" do
     visit root_path
     click_link_or_button("Reservations")
     expect(current_path).to eq(new_reservation_path)
-    expect(page).to have_content("Your Haven't Booked Any Reservations!")
+    expect(page).to have_content("Your Reservations Are Empty!")
   end
 
   it "can visit the new reservation page and request a listing", js: true do
@@ -130,7 +130,43 @@ describe "an authenticated user" do
     expect(current_path).to eq(new_reservation_path)
   end
 
-  xit "can remove a listing from a cart" do
+  it "cannot see listing intheir cart after it has been requested", js: true do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(valid_user)
+
+    visit user_listing_path(valid_user.slug, listing)
+    page.execute_script("$('#check_in').val('02/24/2015')")
+    page.execute_script("$('#check_out').val('02/26/2015')")
+    click_button('Book It!')
+    expect(current_path).to eq(user_listing_path(valid_user.slug, listing))
+    expect(page).to have_content('Listing Successfully Added To Reservations')
+
+    visit root_path
+    click_link_or_button("Reservations")
+    expect(current_path).to eq(new_reservation_path)
+    expect(page).to have_content("Your Reservations")
+    click_button("Request Listing")
+    expect(page).to have_content("Your Reservations Are Empty!")
+  end
+
+  it "can delete a reservation from the request cart", js: true do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(valid_user)
+
+    visit user_listing_path(valid_user.slug, listing)
+    page.execute_script("$('#check_in').val('02/24/2015')")
+    page.execute_script("$('#check_out').val('02/26/2015')")
+    click_button('Book It!')
+    expect(current_path).to eq(user_listing_path(valid_user.slug, listing))
+    expect(page).to have_content('Listing Successfully Added To Reservations')
+
+    visit root_path
+    click_link_or_button("Reservations")
+    expect(current_path).to eq(new_reservation_path)
+    expect(page).to have_content("Your Reservations")
+    click_button("Remove")
+    expect(page).to have_content("Listing Removed")
+    expect(current_path).to eq(new_reservation_path)
   end
 
   it "can view their own page" do
@@ -205,79 +241,16 @@ describe "an authenticated user" do
     click_link_or_button "Reservation 00001"
     expect(page).to have_content("Reservation 00001")
   end
-  #
-  # it "can edit their profile on their own page" do
-  #   allow_any_instance_of(ApplicationController).to receive(:current_user).
-  #                                                   and_return(valid_user)
-  #   visit user_path(valid_user)
-  #   expect(current_path).to eq(user_path(valid_user))
-  #   click_link_or_button('Edit Profile')
-  #   fill_in "user[about_me]", with: "I'm no fun!"
-  #   click_link_or_button 'Submit'
-  #   expect(page).to have_content("I'm no fun!")
-  # end
-  #
-  # context "can view the reservation page with" do
-  #   before(:each) do
-  #     allow_any_instance_of(ApplicationController).to receive(:current_user).
-  #     and_return(valid_user)
-  #     click_add_to_cart_link("Breakfast")
-  #     click_link_or_button "Cart:"
-  #     click_link_or_button "Checkout"
-  #   end
-  #
-  #   it "items with quantity ordered and line-item subtotals" do
-  #     within("#item-quantity") do
-  #       expect(page).to have_content("1")
-  #     end
-  #     within("#item-subtotal") do
-  #       expect(page).to have_content("$10.00")
-  #     end
-  #   end
-  #
-  #   it "items with links to each item description page" do
-  #     within("#item-title") do
-  #       click_link_or_button "Bacon"
-  #     end
-  #     expect(page).to have_content("Bacon")
-  #   end
-  #
-  #   it "the current status of the reservation" do
-  #     within("#reservation-status") do
-  #       expect(page).to have_content("ordered")
-  #     end
-  #   end
-  #
-  #   it "reservation total price" do
-  #     within("#item-total") do
-  #       expect(page).to have_content("$10.00")
-  #     end
-  #   end
-  #
-  #   xit "date/time reservation was submitted" do
-  #     within("#reservation-submit-time") do
-  #       expect(page).to have_content("Reservation Submitted At:")
-  #     end
-  #   end
-  # end
 
-  # context ", when an item is retired," do
-  #   before(:each) do
-  #     allow_any_instance_of(ApplicationController).to receive(:current_user).
-  #                                                     and_return(valid_user)
-  #     click_add_to_cart_link("Breakfast")
-  #     item = Item.find_by(title: "Bacon and Eggs")
-  #     item.update(status: "hidden")
-  #     click_link_or_button "Cart:"
-  #     click_link_or_button "Checkout"
-  #   end
-  #
-  #   xit "can still access the item page" do
-  #     click_link_or_button "Bacon and Eggs"
-  #     expect(current_path).to eq(item_path(1))
-  #     expect(page).to have_content("Bacon and Eggs")
-  #   end
-  # end
+  it "can edit their profile on their own page" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(valid_user)
+    visit user_path(valid_user)
+    click_link_or_button('Edit Profile')
+    fill_in "user[about_me]", with: "I'm no fun!"
+    click_link_or_button 'Submit'
+    expect(page).to have_content("I'm no fun!")
+  end
 
   it "cannot see the login button" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
