@@ -18,4 +18,8 @@ class User::ReservationsController < ApplicationController
       redirect_to :back
     end
   end
+
+  def new
+    @listings = Listing.find(params[:listing_id])
+  end
 end

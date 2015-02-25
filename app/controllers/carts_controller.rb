@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  # before_action :load_cart
+  before_action :set_cart
 
   def create
     @cart.add_listing(params, current_user.id)
