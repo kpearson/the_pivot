@@ -9,8 +9,12 @@
       <%= f.select :max_guests, options_for_select(guests_helper), hide_label: true, class: "connector", placeholder: "Guests" %>
       <%= f.submit "Filter", class: "btn btn-primary connector" %>
     <% end %>
-    <%= bootstrap_form_tag url: "/listings", method: "get" do |f| %>
-      <%= f.submit "View All", class: "btn btn-default" %>
-    <% end %>
   </div>
+<div class="row">
+  <div class="col-md-2 col-md-offset-5"
+<%= bootstrap_form_tag url: "/listings", method: "get" do |f| %>
+  <%= f.submit "View All", class: "btn btn-default" %>
+<% end %>
+</div>
+</div>
 </div>
