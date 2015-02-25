@@ -24,6 +24,9 @@ class User::ReservationsController < ApplicationController
     if @reservation.update(status: params[:status])
       flash[:notice] = "Reservation status successfully changed to #{params[:status]}"
       redirect_to :back
+    else
+      flash[:notice] = "Reservation status could not be updated"
+      redirect_to :back
     end
   end
 end
