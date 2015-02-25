@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :ensure_user_signed_in, only: [:edit, :udpate]
+
   def new
     @user = User.new
     render layout: false
@@ -20,13 +22,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
-
+    @user = current_user
   end
 
-
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     @user.update(user_params)
     redirect_to :back
   end
