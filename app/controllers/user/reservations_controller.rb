@@ -22,7 +22,7 @@ class User::ReservationsController < ApplicationController
   def update
     @reservation = Reservation.find(params[:id])
     if @reservation.update(status: params[:status])
-      flash[:notice] = "Reservation status successfully changed to #{params[:status]}"
+      flash[:notice] = "Reservation successfully changed to #{params[:status]}"
       redirect_to :back
     else
       flash[:notice] = "Reservation status could not be updated"

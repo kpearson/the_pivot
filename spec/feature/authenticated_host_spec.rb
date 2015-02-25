@@ -140,7 +140,7 @@ describe "a host" do
     click_link_or_button "My Requests"
     expect(current_path).to eq(host_reservations_path(host_user.slug))
     click_link_or_button "Approve"
-    expect(page).to have_content("Reservation status successfully changed to approved")
+    expect(page).to have_content("Reservation successfully changed to approved")
     expect(page).to_not have_content("pending")
     within("table") do
       expect(page).to have_content("approved")
@@ -158,7 +158,7 @@ describe "a host" do
     click_link_or_button "My Requests"
     expect(current_path).to eq(host_reservations_path(host_user.slug))
     click_link_or_button "Decline"
-    expect(page).to have_content("Reservation status successfully changed to cancelled")
+    expect(page).to have_content("Reservation successfully changed to cancelled")
     expect(page).to_not have_content("pending")
     within("table") do
       expect(page).to have_content("cancelled")
@@ -175,7 +175,7 @@ describe "a host" do
     visit host_reservations_path(host_user.slug)
     click_link_or_button "Cancel"
     expect(current_path).to eq(user_reservations_path(host_user.slug))
-    expect(page).to have_content("Reservation status successfully changed to cancelled")
+    expect(page).to have_content("Reservation successfully changed to cancelled")
     expect(page).to_not have_content("approved")
     within("table") do
       expect(page).to have_content("cancelled")
@@ -192,7 +192,7 @@ describe "a host" do
     visit host_reservations_path(host_user.slug)
     click_link_or_button "Restore"
     expect(current_path).to eq(user_reservations_path(host_user.slug))
-    expect(page).to have_content("Reservation status successfully changed to pending")
+    expect(page).to have_content("Reservation successfully changed to pending")
     expect(page).to_not have_content("cancelled")
     within("table") do
       expect(page).to have_content("pending")
