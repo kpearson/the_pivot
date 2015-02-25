@@ -74,13 +74,23 @@ a {
 }
 
 .text-listing-index {
-  display: block;
+  display: inline-block;
   margin-top: 10px;
 }
 
+.text-listing-title i {
+  margin-right: 50px;
+  float: left;
+}
+
 .text-listing-title {
-  display: block;
-  margin-top: 10px;
+  font-size: 20px;
+  margin-right: 50px;
+  float: left;
+}
+
+.text-listing-city {
+  float: right;
 }
 
 .listing {
@@ -175,14 +185,14 @@ a {
   text-align: center;
   padding-top: 25%;
   line-height: 20px;
-  background: rgba(233, 141, 79, 0.75);
+  background: rgba(100, 100, 100, 0.3);
 }
 
 .d-hover p {
   display: block !important;
   z-index: 500;
   margin-top: 25px;
-  font-size: 14px;
+  font-size: 15px;
   font-style: italic;
   font-weight: 300;
 }

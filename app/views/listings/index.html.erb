@@ -18,18 +18,18 @@
               <%= image_tag listing.listing_images.first.image.url %>
             <% end %>
             <span class="d-hover"><br>
-              Property Category: <%= listing.category.name %><br>
-              Property Description: <%= listing.description %><br>
-              Nightly Rate: <%= number_to_currency(listing.currency) %><br>
-              Max Guests: <%= listing.max_guests %><br>
+              <%= listing.description %><br>
+              <%= listing.category.name %><br>
+              Nightly Rate <%= number_to_currency(listing.currency) %><br>
+              Sleep <%= listing.max_guests %><br>
             </span>
           </a>
           <div class="text-listing-index">
             <div class="row text-listing-title">
-              <h4><%= link_to listing.title.upcase, user_listing_path(listing.user.slug, listing) %></h4>
+              <i class="fa fa-bed"></i><p><%= link_to listing.title.upcase, user_listing_path(listing.user.slug, listing) %></p>
             </div>
-            <div class="row text-listing-title">
-              </p><%= listing.city %>, <%= listing.state %></p>
+            <div class="row text-listing-city">
+              <p><%= listing.city %>, <%= listing.state %></p>
             </div>
           </div>
         </div>
