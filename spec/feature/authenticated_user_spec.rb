@@ -7,35 +7,35 @@ describe "an authenticated user" do
   let!(:category2) { Category.create(name: "House") }
   let!(:listing) do
     Listing.create(title: "B&B",
-                   description: "Super classy",
-                   category_id: 1,
-                   max_guests: 2,
-                   nightly_rate: 10000,
-                   address1: "123 Elm St",
-                   address2: nil,
-                   city: "Denver",
-                   state: "CO",
-                   zip: 80022,
-                   shared_bathroom: false,
-                   user_id: 1)
+    description: "Super classy",
+    category_id: 1,
+    max_guests: 2,
+    nightly_rate: 10000,
+    address1: "123 Elm St",
+    address2: nil,
+    city: "Denver",
+    state: "CO",
+    zip: 80022,
+    shared_bathroom: false,
+    user_id: 1)
   end
   let!(:valid_user) do
     User.create(first_name: "Alice",
-                last_name: "Smith",
-                display_name: "valid",
-                about_me: "valid",
-                email: "alice@gmail.com",
-                password: "password")
+    last_name: "Smith",
+    display_name: "valid",
+    about_me: "valid",
+    email: "alice@gmail.com",
+    password: "password")
   end
 
   let!(:user) do
     User.create(first_name: "John",
-                last_name: "Doe",
-                display_name: "john",
-                about_me: "valid",
-                email: "john@gmail.com",
-                password: "password",
-                role: 0)
+    last_name: "Doe",
+    display_name: "john",
+    about_me: "valid",
+    email: "john@gmail.com",
+    password: "password",
+    role: 0)
   end
 
   before(:each) do
@@ -44,14 +44,14 @@ describe "an authenticated user" do
 
   it "cannot see a host's dashboard in their profile dropdown" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-      and_return(valid_user)
+    and_return(valid_user)
     visit root_path
     expect(page).to_not have_content("Dashboard")
   end
 
   it "can see a user profile dropdown" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-      and_return(valid_user)
+    and_return(valid_user)
     visit root_path
     expect(page).to have_content("Profile")
     expect(page).to have_content("Edit Profile")
@@ -61,7 +61,7 @@ describe "an authenticated user" do
 
   it "can browse all listings (listings index page)" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
     click_link_or_button "Destinations"
     visit(listings_path)
     expect(page).to have_content listing.description
@@ -70,7 +70,7 @@ describe "an authenticated user" do
 
   xit "can browse a listing by clicking the listing" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
     visit listings_path
     click_link_or_button "B&B"
     expect(current_path).to eq(user_listing_path(listing.user.slug, listing))
@@ -83,23 +83,51 @@ describe "an authenticated user" do
 
   it "can add a listing to a cart", js: true do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
     visit user_listing_path(valid_user.slug, listing)
-    page.execute_script("$('#check_in').val('24/2/2015')")
-    page.execute_script("$('#check_out').val('25/2/2015')")
+    page.execute_script("$('#check_in').val('02/24/2015')")
+    page.execute_script("$('#check_out').val('02/26/2015')")
     click_button('Book It!')
-    save_and_open_page
     expect(current_path).to eq(user_listing_path(valid_user.slug, listing))
     expect(page).to have_content('Listing Successfully Added To Reservations')
   end
 
   it "can visit the new reservation page and see pending listings" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(user)
+    and_return(user)
     visit root_path
     click_link_or_button("Reservations")
     expect(current_path).to eq(new_reservation_path)
     expect(page).to have_content('Your Reservations')
+  end
+
+  it "can visit the new reservation page and see that is it empty" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+    and_return(user)
+    visit root_path
+    click_link_or_button("Reservations")
+    expect(current_path).to eq(new_reservation_path)
+    expect(page).to have_content("Your Haven't Booked Any Reservations!")
+  end
+
+  it "can visit the new reservation page and request a listing", js: true do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+                                                    and_return(valid_user)
+
+    visit user_listing_path(valid_user.slug, listing)
+    page.execute_script("$('#check_in').val('02/24/2015')")
+    page.execute_script("$('#check_out').val('02/26/2015')")
+    click_button('Book It!')
+    expect(current_path).to eq(user_listing_path(valid_user.slug, listing))
+    expect(page).to have_content('Listing Successfully Added To Reservations')
+
+    visit root_path
+    click_link_or_button("Reservations")
+    expect(current_path).to eq(new_reservation_path)
+    expect(page).to have_content("Your Reservations")
+    click_button("Request Listing")
+    expect(page).to have_content("Request Sent!")
+    expect(current_path).to eq(new_reservation_path)
   end
 
   xit "can remove a listing from a cart" do
@@ -107,7 +135,7 @@ describe "an authenticated user" do
 
   it "can view their own page" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
     visit user_path(valid_user)
     expect(current_path).to eq(user_path(valid_user))
   end
@@ -117,11 +145,11 @@ describe "an authenticated user" do
 
   it "cannot view admin dashboard" do
     admin = Admin.create(first_name: "First",
-                         last_name: "Last",
-                         email: "admin@gmail.com",
-                         password: "adminpassword")
+    last_name: "Last",
+    email: "admin@gmail.com",
+    password: "adminpassword")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
     visit admin_path(admin)
     expect(current_path).to eq(not_found_path)
   end
@@ -147,17 +175,17 @@ describe "an authenticated user" do
 
   xit "checkout" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
   end
 
   xit "can view their reservation after checkout" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
   end
 
   xit "can view past trips with links to each trip" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
     Reservation.create(user_id: valid_user.id)
     Reservation.create(user_id: valid_user.id)
     visit user_path(valid_user.id)
@@ -253,33 +281,33 @@ describe "an authenticated user" do
 
   it "cannot see the login button" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
     visit root_path
     expect(page).to_not have_content("Log In")
   end
 
   xit "cannot modify a listing" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
   end
 
   it "cannot create a category" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
     visit new_admin_category_path
     expect(page).to have_content("Page Not Found")
   end
 
   it "cannot modify a category" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
     visit edit_admin_category_path(category1)
     expect(page).to have_content("Page Not Found")
   end
 
   it "cannot make themselves an admin" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-                                                    and_return(valid_user)
+    and_return(valid_user)
     visit new_admin_path
     expect(page).to have_content("Page Not Found")
   end
@@ -288,7 +316,7 @@ describe "an authenticated user" do
     another_user = create(:user, email: "yes@yahoo.com", display_name: "harry")
     host = create(:user, role: 1, email: "no@yahoo.com", display_name: "sally" )
     allow_any_instance_of(ApplicationController).to receive(:current_user).
-      and_return(another_user)
+    and_return(another_user)
     visit user_dashboard_path(host)
     expect(current_path).to eq(root_path)
   end

@@ -1,7 +1,7 @@
 <h1>Your Reservations</h1>
 
 <% if @listings.empty? %>
-  <p> Your cart is empty </p>
+  <p> Your Haven't Booked Any Reservations! </p>
 <% else %>
 <table class="table table-hover">
   <tr>
@@ -21,7 +21,7 @@
         <td><%= number_to_currency listing.nightly_rate %></td>
         <td>
           <div id="checkout">
-            <%= button_to "Checkout", user_reservations_path(current_user.slug), method: :post %>
+            <%= button_to "Request Listing", user_reservations_path(current_user.slug, listing_id: listing.id, user_id: current_user.id, start_date: @dates[:start_date], end_date: @dates[:end_date]), method: :post %>
           </div>
         </td>
       </tr>
