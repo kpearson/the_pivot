@@ -14,7 +14,8 @@ class SessionsController < ApplicationController
 
   def destroy
     session[:admin_id] = nil
-    session[:user_id] = nil
+    session[:user_id]  = nil
+    session["cart"]    = nil
     flash[:notice] = "Successfully Logged Out"
     redirect_to root_path
   end

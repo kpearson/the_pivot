@@ -29,4 +29,29 @@ class User::ReservationsController < ApplicationController
       redirect_to :back
     end
   end
+
+  def create
+    if current_user
+      set_reservation_attributes(params)
+      if @reservation.save
+        @cart.data["reservations"].delete_if do |listing|
+          listing["listing_id"] == params["listing_id"].to_i && listing["start_date"] == params["start_date"]
+        end
+        flash[:notice] = "Request Sent!"
+        redirect_to :back
+      else
+        flash[:notice] = "Unable to send request"
+        redirect_to :back
+      end
+    end
+  end
+
+  private
+
+  def set_reservation_attributes(params)
+    @reservation = Reservation.new(listing_id: params[:listing_id])
+    @reservation.user = User.find(params["user_id"])
+    @reservation.start_date = Date.parse(params["start_date"])
+    @reservation.end_date = Date.parse(params["end_date"])
+  end
 end

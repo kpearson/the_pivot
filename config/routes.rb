@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   delete "/carts", to: "carts#destroy"
   get "/admin/filtered_reservations", to: "admin/reservations#filtered_reservations"
 
+  resources :reservations, only: [:new]
+
   resources :categories, only: [:index, :show]
   resources :listings, only: [:index]
 
@@ -27,7 +29,7 @@ Rails.application.routes.draw do
   namespace :user, path: "/:slug" do
     resources :listings, except: [:index]
     get '/dashboard', to: 'dashboard#index'
-    resources :reservations, only: [:new, :create, :index]
+    resources :reservations, only: [:create, :index]
   end
 
   namespace :user, path: "/:slug", as: :host do
