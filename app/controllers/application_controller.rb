@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
     redirect_to not_found_path
   end
 
+  rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+
   def set_cart
     @cart = Cart.new(session[:cart])
   end
@@ -18,6 +20,21 @@ class ApplicationController < ActionController::Base
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
     @current_user ||= Admin.find(session[:admin_id]) if session[:admin_id]
     @current_user
+  end
+
+  def signed_in?
+    current_user.present?
+  end
+
+  def ensure_user_signed_in
+    unless signed_in?
+      flash[:notice] = "You must be signed in"
+      redirect_to root_path
+    end
+  end
+
+  def handle_record_not_found
+    redirect_to root_path
   end
 
   helper_method :current_user
