@@ -84,10 +84,10 @@ RSpec.describe Reservation, type: :model do
     expect(Reservation.pending.first).to eq(reservation)
   end
 
-  it "has paid reservation" do
-    reservation.status = "paid"
+  it "has approved reservation" do
+    reservation.status = "approved"
     reservation.save
-    expect(Reservation.paid.first).to eq(reservation)
+    expect(Reservation.approved.first).to eq(reservation)
   end
 
   it "has past reservation" do

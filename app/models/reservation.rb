@@ -4,7 +4,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :user
   scope :pending, -> { where(status: "pending") }
   scope :past, -> { where(status: "past") }
-  scope :paid, -> { where(status: "paid") }
+  scope :approved, -> { where(status: "approved") }
   scope :cancelled, -> { where(status: "cancelled") }
 
   def guest
@@ -21,6 +21,15 @@ class Reservation < ActiveRecord::Base
     reservation_listings.map do |reservation_listing|
       (line_item.quantity * reservation_listing.item.price) / 100
     end.reduce(:+)
+  end
+
+  def cart_data
+    {
+      start_date: start_date,
+      end_date: end_date,
+      user_id: user_id,
+      listing_id: listing_id
+    }
   end
 
   def formatted_created_at
