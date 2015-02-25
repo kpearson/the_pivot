@@ -83,7 +83,6 @@ describe "an authenticated user" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
     visit user_path(valid_user.id)
-    #require 'pry' ; binding.pry
     expect(current_path).to eq(user_path(valid_user.id))
   end
 
