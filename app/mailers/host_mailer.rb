@@ -1,6 +1,7 @@
 class HostMailer < ApplicationMailer
-  def notify(email, email_for_host)
+  def inform(email, user_contact)
     @user = user
-    mail(to: email_for_host, subject: "You have a Vagabond waiting for approval!"
+    #attachments['image or file'] = File.read("#{Rails.root}/public/image_file.jpg)
+    mail(to: user_contact, subject: "You have a Vagabond waiting for approval!")
   end
 end

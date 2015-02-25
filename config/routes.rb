@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+ #  mount Sidekiq::Web => '/sidekiq'
 
   root "home#index"
   get "/not_found", to: "home#not_found"
@@ -16,7 +17,7 @@ Rails.application.routes.draw do
     get '/dashboard', to: 'dashboard#index'
   end
 
-  post /noteifications
+  post '/noteifications' => 'notification#create'
 
  # post   '/:user_slug/listings'          , 'user/listings#create' , as: :user_listings
  # get    '/:user_slug/listings/new'      , 'user/listings#new'    , as: :new_user_listing
