@@ -10,7 +10,6 @@ class ApplicationController < ActionController::Base
 
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
 
-
   def set_cart
     @cart = Cart.new(session[:cart])
   end
