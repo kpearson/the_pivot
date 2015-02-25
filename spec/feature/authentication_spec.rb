@@ -34,9 +34,7 @@ describe "authenticated" do
       fill_in "user[password]", with: "password"
       click_button("Sign Up")
       expect(current_path).to eq(root_path)
-      within("#flash_notice") do
-        expect(page).to have_content("Welcome Joe")
-      end
+      expect(page).to have_content("Profile")
     end
 
     it "can log in if registered" do
