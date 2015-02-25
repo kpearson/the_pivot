@@ -70,13 +70,17 @@ ActiveRecord::Schema.define(version: 20150222060531) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "email"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "password_digest"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.text     "about_me"
     t.string   "display_name"
     t.string   "slug"
-    t.integer  "role",            default: 0
+    t.integer  "role",               default: 0
     t.string   "image"
   end
 

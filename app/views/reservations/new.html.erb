@@ -11,3 +11,12 @@
     <%= button_to "Checkout", reservations_path, method: :post %>
   </div>
 <% end %>
+
+<h2>Send a test emal.</h2>
+
+<% if current_user %>
+    <%= form_tag '/notification' do %>
+      Your Test Email: <%= text_field_tag :email %>
+    <%= submit_tag "Test It" %>
+  <% end %>
+<% end %>

@@ -32,14 +32,14 @@ module Vagabonder
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
 
+    config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
       address: 'smtp.mandrillapp.com',
       port: '587',
       domain: 'vagabonder.herokuapp.com',
       user_name: ENV["MANDRILL_NAME"],
-      password: ENV["MADRILL_KEY"],
+      password: ENV["MANDRILL_KEY"],
       authentication: 'plain',
       enable_starttls_auto: true
     }
