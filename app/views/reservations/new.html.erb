@@ -1,10 +1,12 @@
+
 <h1>Your Reservations</h1>
 
 <% if @listings.empty? %>
   <p> Your cart is empty </p>
 <% else %>
+<div class="reservation-cart">
 <table class="table table-hover">
-  <tr>
+  <tr class="table-header">
     <th>Listing</th>
     <th>Host</th>
     <th>Start Date</th>
@@ -28,3 +30,4 @@
   <% end %>
 </table>
 <% end %>
+</div>
