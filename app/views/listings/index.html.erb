@@ -26,9 +26,11 @@
           </a>
           <div class="text-listing-index">
             <div class="row text-listing-title">
-              <%= listing.title.upcase %><br>
+              <h4><%= link_to listing.title.upcase, user_listing_path(listing.user.slug, listing) %></h4>
             </div>
-            <%= listing.city %>, <%= listing.state %>
+            <div class="row text-listing-title">
+              </p><%= listing.city %>, <%= listing.state %></p>
+            </div>
           </div>
         </div>
         </li>
