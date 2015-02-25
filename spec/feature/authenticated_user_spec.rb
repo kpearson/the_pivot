@@ -82,8 +82,8 @@ describe "an authenticated user" do
   it "can view their own page" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
                                                     and_return(valid_user)
-    visit user_path(valid_user)
-    expect(current_path).to eq(user_path(valid_user))
+    visit user_path(valid_user.id)
+    expect(current_path).to eq(user_path(valid_user.id))
   end
 
   xit "cannot edit another user's profile" do
