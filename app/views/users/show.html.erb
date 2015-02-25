@@ -5,7 +5,7 @@
     </div>
     <div class="row">
       <div class="col-lg-4">
-        <%= image_tag @user.image.url %>
+        <%= image_tag @user.image.thumb.url %>
       </div>
       <div class="col-lg-8">
         <p><%= @user.about_me %></p>
@@ -16,40 +16,62 @@
   <div class="row listings-index">
     <div class="col-lg-12">
       <ul class="slides">
-        <% @listings.each do |listing| %>
-          <li class="listing-slide" id="listing-slide">
+        <% if !@listings.empty? %>
+          <h3>Listings</h3>
+          <% @listings.each do |listing| %>
+            <li class="listing-slide" id="listing-slide">
             <%= link_to user_listing_path(listing.user.slug, listing) do %>
-            <% if listing.listing_images.any? %>
-              <%= image_tag listing.listing_images.last.image.url %>
-            <% end %>
-            <span class="d-hover"><br>
-              Property Category: <%= listing.category.name %><br>
-              Property Description: <%= listing.description %><br>
-              Nightly Rate: <%= number_to_currency(listing.currency) %><br>
-              Max Guests: <%= listing.max_guests %><br>
+              <% if listing.listing_images.any? %>
+                <%= image_tag listing.listing_images.last.image.url %>
+              <% end %>
+              <span class="d-hover"><br>
+                Property Category: <%= listing.category.name %><br>
+                Property Description: <%= listing.description %><br>
+                Nightly Rate: <%= number_to_currency(listing.currency) %><br>
+                Max Guests: <%= listing.max_guests %><br>
             </span></a></li>
           <% end %>
         <% end %>
-      </ul>
-    </div>
-  </div>
+      <% end %>
+      <h3>Your Trips</h3>
+      <% if @trips.empty? %>
+        <p>You haven't taken any trips!</p>
+      <% else %>
+        <% @trips.each do |trip| %>
+          <li class="listing-slide" id="listing-slide">
+          <%= link_to user_listing_path(trip.user.slug, trip) do %>
+            <% if trip.listing_images.any? %>
+              <%= image_tag trip.listing_images.last.image.url %>
+            <% end %>
+            <span class="d-hover"><br>
+              Property Category: <%= trip.category.name %><br>
+              Property Description: <%= trip.description %><br>
+              Nightly Rate: <%= number_to_currency(trip.currency) %><br>
+              Max Guests: <%= trip.max_guests %><br>
+          </span></a></li>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+</div>
 
-      <section id="networks">
-        <div class="container">
-          <p>
-            <a href="#"><i class="facebook fa fa-facebook"></i></a><a href="#"><i class="twitter fa fa-twitter"></i></a><a href="#"><i class="mail fa fa-envelope"></i></a>
-          </p>
+<section id="networks">
+<div class="container">
+  <p>
+  <a href="#"><i class="facebook fa fa-facebook"></i></a><a href="#"><i class="twitter fa fa-twitter"></i></a><a href="#"><i class="mail fa fa-envelope"></i></a>
+  </p>
 
-        </div>
+</div>
 
-      </section>
+</section>
 
 
-      <!-- Bootstrap core JavaScript
-      ================================================== -->
-      <!-- Placed at the end of the document so the pages load faster -->
-      <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-      <script src="assets/js/bootstrap.min.js"></script>
-      <script src="assets/js/jribbble.js"></script>
-      <script src="assets/js/site-ck.js"></script>
-    </div>
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="assets/js/bootstrap.min.js"></script>
+<script src="assets/js/jribbble.js"></script>
+<script src="assets/js/site-ck.js"></script>
+</div>
