@@ -17,7 +17,13 @@
         <td><%= reservation.start_date %></td>
         <td><%= reservation.end_date %></td>
         <td><%= reservation.status %></td>
-        <td><%= link_to "Cancel", host_reservation_path(reservation.user.slug, reservation), method: "delete", class: "btn btn-default" %></td>
+        <% if reservation.status == "pending" %>
+          <td><%= link_to "Approve", host_reservation_path(reservation.user.slug, reservation, status: "approved"), method: "put", class: "btn btn-success" %><%= link_to "Decline", host_reservation_path(reservation.user.slug, reservation, status: "cancelled"), method: "put", class: "btn btn-danger" %></td>
+        <% elsif reservation.status == "cancelled" %>
+          <td><%= link_to "Restore", host_reservation_path(reservation.user.slug, reservation, status: "pending"), method: "put", class: "btn btn-success" %></td>
+        <% else %>
+          <td><%= link_to "Cancel", host_reservation_path(reservation.user.slug, reservation, status: "cancelled"), method: "put", class: "btn btn-default" %></td>
+        <% end %>
       </tr>
     <% end %>
   <% end %>

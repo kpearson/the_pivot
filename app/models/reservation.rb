@@ -4,7 +4,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :user
   scope :pending, -> { where(status: "pending") }
   scope :past, -> { where(status: "past") }
-  scope :paid, -> { where(status: "paid") }
+  scope :approved, -> { where(status: "approved") }
   scope :cancelled, -> { where(status: "cancelled") }
 
   def guest

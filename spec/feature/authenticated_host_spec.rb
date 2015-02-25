@@ -114,20 +114,92 @@ describe "a host" do
     expect(page).to have_content("pending")
   end
 
-  it "can cancel a reservation" do
+  it "can view their pending reservations" do
     listing.reservations.create(user_id: 1,
                                 start_date: Date.new,
                                 end_date: Date.new)
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(host_user)
+    visit root_path
+    click_link_or_button "Dashboard"
+    click_link_or_button "My Requests"
+    expect(current_path).to eq(host_reservations_path(host_user.slug))
+    expect(page).to have_content("John Doe")
+    expect(page).to have_content("Another Listing")
+    expect(page).to have_content("pending")
+  end
+
+  it "can approve a request" do
+    listing.reservations.create(user_id: 1,
+                                start_date: Date.new,
+                                end_date: Date.new)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(host_user)
+    visit root_path
+    click_link_or_button "Dashboard"
+    click_link_or_button "My Requests"
+    expect(current_path).to eq(host_reservations_path(host_user.slug))
+    click_link_or_button "Approve"
+    expect(page).to have_content("Reservation successfully changed to approved")
+    expect(page).to_not have_content("pending")
+    within("table") do
+      expect(page).to have_content("approved")
+    end
+  end
+
+  it "can decline a request" do
+    listing.reservations.create(user_id: 1,
+                                start_date: Date.new,
+                                end_date: Date.new)
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(host_user)
+    visit root_path
+    click_link_or_button "Dashboard"
+    click_link_or_button "My Requests"
+    expect(current_path).to eq(host_reservations_path(host_user.slug))
+    click_link_or_button "Decline"
+    expect(page).to have_content("Reservation successfully changed to cancelled")
+    expect(page).to_not have_content("pending")
+    within("table") do
+      expect(page).to have_content("cancelled")
+    end
+  end
+
+  it "can cancel a reservation" do
+    listing.reservations.create(user_id: 1,
+                                start_date: Date.new,
+                                end_date: Date.new,
+                                status: "approved")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(host_user)
     visit host_reservations_path(host_user.slug)
     click_link_or_button "Cancel"
     expect(current_path).to eq(user_reservations_path(host_user.slug))
-    expect(page).to have_content("Reservation successfully cancelled")
-    expect(page).to_not have_content("pending")
+    expect(page).to have_content("Reservation successfully changed to cancelled")
+    expect(page).to_not have_content("approved")
+    within("table") do
+      expect(page).to have_content("cancelled")
+    end
   end
 
-  it " it cannot view another hosts dashboard" do
+  it "can restore a cancelled reservation" do
+    listing.reservations.create(user_id: 1,
+                                start_date: Date.new,
+                                end_date: Date.new,
+                                status: "cancelled")
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(host_user)
+    visit host_reservations_path(host_user.slug)
+    click_link_or_button "Restore"
+    expect(current_path).to eq(user_reservations_path(host_user.slug))
+    expect(page).to have_content("Reservation successfully changed to pending")
+    expect(page).to_not have_content("cancelled")
+    within("table") do
+      expect(page).to have_content("pending")
+    end
+  end
+
+  it "it cannot view another hosts dashboard" do
     valid_user = create(:user, role: 1)
     another_host = create(:user, email: "new@y.com", display_name: "username", role: 1)
     allow_any_instance_of(ApplicationController).to receive(:current_user).
