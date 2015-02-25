@@ -23,6 +23,15 @@ class Reservation < ActiveRecord::Base
     end.reduce(:+)
   end
 
+  def cart_data
+    {
+      start_date: start_date,
+      end_date: end_date,
+      user_id: user_id,
+      listing_id: listing_id
+    }
+  end
+
   def formatted_created_at
     created_at.strftime("%m/%d/%Y at: %I:%M %p")
   end

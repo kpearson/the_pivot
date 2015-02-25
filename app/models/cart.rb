@@ -5,17 +5,24 @@ class Cart
     @data = data || Hash.new
   end
 
-  def add_item(item_id)
-    @data[item_id] ||= 0
-    @data[item_id] += 1
+  def add_listing(params, user_id)
+    data["reservations"] ||= []
+    listing = Listing.find(params[:listing_id])
+    reservation = listing.reservations.new(
+      start_date: Date.strptime(params[:check_in], "%m/%d/%Y"),
+      end_date: Date.strptime(params[:check_out], "%m/%d/%Y"),
+      user_id: user_id
+    )
+    data["reservations"] << reservation.cart_data
   end
 
-  def count(data)
-    data.values.reduce(0, :+)
+  def count(listing)
+    listing.values.reduce(0, :+)
   end
 
-  def remove_item(item_id)
-    @data[item_id] -= 1
-    @data.delete_if { |_item, quantity| quantity == 0 }
+  def remove_listing(params)
+    data["reservations"].delete_if do |listing|
+      listing["listing_id"] == params["listing_id"].to_i && listing["start_date"] == params["start_date"]
+    end
   end
 end

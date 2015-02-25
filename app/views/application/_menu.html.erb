@@ -6,14 +6,17 @@
 
   <ul class="nav navbar-nav navbar-right">
     <% if current_user.nil? %>
+    <li><%= link_to "Reservations", new_reservation_path %></li>
       <li class="active"><a href="#" data-toggle="modal" data-target="#signup-modal" id="signup">Sign Up</a></li>
       <%= render partial: "signup", locals: { person: User.new } %>
       <li class="active"><a href="#" data-toggle="modal" data-target="#login-modal" id="login">Log In</a></li>
       <%= render "login" %>
     <% elsif current_user.default? %>
+    <li><%= link_to "Reservations", new_reservation_path %></li>
       <li><%= link_to "Create A Listing", new_user_listing_path(current_user.slug), id: "new_listing" %></li>
       <%= render partial: "user_profile_dropdown", locals: {user: current_user} %></li>
     <% elsif current_user.host? %>
+    <li><%= link_to "Reservations", new_reservation_path %></li>
       <li><%= link_to "Create A Listing", new_user_listing_path(current_user.slug), id: "new_listing" %></li>
       <%= render partial: "host_profile_dropdown", locals: {user: current_user} %></li>
     <% else %>

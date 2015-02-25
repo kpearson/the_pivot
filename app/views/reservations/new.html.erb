@@ -1,15 +1,38 @@
-<h1>Cart</h1>
+<h1>Your Reservations</h1>
 
-<% if @reservation.listings.empty? %>
-  <p> Your cart is empty </p>
+<% if @listings.empty? %>
+  <p> Your Reservations Are Empty! </p>
 <% else %>
-  <div class="items">
-    <%= render partial: "reservation_items", locals: { reservation: @reservation} %>
-  </div>
-  <h3>Total: <%= number_to_currency @reservation.total(@reservation.reservation_listings) %></h3>
-  <div id="checkout">
-    <%= button_to "Checkout", reservations_path, method: :post %>
-  </div>
+<table class="table table-hover">
+  <tr>
+    <th>Listing</th>
+    <th>Host</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Total</th>
+    <th>Checkout</th>
+    <th>Remove Listing</th>
+  </tr>
+  <% @listings.each do |listing| %>
+      <tr>
+        <td><%= link_to listing.title, user_listing_path(listing.user.slug, listing) %></td>
+        <td><%= link_to listing.user.first_name, user_path(listing.user.id) %></td>
+        <td><%= @dates[:start_date] %></td>
+        <td><%= @dates[:end_date] %></td>
+        <td><%= number_to_currency listing.nightly_rate %></td>
+        <td>
+          <div id="checkout">
+            <%= button_to "Request Listing", user_reservations_path(current_user.slug, listing_id: listing.id, user_id: current_user.id, start_date: @dates[:start_date], end_date: @dates[:end_date]), method: :post %>
+          </div>
+        </td>
+      <td>
+        <div id="delete-listing">
+            <%= button_to "Remove", user_reservation_path(current_user.slug, listing.id, listing_id: listing.id, user_id: current_user.id, start_date: @dates[:start_date], end_date: @dates[:end_date]), method: "delete" %>
+        </div>
+      </td>
+      </tr>
+  <% end %>
+</table>
 <% end %>
 
 <h2>Send a test emal.</h2>

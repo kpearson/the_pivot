@@ -3,7 +3,19 @@
 <div class="row">
   <div class="col-lg-6"></div>
     <h1 class="listing-header"><%= @listing.title %></h1>
-
+    <p><%= @listing.description %></p>
+  </div>
+</div>
+<div class="col-md-12 filter">
+  <div class="form-inline">
+    <%= bootstrap_form_tag url: "/carts", method: "post" do |f| %>
+      <%= f.text_field :check_in, hide_label: true, placeholder: "Check In", class: "from_date connector", contenteditable: false %>
+      <%= f.text_field :check_out, hide_label: true, placeholder: "Check Out", class: "to_date connector", contenteditable: false %>
+      <%= f.hidden_field :listing_id, value: @listing.id %>
+      <%= f.submit "Book It!", class: "btn btn-primary connector" %>
+      <% end %>
+  </div>
+</div>
   <div class="row user-show-row">
     <div class="col-lg-5 user-listing-show">
       <%= image_tag @listing.listing_images.first.image.hero.url, class: "img-responsive" if @listing.listing_images.any? %>
