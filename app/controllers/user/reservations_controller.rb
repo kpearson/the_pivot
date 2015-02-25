@@ -14,7 +14,15 @@ class User::ReservationsController < ApplicationController
   def destroy
     @reservation = Reservation.find(params[:id])
     if @reservation.destroy
-      flash[:notice] = "Reservation successfully cancelled"
+      flash[:notice] = "Reservation successfully deleted"
+      redirect_to :back
+    end
+  end
+
+  def update
+    @reservation = Reservation.find(params[:id])
+    if @reservation.update(status: params[:status])
+      flash[:notice] = "Reservation status successfully changed to #{params[:status]}"
       redirect_to :back
     end
   end
