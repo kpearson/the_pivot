@@ -16,21 +16,4 @@ class CartsController < ApplicationController
     session["cart"] = @cart.data
     redirect_to new_reservation_path
   end
-
-  private
-  #
-  # def update_cart
-  #   listing = Listing.find(params[:listing_id])
-  #   @cart.add_listing(listing)
-  #   session[:cart] = @cart.data
-  # end
-
-
-  def update_existing_cart
-    # if session[:cart][:listing_id] => params[:cart][:start_date] => params[:cart][:start_date]
-    #   session[:cart][params[:cart][:item_id]] = (session[:cart][params[:cart][:item_id]].to_i + params[:cart][:quantity].to_i).to_s
-    # else
-    #   session[:cart][params[:cart][:item_id]] = params[:cart][:quantity].to_s
-    # end
-  end
 end

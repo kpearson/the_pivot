@@ -13,7 +13,6 @@ class AdminsController < Admin::BaseController
     @admin = Admin.new(admin_params)
     authorize! :create, @admin
     if @admin.save
-      # session[:admin_id] = @admin.id  // Uncomment if we want to login the new admin apon creation.
       redirect_to root_path, notice: "Admin created successfully."
     else
       redirect_to new_admin_path, error: "Invalid  Credentials"

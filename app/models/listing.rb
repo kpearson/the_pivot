@@ -17,11 +17,6 @@ class Listing < ActiveRecord::Base
     .order(nightly_rate: :asc) }
   accepts_nested_attributes_for :listing_images, allow_destroy: true
 
-  # def self.max_guests
-  #   where("max_guests >= ?", max_guests)
-      # .order(max_guests: :asc)
-  # end
-
   def currency
     nightly_rate / 100
   end
