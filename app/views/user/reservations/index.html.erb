@@ -1,7 +1,11 @@
 <div class="jumbotron masthead">
   <div class="row host-dashboard-head">
     <div class="col-lg-12">
+      <% if current_user.host? %>
       <h2 class="host-dashboard-h2"><%= current_user.first_name %>'s Dashboard</h2>
+    <% else %>
+      <h2 class="host-dashboard-h2"><%= current_user.first_name %>'s Trips</h2>
+    <% end %>
     </div>
   </div>
 </div>
@@ -10,8 +14,8 @@
   <div class="row">
     <% if current_user.host? %>
       <%= render partial: "host_reservations", locals: { listings: @listings } %>
-    <% else %>
-      <%= render partial: "user_reservation", locals: { reservations: @reservations } %>
+    <% elsif current_user.default? %>
+      <%= render partial: "user_reservations", locals: { reservations: @reservations } %>
     <% end %>
   </div>
 </div>

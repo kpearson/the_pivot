@@ -221,6 +221,8 @@ describe "an authenticated user" do
   end
 
   it "can see their past trips on their show page" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(valid_user)
     Reservation.create(listing_id: listing.id,
                        user_id: user.id,
                        status: "approved",
@@ -231,6 +233,46 @@ describe "an authenticated user" do
     expect(page).to have_content("B&B")
     expect(page).to have_content("2015-02-20")
     expect(page).to have_content("2015-02-21")
+  end
+
+  it "can view their my trips page with no reservations" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(valid_user)
+    visit root_path
+    click_link_or_button "View Trips"
+    expect(current_path).to eq(user_reservations_path(valid_user))
+    expect(page).to have_content("You haven't made any reservations!")
+  end
+
+  it "can view their my trips page with all reservations" do
+    Reservation.create(listing_id: listing.id,
+                       user_id: valid_user.id,
+                       start_date: Date.parse("20/02/2015"),
+                       end_date: Date.parse("21/02/2015"))
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(valid_user)
+    visit root_path
+    click_link_or_button "View Trips"
+    expect(current_path).to eq(user_reservations_path(valid_user))
+    expect(page).to have_content("#{valid_user.first_name}'s Trips")
+    expect(page).to have_content("#{listing.user.full_name}")
+    expect(page).to have_content("2015-02-20")
+    expect(page).to have_content("2015-02-21")
+    expect(page).to have_content("pending")
+  end
+
+  it "can cancel a trip from the trips page" do
+    Reservation.create(listing_id: listing.id,
+                       user_id: valid_user.id,
+                       start_date: Date.parse("20/02/2015"),
+                       end_date: Date.parse("21/02/2015"))
+    allow_any_instance_of(ApplicationController).to receive(:current_user).
+      and_return(valid_user)
+    visit root_path
+    click_link_or_button "View Trips"
+    expect(current_path).to eq(user_reservations_path(valid_user))
+    click_link_or_button "Cancel"
+    expect(page).to have_content("Reservation successfully changed to cancelled")
   end
 
   it "cannot see the login button" do
