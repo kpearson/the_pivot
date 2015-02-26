@@ -67,37 +67,6 @@ describe "authenticated" do
     end
   end
 
-  context "admin" do
-    xit "can log in if registered" do
-      log_in(admin, "adminpassword")
-      expect(current_path).to eq(root_path)
-      within("#flash_notice") do
-        expect(page).to have_content("Successfully Logged In")
-      end
-    end
-
-    xit "can not login with invalid credentials" do
-      log_in(admin, "incorect_password")
-      expect(current_path).to eq(root_path)
-      within("#flash_error") do
-        expect(page).to have_content("Invalid Login Credentials")
-      end
-    end
-
-    xit "can log out" do
-      log_in(admin, "adminpassword")
-      expect(current_path).to eq(root_path)
-      within("#flash_notice") do
-        expect(page).to have_content("Successfully Logged In")
-      end
-      click_link_or_button "Log Out"
-      expect(current_path).to eq(root_path)
-      within("#flash_notice") do
-        expect(page).to have_content("Successfully Logged Out")
-      end
-    end
-  end
-
   def log_in(user_type, password)
     visit root_path
     click_link "Log In"
