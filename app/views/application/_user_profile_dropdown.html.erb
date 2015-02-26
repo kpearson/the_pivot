@@ -4,7 +4,6 @@
     <li><%= link_to "View Profile", user_path(current_user.id) %></li>
     <li><a href="#">View Trips</a></li>
     <li class="divider"></li>
-    <li><a href="#">One more separated link</a></li>
     <li><%= link_to "Log Out", logout_path, method: "DELETE" %></li>
     <li class="active"><a href="#" data-toggle="modal" data-target="#profile-modal" id="edit">Edit Profile</a></li>
     <%= render partial: "users/profile_form", locals: {user: current_user} %></li>
