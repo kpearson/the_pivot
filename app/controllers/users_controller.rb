@@ -9,6 +9,10 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @listings = @user.listings
+    @trips = @user.reservations.where(status: "approved").map do |reservation|
+      @dates = [reservation.start_date, reservation.end_date]
+      reservation.listing
+    end
   end
 
   def create
@@ -21,19 +25,11 @@ class UsersController < ApplicationController
     end
   end
 
-  def edit
-    @user = current_user
-  end
-
   def update
     @user = current_user
     @user.update(user_params)
     redirect_to :back
   end
-
-  # def destroy
-    # when deleting a user, it's listing should be deleted too
-  # end
 
   private
 

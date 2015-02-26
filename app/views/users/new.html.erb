@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(@user, remote: true) do |f| %>
+<%= bootstrap_form_for @user, remote: true, html: { multipart: true } do |f| %>
   <% if @user.errors.any? %>
     <div class="error_messages">
       <h2>Form is invalid</h2>
@@ -21,6 +21,8 @@
   <%= f.text_field :email,  :required => true, :pattern => '[^@]+@[^@]+\.[a-zA-Z]{2,6}' %>
 
   <%= f.password_field :password, :required => true  %>
+
+  <%= f.file_field :image %>
 
   <%= f.submit "Sign Up" %>
 <% end %>
