@@ -73,9 +73,38 @@ a {
   vertical-align: right;
 }
 
+.text-listing-index {
+  display: inline-block;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  overflow: hidden;
+  text-align: center;
+  white-space: nowrap;
+  width: 90%;
+}
+
+.text-listing-title p {
+  display: inline;
+  text-align: center;
+}
+
+.text-listing-title {
+  float: left;
+  font-size: 20px;
+  margin-bottom: 40px;
+  margin-top: 10px;
+  width: 100%;
+}
+
+.text-listing-city {
+  clear: both;
+  padding-bottom: 10px;
+}
+
 .listing {
   border: 1px solid;
-  padding: 15px;
+  background-color: #ffffff;
 }
 
 .col-md-6 {
@@ -107,18 +136,16 @@ a {
   font-size: 20px;
   line-height: 36px;
   text-align: center;
-  font-weight: 300; }
+  background-color: #474e5d;
+  font-weight: 300;
+}
 
-  .profile-header {
+.profile-header {
     background-color: white;
     padding-top: 60px;
     padding-left: 50px;
     padding-bottom: 40px;
-  }
-
-  .profile-page {
-    background-color: #474e5d;
-  }
+}
 
 .listing-hero-image {
   width: auto;
@@ -149,7 +176,7 @@ a {
 
 .listing-slide {
   margin-top: 20px;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -164,14 +191,14 @@ a {
   text-align: center;
   padding-top: 25%;
   line-height: 20px;
-  background: rgba(233, 141, 79, 0.75);
+  background: rgba(100, 100, 100, 0.3);
 }
 
 .d-hover p {
   display: block !important;
   z-index: 500;
   margin-top: 25px;
-  font-size: 14px;
+  font-size: 15px;
   font-style: italic;
   font-weight: 300;
 }

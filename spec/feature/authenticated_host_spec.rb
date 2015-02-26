@@ -208,6 +208,13 @@ describe "a host" do
     expect(current_path).to eq(root_path)
   end
 
+  it "can see their listings on their show page" do
+    create(:category, name: "Condo", id: 1)
+    visit user_path(host_user.id)
+    expect(page).to have_content("Listings")
+    expect(page).to have_content("ANOTHER LISTING")
+  end
+
   it "can delete their listing on their edit page" do
     valid_user = create(:user, role: 1)
     listing = create(:listing, user_id: 3)
