@@ -443,12 +443,32 @@ body > div.col-md-12.filter > div.row > div > input.btn.btn-default {
   margin-right: 10px;
 }
 
-.reservation-cart {
-  background: #c5eaea;
-  margin-top: 40px;
-}
 
 .table-header {
   font-size: 17px;
   font-wieght: bold;
+}
+
+.profile-header {
+  background: url(/assets/subtle_zebra_3d.png) repeat;
+}
+
+
+// /* =========================
+//
+//      cart /reservations.new
+//
+//    =========================*/
+
+h4.cart-header {
+  margin-top: 100px;
+  margin-left: 100px;
+  font-size: 26px;
+}
+
+.reservation-cart {
+  background: #c5eaea;
+  margin-top: 60px;
+  margin-right: 30px;
+  margin-left: 30px;
 }
