@@ -10,6 +10,7 @@
     <th>Start Date</th>
     <th>End Date</th>
     <th>Total</th>
+    <th>Message</th>
     <th>Checkout</th>
     <th>Remove Listing</th>
   </tr>
@@ -20,6 +21,13 @@
         <td><%= @dates[:start_date] %></td>
         <td><%= @dates[:end_date] %></td>
         <td><%= number_to_currency listing.nightly_rate %></td>
+        <td>
+          <%#= form_tag '/notification' do %>
+            <%= text_field_tag :email %>
+            <%= submit_tag "Test It" %>
+          <%# end %>
+        </td>
+
         <td>
           <div id="checkout">
             <%= button_to "Request Listing", user_reservations_path(current_user.slug, listing_id: listing.id, user_id: current_user.id, start_date: @dates[:start_date], end_date: @dates[:end_date]), method: :post %>
@@ -33,4 +41,13 @@
       </tr>
   <% end %>
 </table>
+<% end %>
+
+<h2>Send a test emal.</h2>
+
+<% if current_user %>
+    <%= form_tag '/notification' do %>
+      Your Test Email: <%= text_field_tag :email %>
+    <%= submit_tag "Test It" %>
+  <% end %>
 <% end %>

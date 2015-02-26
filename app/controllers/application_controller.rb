@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from ActiveRecord::RecordNotFound, with: :handle_record_not_found
+  rescue_from ActionView::MissingTemplate, with: :handle_record_not_found
+  rescue_from ArgumentError, with: :handle_argument_error
 
   def set_cart
     @cart ||= Cart.new(session["cart"])
@@ -33,6 +35,11 @@ class ApplicationController < ActionController::Base
 
   def handle_record_not_found
     redirect_to root_path
+  end
+
+  def handle_argument_error
+    flash[:notice] = "What dates did you have in mind?"
+    redirect_to :back
   end
 
   helper_method :current_user
