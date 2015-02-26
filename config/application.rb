@@ -17,7 +17,7 @@ Bundler.require(*Rails.groups)
 # config.autoload_paths += "#{Rails.root}/app/uploaders"
 # Dotenv::Railtie.load
 
-module Vagabonder
+module Vagabondr
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -37,7 +37,7 @@ module Vagabonder
     config.action_mailer.smtp_settings = {
       address: "smtp.mandrillapp.com",
       port: "587",
-      domain: "vagabonder.herokuapp.com",
+      domain: "vagabondr.herokuapp.com",
       user_name: ENV["MANDRILL_NAME"],
       password: ENV["MANDRILL_KEY"],
       authentication: "plain",
