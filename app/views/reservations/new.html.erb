@@ -1,10 +1,12 @@
-<h1>Your Reservations</h1>
+<div class="well cart">
+<h4 class="cart-header"><i class="fa fa-leanpub"></i>Your Reservations</h4>
 
 <% if @listings.empty? %>
   <p> Your Reservations Are Empty! </p>
 <% else %>
+<div class="reservation-cart">
 <table class="table table-hover">
-  <tr>
+  <tr class="table-header">
     <th>Listing</th>
     <th>Host</th>
     <th>Start Date</th>
@@ -42,12 +44,5 @@
   <% end %>
 </table>
 <% end %>
-
-<h2>Send a test emal.</h2>
-
-<% if current_user %>
-    <%= form_tag '/notification' do %>
-      Your Test Email: <%= text_field_tag :email %>
-    <%= submit_tag "Test It" %>
-  <% end %>
-<% end %>
+</div>
+</div>

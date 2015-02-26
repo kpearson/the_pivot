@@ -1,7 +1,10 @@
 body {
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
+  background: url(/assets/blizzard.png) repeat;
+  margin-top: 0;
 }
+
 
 a {
   text-decoration: none;
@@ -10,6 +13,7 @@ a {
 
 .center-block {
   text-align: center;
+  margin-top: 0;
 }
 
 .home-search {
@@ -28,22 +32,16 @@ a {
 }
 
 .navbar-header {
-  color: #fff !important;
-  margin-top: 10px;
   margin-left: 110px;
   font-size: 21px;
+  background: transparent;
+  margin-top: 10px;
 }
 
 .navbar-inner {
   background: transparent;
-  color: #fff !important;
-  left: 0;
   margin-left: 3%;
   margin-right: 13%;
-  position: absolute;
-  right: 0;
-  top: 0;
-  z-index: 20;
 }
 
 #search-city {
@@ -75,36 +73,39 @@ a {
 
 .text-listing-index {
   display: inline-block;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 2px;
   margin-top: 10px;
   overflow: hidden;
-  text-align: center;
   white-space: nowrap;
+  margin-right: 10px;
   width: 90%;
 }
 
 .text-listing-title p {
   display: inline;
-  text-align: center;
+  float: left;
+  margin-right: 10px;
+  width: 100%;
 }
 
-.text-listing-title {
-  float: left;
-  font-size: 20px;
-  margin-bottom: 40px;
+.text-listing-title a {
+  font-size: 18px;
+  margin-bottom: 30px;
   margin-top: 10px;
-  width: 100%;
+  color: #3f3f3f;
+  float: left;
+  margin-right: 30px;
 }
 
 .text-listing-city {
   clear: both;
   padding-bottom: 10px;
+  float: right;
 }
 
 .listing {
   border: 1px solid;
-  background-color: #ffffff;
+  background: #faf8f2;
 }
 
 .col-md-6 {
@@ -126,17 +127,24 @@ a {
 
 // profile styling
 
+
+.edit-header {
+  background: #faf8f2;
+  }
+
+.edit-body {
+  background: #faf8f2;
+}
+
 // FONTS //
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,800italic,400,700,800);
 
 .profile-page {
   font-family: 'Open Sans', sans-serif;
-  background: #f5f6f7;
   color: #f5f6f7;
   font-size: 20px;
   line-height: 36px;
   text-align: center;
-  background-color: #474e5d;
   font-weight: 300;
 }
 
@@ -149,7 +157,8 @@ a {
 
 .listing-hero-image {
   width: auto;
-  max-height: 50%;
+  height: 100%;
+  margin-top: 0;
 }
 
 .footer-block {
@@ -268,12 +277,12 @@ ul, menu, dir {
 #networks {
   width: 100%;
   height: 100%;
-  padding-top: 200px;
+  margin-top: 200px;
 }
 
 #networks i {
   font-size: 60px;
-  color: #d1ec53;
+  color: #fbf8ed;
   padding: 18px;
 }
 
@@ -303,22 +312,35 @@ ul, menu, dir {
   font-size: 40px;
 }
 
-.listing-show-page {
-  margin-bottom: 20px;
-  padding: 20px;
-}
-
 .listing-header {
   margin-left: 50px;
   margin-top: 1px;
 }
 
 .user-show-row {
-  background: #c5eaea;
   margin-left: 50px;
   margin-right: 50px;
   margin-top: 10px;
   padding: 20px;
+}
+
+.profile-header {
+  background: linear-gradient(rgba(240, 240, 230, 0.6), rgba(255, 255, 255, 0.6)), url(/assets/form-pattern.png) repeat;
+}
+
+.user-show-name {
+margin-left: 60px;
+font-size: 40px;
+}
+
+.user-image {
+  margin-left: 73px;
+}
+
+.about-me {
+  margin-left: 20px;
+  background: #faf8f2;
+  height: 240px;
 }
 
 #map {
@@ -346,7 +368,6 @@ ul, menu, dir {
 }
 
 .listings-index {
-  background: #d8d9d9;
   text-align: center;
 }
 
@@ -441,9 +462,104 @@ ul.edit-listings  {
 //    =========================*/
 
 .listing-create-form {
-  background: #c5eaea;
+  background: rgba(131, 194, 177, 0.6);
 }
 
 .edit-new-listing {
   margin-top: 70px;
+}
+
+#nightly_rate {
+  margin-top: 40px;
+}
+
+select#_max_guests.form-control {
+  margin-top: 10px;
+}
+
+select#_nightly_rate.form-control {
+  margin-top: 10px;
+}
+
+#_category_id{
+  margin-top: 10px;
+}
+
+body > div.col-md-12.filter > div.row > div > input.btn.btn-default {
+  align: center;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+
+.table-header {
+  font-size: 15px;
+  font-wieght: bold;
+}
+
+
+// /* =========================
+//
+//      cart /reservations.new
+//
+//    =========================*/
+
+h4.cart-header {
+  margin-top: 100px;
+  margin-left: 80px;
+  font-size: 34px;
+}
+
+.reservation-cart {
+  background: #fbf8ed;
+  margin-top: 60px;
+  margin-right: 80px;
+  margin-left: 80px;
+}
+
+.cart {
+  background: linear-gradient(rgba(240, 240, 230, 0.5), rgba(255, 255, 255, 0.5)), url(/assets/form-pattern.png) repeat;
+  padding-bottom: 200px;
+  margin-top: 100px;
+  margin-right: 150px;
+  margin-left: 150px;
+  margin-bottom: 40px;
+}
+
+
+// /* =========================
+//
+//      user listing show
+//
+//    =========================*/
+
+.listing-header {
+  margin-top: 100px;
+}
+
+.show-search {
+  margin-bottom: 60px;
+  margin-top: 20px;
+}
+
+.show-listing-info {
+  background: #fbf8ed;
+}
+
+.show-title {
+  font-size: 18px;
+}
+
+.listing-show-page {
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+
+.user-show-row {
+  background: linear-gradient(rgba(240, 240, 230, 0.6), rgba(255, 255, 255, 0.6)), url(/assets/form-pattern.png) repeat;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-top: 10px;
+  padding: 20px;
 }

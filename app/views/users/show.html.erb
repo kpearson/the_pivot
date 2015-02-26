@@ -1,14 +1,16 @@
 <div class="jumbotron masthead user-show-head">
   <div class="row profile-header">
-    <div class="col-lg-12">
-      <h1><%= @user.first_name %></h1>
+    <div class="col-lg-10">
+      <h1 class="user-show-name"><%= @user.first_name %></h1>
     </div>
     <div class="row">
-      <div class="col-lg-4">
+      <div class="col-lg-3 col-lg-offset-1 user-image">
         <%= image_tag @user.image.thumb.url %>
       </div>
-      <div class="col-lg-8">
+      <div class="col-lg-6 col-lg-offset-1">
+      <div class="well about-me">
         <p><%= @user.about_me %></p>
+      </div>
       </div>
     </div>
   </div>
