@@ -41,7 +41,7 @@
               </a>
               <div class="text-listing-index">
                 <div class="text-listing-title">
-                  <i class="fa fa-bed"></i><p><%= link_to trip.title.upcase, user_listing_path(trip.user.slug, trip) %></p>
+                  <p><%= link_to trip.title.upcase, user_listing_path(trip.user.slug, trip) %></p>
                 </div>
                 <div class="text-listing-city">
                   <p><%= @dates.first %> - <%= @dates.last %></p>
