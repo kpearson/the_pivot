@@ -26,7 +26,8 @@ class User::ReservationsController < ApplicationController
     if current_user
       set_reservation_attributes(params)
       if @reservation.save
-        ReservationMailer.notify(Listing.find(params[:listing_id].to_i).user, current_user).deliver_now
+        ReservationMailer.notify(Listing.find(params[:listing_id].to_i).
+                                 user, current_user).deliver_now
         @cart.remove_listing(params)
         flash[:notice] = "Request Sent!"
         redirect_to :back

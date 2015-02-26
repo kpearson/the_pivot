@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
- #  mount Sidekiq::Web => '/sidekiq'
-
   root "home#index"
   get "/not_found", to: "home#not_found"
   get "/login", to: "sessions#new"
@@ -15,15 +13,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:index, :show]
   resources :listings, only: [:index]
 
-  post '/noteifications' => 'notification#create'
-
- # post   '/:user_slug/listings'          , 'user/listings#create' , as: :user_listings
- # get    '/:user_slug/listings/new'      , 'user/listings#new'    , as: :new_user_listing
- # get    '/:user_slug/listings/:id/edit' , 'user/listings#edit'   , as: :edit_user_listing
- # get    '/:user_slug/listings/:id'      , 'user/listings#show'   , as: :user_listing
- # patch  '/:user_slug/listings/:id'      , 'user/listings#update'
- # put    '/:user_slug/listings/:id'      , 'user/listings#update'
- # delete '/:user_slug/listings/:id'      , 'user/listings#destroy'
+  post "/notifications" => "notification#create"
 
   resources :users
 

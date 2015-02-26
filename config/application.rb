@@ -35,12 +35,12 @@ module Vagabonder
 
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
-      address: 'smtp.mandrillapp.com',
-      port: '587',
-      domain: 'vagabonder.herokuapp.com',
+      address: "smtp.mandrillapp.com",
+      port: "587",
+      domain: "vagabonder.herokuapp.com",
       user_name: ENV["MANDRILL_NAME"],
       password: ENV["MANDRILL_KEY"],
-      authentication: 'plain',
+      authentication: "plain",
       enable_starttls_auto: true
     }
 
