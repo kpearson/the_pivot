@@ -1,0 +1,32 @@
+<div class="row listings-index">
+  <div class="col-lg-12">
+    <ul class="slides">
+      <% listings.each do |listing| %>
+        <li class="listing-slide" id="listing-slide">
+        <div class="listing">
+          <%= link_to user_listing_path(listing.user.slug, listing) do %>
+            <% if listing.listing_images.any? %>
+              <%= image_tag listing.listing_images.first.image.url %>
+            <% end %>
+            <span class="d-hover"><br>
+              <%= listing.description %><br>
+              <%= listing.category.name %><br>
+              Nightly Rate <%= number_to_currency(listing.currency) %><br>
+              Sleep <%= listing.max_guests %><br>
+            </span>
+          </a>
+          <div class="text-listing-index">
+            <div class="text-listing-title">
+              <p><%= link_to listing.title.upcase, user_listing_path(listing.user.slug, listing) %></p>
+            </div>
+            <div class="text-listing-city">
+              <p><%= listing.city %></p>
+            </div>
+          </div>
+        </div>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+</div>
+</div>

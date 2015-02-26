@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @listings = @user.listings
     @trips = @user.reservations.where(status: "approved").map do |reservation|
+      @dates = [reservation.start_date, reservation.end_date]
       reservation.listing
     end
   end
@@ -22,10 +23,6 @@ class UsersController < ApplicationController
     else
       render :new, layout: false, status: 422
     end
-  end
-
-  def edit
-    @user = current_user
   end
 
   def update

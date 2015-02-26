@@ -75,27 +75,46 @@ a {
 
 .text-listing-index {
   display: inline-block;
+  width: 90%;
   margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: center;
 }
 
 .text-listing-title i {
-  margin-right: 50px;
+  display: none;
+  font-size: 40px;
   float: left;
+  clear: both;
+}
+
+.text-listing-title p {
+  display: inline;
+  text-align: center;
+}
+
+div.text-listing-title {
+  color: #179999 !important;
 }
 
 .text-listing-title {
+  width: 100%;
   font-size: 20px;
-  margin-right: 50px;
+  margin-top: 10px;
+  margin-bottom: 40px;
   float: left;
 }
 
 .text-listing-city {
-  float: right;
+  padding-bottom: 10px;
+  clear: both;
 }
 
 .listing {
   border: 1px solid;
-  padding-bottom: 50px;
   background-color: white;
 }
 
@@ -130,16 +149,16 @@ a {
   text-align: center;
   font-weight: 300; }
 
-  .profile-header {
+.profile-header {
     background-color: white;
     padding-top: 60px;
     padding-left: 50px;
     padding-bottom: 40px;
-  }
+}
 
-  .profile-page {
+.profile-page {
     background-color: #474e5d;
-  }
+}
 
 .listing-hero-image {
   width: auto;

@@ -13,47 +13,47 @@
     </div>
   </div>
 
+
   <div class="row listings-index">
     <div class="col-lg-12">
+      <h3>Listings</h3>
+      <% if @listings.empty? %>
+        <p>You haven't created any listings!</p>
+      <% else %>
+        <%= render partial: "listings_index", locals: { listings: @listings } %>
+      <% end %>
       <ul class="slides">
-        <% if !@listings.empty? %>
-          <h3>Listings</h3>
-          <% @listings.each do |listing| %>
+        <h3>Your Trips</h3>
+        <% if @trips.empty? %>
+          <p>You haven't taken any trips!</p>
+        <% else %>
+          <% @trips.each do |trip| %>
             <li class="listing-slide" id="listing-slide">
-            <%= link_to user_listing_path(listing.user.slug, listing) do %>
-              <% if listing.listing_images.any? %>
-                <%= image_tag listing.listing_images.last.image.url %>
-              <% end %>
-              <span class="d-hover"><br>
-                Property Category: <%= listing.category.name %><br>
-                Property Description: <%= listing.description %><br>
-                Nightly Rate: <%= number_to_currency(listing.currency) %><br>
-                Max Guests: <%= listing.max_guests %><br>
-            </span></a></li>
+            <div class="listing">
+              <%= link_to user_listing_path(trip.user.slug, trip) do %>
+                <% if trip.listing_images.any? %>
+                  <%= image_tag trip.listing_images.first.image.url %>
+                <% end %>
+                <span class="d-hover"><br>
+                  <%= trip.description %><br>
+                  <%= trip.category.name %><br>
+                </span>
+              </a>
+              <div class="text-listing-index">
+                <div class="text-listing-title">
+                  <i class="fa fa-bed"></i><p><%= link_to trip.title.upcase, user_listing_path(trip.user.slug, trip) %></p>
+                </div>
+                <div class="text-listing-city">
+                  <p><%= @dates.first %> - <%= @dates.last %></p>
+                </div>
+              </div>
+            </div>
+            </li>
           <% end %>
         <% end %>
       <% end %>
-      <h3>Your Trips</h3>
-      <% if @trips.empty? %>
-        <p>You haven't taken any trips!</p>
-      <% else %>
-        <% @trips.each do |trip| %>
-          <li class="listing-slide" id="listing-slide">
-          <%= link_to user_listing_path(trip.user.slug, trip) do %>
-            <% if trip.listing_images.any? %>
-              <%= image_tag trip.listing_images.last.image.url %>
-            <% end %>
-            <span class="d-hover"><br>
-              Property Category: <%= trip.category.name %><br>
-              Property Description: <%= trip.description %><br>
-              Nightly Rate: <%= number_to_currency(trip.currency) %><br>
-              Max Guests: <%= trip.max_guests %><br>
-          </span></a></li>
-        <% end %>
-      <% end %>
-    <% end %>
-  </ul>
-</div>
+    </ul>
+  </div>
 </div>
 
 <section id="networks">
