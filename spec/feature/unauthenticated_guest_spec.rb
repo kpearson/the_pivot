@@ -288,12 +288,6 @@ describe "As an unauthenticated user" do
     expect(page).to_not have_content("Admin Dashboard")
   end
 
-  xit "cannot create a listing" do
-  end
-
-  xit "cannot modify a listing" do
-  end
-
   it "cannot create a category" do
     visit new_admin_category_path
     expect(page).to have_content("Page Not Found")

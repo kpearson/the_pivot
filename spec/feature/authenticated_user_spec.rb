@@ -187,29 +187,6 @@ describe "an authenticated user" do
     expect(current_path).to eq(not_found_path)
   end
 
-  xit "checkout" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-      and_return(valid_user)
-  end
-
-  xit "can view their reservation after checkout" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-      and_return(valid_user)
-  end
-
-  xit "can view past trips with links to each trip" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-      and_return(valid_user)
-    Reservation.create(user_id: valid_user.id)
-    Reservation.create(user_id: valid_user.id)
-    visit user_path(valid_user.id)
-    click_link_or_button "Cart:"
-    expect(current_path).to eq(reservations_path)
-    within(".reservations-list") do
-      expect(page).to have_content("Reservation 00001")
-    end
-  end
-
   it "can edit their profile on their own page" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).
       and_return(valid_user)
@@ -280,11 +257,6 @@ describe "an authenticated user" do
       and_return(valid_user)
     visit root_path
     expect(page).to_not have_content("Log In")
-  end
-
-  xit "cannot modify a listing" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).
-      and_return(valid_user)
   end
 
   it "cannot create a category" do

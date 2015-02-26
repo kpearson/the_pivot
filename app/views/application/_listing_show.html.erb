@@ -1,6 +1,6 @@
 <div class="well show-listing-info">
   <%#= image_tag listing.listing_images.first.image.url %>
-<p class="show-title"><%= link_to listing.title, user_listing_path(listing.user_id, listing) %></p><br>
+<p class="show-title"><%= listing.title %></p><br>
 <%= listing.description %><br>
 <i class="fa fa-home"></i> <%= listing.category.name %><br>
 Sleeps <%= listing.max_guests %><br>

@@ -8,9 +8,9 @@
         <%= image_tag @user.image.thumb.url %>
       </div>
       <div class="col-lg-6 col-lg-offset-1">
-      <div class="well about-me">
-        <p><%= @user.about_me %></p>
-      </div>
+        <div class="well about-me">
+          <p><%= @user.about_me %></p>
+        </div>
       </div>
     </div>
   </div>
@@ -24,6 +24,7 @@
       <% else %>
         <%= render partial: "listings_index", locals: { listings: @listings } %>
       <% end %>
+      <hr>
       <ul class="slides">
         <h3>Your Trips</h3>
         <% if @trips.empty? %>

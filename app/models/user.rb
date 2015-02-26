@@ -11,7 +11,6 @@ class User < ActiveRecord::Base
             }, uniqueness: true
   has_many :listing_images, :through => :listings
   has_many :reservations
-  # scope :host, -> (_host) { where()}
 
   mount_uploader :image, UserUploader
 
