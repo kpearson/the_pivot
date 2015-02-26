@@ -30,6 +30,10 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   Capybara.javascript_driver = :poltergeist
+  options = {:js_errors => false}
+  Capybara.register_driver :poltergeist do |app|
+      Capybara::Poltergeist::Driver.new(app, options)
+  end
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   namespace :user, path: "/:slug" do
     resources :listings, except: [:index]
     get '/dashboard', to: 'dashboard#index'
-    resources :reservations, only: [:create, :index]
+    resources :reservations, only: [:create, :index, :destroy]
   end
 
   namespace :user, path: "/:slug", as: :host do

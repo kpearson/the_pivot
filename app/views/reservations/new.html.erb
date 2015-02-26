@@ -2,7 +2,7 @@
 <h1>Your Reservations</h1>
 
 <% if @listings.empty? %>
-  <p> Your cart is empty </p>
+  <p> Your Reservations Are Empty! </p>
 <% else %>
 <div class="reservation-cart">
 <table class="table table-hover">
@@ -13,6 +13,7 @@
     <th>End Date</th>
     <th>Total</th>
     <th>Checkout</th>
+    <th>Remove Listing</th>
   </tr>
   <% @listings.each do |listing| %>
       <tr>
@@ -23,9 +24,14 @@
         <td><%= number_to_currency listing.nightly_rate %></td>
         <td>
           <div id="checkout">
-            <%= button_to "Checkout", user_reservations_path(current_user.slug), method: :post %>
+            <%= button_to "Request Listing", user_reservations_path(current_user.slug, listing_id: listing.id, user_id: current_user.id, start_date: @dates[:start_date], end_date: @dates[:end_date]), method: :post %>
           </div>
         </td>
+      <td>
+        <div id="delete-listing">
+            <%= button_to "Remove", user_reservation_path(current_user.slug, listing.id, listing_id: listing.id, user_id: current_user.id, start_date: @dates[:start_date], end_date: @dates[:end_date]), method: "delete" %>
+        </div>
+      </td>
       </tr>
   <% end %>
 </table>
