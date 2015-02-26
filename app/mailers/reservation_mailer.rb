@@ -1,7 +1,7 @@
 class ReservationMailer < ApplicationMailer
-  def notify(user, user_contact)
-    @user = user
-    #attachments['image or file'] = File.read("#{Rails.root}/public/image_file.jpg)
-    mail(to: user_contact, subject: "You have a Vagabond waiting for approval!")
+  def notify(host, guest)
+    @guest_name = guest.first_name
+    @host_name = host.first_name
+    mail(to: host.email, subject: "You have a Vagabond waiting for approval!")
   end
 end
