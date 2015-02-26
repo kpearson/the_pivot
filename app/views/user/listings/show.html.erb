@@ -1,20 +1,18 @@
-<div class="listing-show-page"
-
-<div class="row">
-  <div class="col-lg-6"></div>
-<<<<<<< HEAD
-    <h1 class="listing-header"><%= @listing.title %></h1>
-    <p><%= @listing.description %></p>
+<div class="listing-show-page">
+  <div class="row">
+    <div class="col-lg-6"></div>
+      <h1 class="listing-header"><%= @listing.title %></h1>
+      <p><%= @listing.description %></p>
+    </div>
   </div>
-</div>
 <div class="col-md-12 filter">
-  <div class="form-inline">
+  <div class="form-inline"><br>
     <%= bootstrap_form_tag url: "/carts", method: "post" do |f| %>
       <%= f.text_field :check_in, hide_label: true, placeholder: "Check In", class: "from_date connector", contenteditable: false %>
       <%= f.text_field :check_out, hide_label: true, placeholder: "Check Out", class: "to_date connector", contenteditable: false %>
       <%= f.hidden_field :listing_id, value: @listing.id %>
       <%= f.submit "Book It!", class: "btn btn-primary connector" %>
-      <% end %>
+    <% end %>
   </div>
 </div>
   <div class="row user-show-row">
@@ -105,14 +103,15 @@
     }
   </script>
 </div>
-<section id="networks">
-  <div class="col-lg-0">
-    <p>
-      <a href="#"><i class="facebook fa fa-facebook"></i></a><a href="#"><i class="twitter fa fa-twitter"></i></a><a href="#"><i class="mail fa fa-envelope"></i></a>
-    </p>
-  </div>
-  <p><a href="#" class="btn btn-primary btn-large">Book It!</a></p>
-</section>
+  <section id="networks">
+    <div class="col-lg-0">
+      <p>
+        <a href="#"><i class="facebook fa fa-facebook"></i></a><a href="#"><i class="twitter fa fa-twitter"></i></a><a href="#"><i class="mail fa fa-envelope"></i></a>
+      </p>
+    </div>
+    <p><a href="#" class="btn btn-primary btn-large">Book It!</a></p>
+  </section>
+
 <div class="col-lg-5 container"></div>
 <button id="show-directions">Show Directions</button>
 <div id='route-narrative' class="directions-hide" style='margin-top:20px;'>
@@ -138,10 +137,10 @@
       var addText = function(text) {
         $("#show-directions").text(text)
       }
-
       toggleDirections()
     })
   </script>
+</div>
 </div>
 </div>
 </div>
