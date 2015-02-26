@@ -30,28 +30,7 @@ describe "As an unauthenticated user" do
     expect(current_path).to eq(root_path)
   end
 
-  xit "can login which does not clear cart" do
-    click_add_to_cart_link("Breakfast")
-    User.create(first_name: "Valid",
-                last_name: "User",
-                display_name: "valid",
-                about_me: "valid",
-                email: "valid@gmail.com",
-                password: "secret")
-
-    click_link "Log In"
-    fill_in "session[email]", with: "valid@gmail.com"
-    fill_in "session[password]", with: "secret"
-    click_button "Log In"
-    within("#flash_notice") do
-      expect(page).to have_content("Successfully Logged In")
-    end
-    within("#cart-contents") do
-      expect(page).to have_content("1")
-    end
-  end
-
-  xit "can browse all listings (listings index page)" do
+  it "can browse all listings (listings index page)" do
     User.create(first_name: "John",
                 last_name: "Doe",
                 email: "joe@gmail.com",
@@ -66,7 +45,7 @@ describe "As an unauthenticated user" do
     expect(page).to have_content "$200.00"
   end
 
-  xit "can browse a listing by clicking the listing's title" do
+  it "can browse a listing by clicking the listing's title" do
     User.create(first_name: "John",
                 last_name: "Doe",
                 email: "joe@gmail.com",
@@ -78,12 +57,9 @@ describe "As an unauthenticated user" do
     click_link_or_button "B&B"
     expect(current_path).to eq(user_listing_path(listing.user.slug, listing))
     expect(page).to have_content(listing.title)
-    within("div.listing") do
-      expect(page).to have_content listing.title
-      expect(page).to have_content listing.description
-      expect(page).to have_content "$200.00"
-      # expect(page).to have_content "John Doe"
-    end
+    expect(page).to have_content listing.title
+    expect(page).to have_content listing.description
+    expect(page).to have_content "$200.00"
   end
 
   it "can view a listing page namespaced with the host's display name" do
@@ -277,35 +253,6 @@ describe "As an unauthenticated user" do
     expect(page).not_to have_content("from space")
   end
 
-  xit "can add an item to a cart" do
-    click_add_to_cart_link("Breakfast")
-    within("#cart-contents") do
-      expect(page).to have_content("1")
-    end
-  end
-
-  xit "can add two items to a cart" do
-    click_add_to_cart_link("Breakfast")
-    click_add_to_cart_link("Breakfast")
-    click_add_to_cart_link("Lunch")
-    within("#cart-contents") do
-      expect(page).to have_content("3")
-    end
-  end
-
-  xit "can remove an item from a cart" do
-    click_add_to_cart_link("Breakfast")
-    visit new_reservation_path
-    within("#item_1") do
-      click_link "Remove From Cart"
-    end
-    within("#cart-contents") do
-      expect(page).to have_content("0")
-    end
-    expect(current_path).to eq(new_reservation_path)
-    expect(page).to_not have_content("Bacon")
-  end
-
   it "cannot see the logout button" do
     expect(page).to_not have_content("Log Out")
     allow_any_instance_of(ApplicationController).to receive(:current_user).
@@ -324,67 +271,15 @@ describe "As an unauthenticated user" do
     expect(page).to_not have_content("Create A listing")
   end
 
-  xit "can log out which does not clear cart" do
-    click_add_to_cart_link("Breakfast")
-    User.create(first_name: "Rich",
-                last_name: "Shea",
-                email: "bryce@gmail.com",
-                password: "secret")
-
-    click_link "Log In"
-    fill_in "session[email]", with: "bryce@gmail.com"
-    fill_in "session[password]", with: "secret"
-    click_button "Log In"
-    within("#cart-contents") do
-      expect(page).to have_content("1")
-    end
-    click_link_or_button "Log Out"
-    within("#flash_notice") do
-      expect(page).to have_content("Successfully Logged Out")
-    end
-    within("#cart-contents") do
-      expect(page).to have_content("1")
-    end
-  end
-
-  xit "can view their empty cart" do
-    click_link_or_button "Cart"
+  it "can view their empty cart" do
+    click_link_or_button "Reservations"
     expect(current_path).to eq(new_reservation_path)
-    expect(page).to have_content("Your cart is empty")
-  end
-
-  xit "can view their cart with items" do
-    click_add_to_cart_link("Breakfast")
-    click_add_to_cart_link("Breakfast")
-    click_link_or_button "Cart:"
-    expect(current_path).to eq(new_reservation_path)
-    expect(page).to have_content("Bacon")
-    within "div#quantity" do
-      expect(page).to have_content("2")
-    end
-    within "div#description" do
-      expect(page).to have_content("The classic breakfast dish")
-    end
-    within "div#price" do
-      expect(page).to have_content("$10.00")
-    end
+    expect(page).to have_content("Your Reservations Are Empty!")
   end
 
   it "cannot edit a user's profile" do
     visit root_path
     expect(page).to_not have_content('Edit Profile')
-  end
-
-  xit "cannot checkout" do
-    click_add_to_cart_link("Breakfast")
-    click_add_to_cart_link("Breakfast")
-    click_link_or_button "Cart:"
-    expect(current_path).to eq(new_reservation_path)
-    click_link_or_button "Checkout"
-    expect(current_path).to eq(new_reservation_path)
-    within("#flash_notice") do
-      expect(page).to have_content("Please login or signup to continue with checkout")
-    end
   end
 
   it "cannot view the admin dashboard" do
@@ -399,29 +294,18 @@ describe "As an unauthenticated user" do
   xit "cannot modify a listing" do
   end
 
-  xit "cannot create a category" do
+  it "cannot create a category" do
     visit new_admin_category_path
     expect(page).to have_content("Page Not Found")
   end
 
-  xit "cannot modify a category" do
+  it "cannot modify a category" do
     visit edit_admin_category_path(category1)
     expect(page).to have_content("Page Not Found")
   end
 
-  xit "cannot make themselves an admin" do
+  it "cannot make themselves an admin" do
     visit new_admin_path
     expect(page).to have_content("Page Not Found")
   end
-
-  # def click_add_to_cart_link(category)
-  #   click_link_or_button "Menu"
-  #   within(".categories") do
-  #     within("div##{category}") do
-  #       within("div.item") do
-  #         click_link "Add to Cart"
-  #       end
-  #     end
-  #   end
-  # end
 end
