@@ -11,8 +11,8 @@
             <span class="d-hover"><br>
               <%= listing.description %><br>
               <%= listing.category.name %><br>
-              Nightly Rate <%= number_to_currency(listing.currency) %><br>
-              Sleep <%= listing.max_guests %><br>
+              <%= number_to_currency(listing.currency) %><br>
+              Sleeps <%= listing.max_guests %><br>
             </span>
           </a>
           <div class="text-listing-index">

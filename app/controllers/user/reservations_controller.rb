@@ -11,14 +11,6 @@ class User::ReservationsController < ApplicationController
     end
   end
 
-  def destroy
-    @reservation = Reservation.find(params[:id])
-    if @reservation.destroy
-      flash[:notice] = "Reservation successfully deleted"
-      redirect_to :back
-    end
-  end
-
   def update
     @reservation = Reservation.find(params[:id])
     if @reservation.update(status: params[:status])
@@ -34,11 +26,13 @@ class User::ReservationsController < ApplicationController
     if current_user
       set_reservation_attributes(params)
       if @reservation.save
+        ReservationMailer.notify(Listing.find(params[:listing_id].to_i).
+                                 user, current_user).deliver_now
         @cart.remove_listing(params)
         flash[:notice] = "Request Sent!"
         redirect_to :back
       else
-        flash[:notice] = "Unable to send request"
+        flash[:notice] = "Please log in or sign up"
         redirect_to :back
       end
     end

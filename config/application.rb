@@ -17,7 +17,7 @@ Bundler.require(*Rails.groups)
 # config.autoload_paths += "#{Rails.root}/app/uploaders"
 # Dotenv::Railtie.load
 
-module DinnerDash
+module Vagabondr
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
@@ -32,6 +32,24 @@ module DinnerDash
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
+
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      address: "smtp.mandrillapp.com",
+      port: "587",
+      domain: "vagabondr.herokuapp.com",
+      user_name: ENV["MANDRILL_NAME"],
+      password: ENV["MANDRILL_KEY"],
+      authentication: "plain",
+      enable_starttls_auto: true
+    }
+
+    # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+    config.active_job.queue_adapter = :sidekiq
+
+    config.autoload_paths += %W(
+      #{config.root}/app/jobs
+    )
   end
 end

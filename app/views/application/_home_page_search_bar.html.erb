@@ -4,7 +4,7 @@
       <%= f.text_field :city, hide_label: true, placeholder: "Where to?", class: "connector" %>
       <%= f.text_field :check_in, hide_label: true, placeholder: "Check In", class: "from_date connector", contenteditable: false %>
       <%= f.text_field :check_out, hide_label: true, placeholder: "Check Out", class: "to_date connector", contenteditable: false %>
-      <%= f.select :max_guests, options_for_select(guests_helper), hide_label: true, class: "connector", placeholder: "Guests" %>
+      <%= f.select :max_guests, options_for_select(guests_helper), hide_label: true, class: "connector guests", placeholder: "Guests" %>
       <%= f.submit "Search", class: "btn btn-primary connector" %>
     <% end %>
   </div>
