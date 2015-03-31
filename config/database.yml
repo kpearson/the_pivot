@@ -17,4 +17,4 @@ test:
 
 production:
   adapter: postgresql
-  database: vagabond 
+  database: vagabond

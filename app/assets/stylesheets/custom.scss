@@ -1,7 +1,7 @@
 body {
   font-family: 'Ubuntu', sans-serif;
   font-weight: bold;
-  background: url(/assets/images/blizzard.png) repeat;
+  background: url(image_path('blizzard.png')) repeat;
   margin-top: 0;
 }
 
@@ -324,7 +324,7 @@ ul, menu, dir {
 }
 
 .profile-header {
-  background: linear-gradient(rgba(240, 240, 230, 0.6), rgba(255, 255, 255, 0.6)), url(/assets/images/form-pattern.png) repeat;
+  background: linear-gradient(rgba(240, 240, 230, 0.6), rgba(255, 255, 255, 0.6)), url(image_path('form-pattern.png')) repeat;
 }
 
 .user-show-name {

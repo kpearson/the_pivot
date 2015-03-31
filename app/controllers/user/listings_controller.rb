@@ -33,6 +33,7 @@ class User::ListingsController < ApplicationController
   def edit
     user = User.find_by!(slug: params[:slug])
     @listing = user.listings.find(params[:id])
+     require 'pry'; binding.pry
     @listing_image = @listing.listing_images.build
     @user = User.find_by(slug: params[:slug])
   end
@@ -42,13 +43,13 @@ class User::ListingsController < ApplicationController
      if params["listing_images"]
        params["listing_images"]["images"].each do |i|
        @listing.listing_images.build(image: i)
+       end
      end
-   end
-   if @listing.update_attributes(listing_params)
-      redirect_to user_listing_path(current_user.slug, @listing.id)
-    else
-      render :edit
-    end
+     if @listing.update_attributes(listing_params)
+       redirect_to user_listing_path(current_user.slug, @listing.id)
+     else
+        render :edit
+     end
   end
 
   def destroy
@@ -73,5 +74,5 @@ class User::ListingsController < ApplicationController
     :shared_bathroom,
     listing_images_attributes: [:id,
       :listing_id, :image, :_destroy])
-    end
   end
+end
